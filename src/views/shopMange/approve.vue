@@ -7,43 +7,43 @@
         <el-form ref="form" :model="form" :rules="rules" label-width="150px">
           <ul class="flexbox">
             <li><el-form-item label="经销商编号:" prop="name">
-              {{form.dealerCode}}
+              {{ form.dealerCode }}
             </el-form-item></li>
             <li><el-form-item label="经销商名称:" label-width="150px" prop="name">
-              {{form.dealerName}}
+              {{ form.dealerName }}
             </el-form-item></li>
           </ul>
           <ul class="flexbox">
             <li>  <el-form-item label="统一社会信用代码:" prop="name">
-              {{form.creditCode}}
+              {{ form.creditCode }}
             </el-form-item></li>
             <li><el-form-item label="招商经理:" prop="name">
-              {{form.leasingManager}}
+              {{ form.leasingManager }}
             </el-form-item></li>
           </ul>
 
           <ul class="flexbox">
             <li>
               <el-form-item label="注册地址:" prop="detailedAddress">
-                {{form.registerAddress}}
+                {{ form.registerAddress }}
               </el-form-item>
             </li>
             <li>
               <el-form-item label="负责人姓名:" prop="name" >
-                {{form.chargeName}}
+                {{ form.chargeName }}
               </el-form-item>
             </li>
           </ul>
           <ul class="flexbox">
             <li>
               <el-form-item label="详细地址:" prop="detailedAddress">
-                {{form.detailedAddress}}
+                {{ form.detailedAddress }}
               </el-form-item>
             </li>
 
             <li>
               <el-form-item label="负责人性别:" prop="name" >
-                {{form.legalSex}}
+                {{ form.legalSex }}
               </el-form-item>
             </li>
 
@@ -52,13 +52,13 @@
           <ul class="flexbox">
             <li>
               <el-form-item label="法人姓名:" prop="legalName" >
-                {{form.legalName}}
+                {{ form.legalName }}
               </el-form-item>
             </li>
 
             <li>
               <el-form-item label="负责人联系方式:" prop="chargePhone" >
-                {{form.chargePhone}}
+                {{ form.chargePhone }}
               </el-form-item>
             </li>
           </ul>
@@ -66,7 +66,7 @@
           <ul class="flexbox">
             <li>
               <el-form-item label="法人身份证号码:" prop="name" >
-                {{form.legalCard}}
+                {{ form.legalCard }}
               </el-form-item>
               <el-form-item label="法人身份证照:（正面）" prop="legalFrontView" label-width="20">
                 <img :src="form.legalFrontView" class="avatar">
@@ -86,33 +86,33 @@
             <li>
               <el-form-item label="" prop="name">
                 <img v-if="form.licenseImageUrlYY" :src="form.licenseImageUrlYY" class="avatar">
-                <div class="pictext" v-if="form.licenseImageUrlSP"><i>*</i>营业执照</div>
+                <div v-if="form.licenseImageUrlSP" class="pictext" ><i>*</i>营业执照</div>
               </el-form-item>
             </li>
             <li>
               <el-form-item label="" prop="name">
                 <img v-if="form.licenseImageUrlSP" :src="form.licenseImageUrlSP" class="avatar">
 
-                <div class="pictext" v-if="form.licenseImageUrlSP"><i>*</i> 食品生产许可证</div>
+                <div  v-if="form.licenseImageUrlSP" class="pictext"><i>*</i> 食品生产许可证</div>
               </el-form-item>
             </li>
             <li>
               <el-form-item label="" prop="name">
                 <img v-if="form.licenseImageUrlAQ" :src="form.licenseImageUrlAQ" class="avatar">
-                <div class="pictext" v-if="form.licenseImageUrlSP"><i>*</i> 安全生产许可证</div>
+                <div v-if="form.licenseImageUrlSP" class="pictext" ><i>*</i> 安全生产许可证</div>
               </el-form-item>
             </li>
             <!--<li>-->
-              <!--<el-form-item label="" prop="name">-->
-                <!--<img v-if="imageUrl" :src="imageUrl" class="avatar">-->
-                <!--<div class="pictext"><i>*</i> <div>这个证照的名字真有点长...</div></div>-->
-              <!--</el-form-item>-->
+            <!--<el-form-item label="" prop="name">-->
+            <!--<img v-if="imageUrl" :src="imageUrl" class="avatar">-->
+            <!--<div class="pictext"><i>*</i> <div>这个证照的名字真有点长...</div></div>-->
+            <!--</el-form-item>-->
             <!--</li>-->
             <!--<li>-->
-              <!--<el-form-item label="" prop="name">-->
-                <!--<img v-if="imageUrl" :src="imageUrl" class="avatar">-->
-                <!--<div class="pictext"><i>*</i> <div>这个证照的名字真有点长...</div></div>-->
-              <!--</el-form-item>-->
+            <!--<el-form-item label="" prop="name">-->
+            <!--<img v-if="imageUrl" :src="imageUrl" class="avatar">-->
+            <!--<div class="pictext"><i>*</i> <div>这个证照的名字真有点长...</div></div>-->
+            <!--</el-form-item>-->
             <!--</li>-->
           </ul>
         </el-form>
@@ -144,7 +144,7 @@ export default {
       form: {
         dealerName: '',
         dealerCode: '',
-        registerAddress:'',
+        registerAddress: '',
         province: '',
         creditCode: '',
         leasingManager: '',
@@ -156,10 +156,10 @@ export default {
         legalBackView: '',
         chargePhone: '',
         chargePhoto: '',
-        legalCard:'',
-        licenseImageUrlYY:'',
-        licenseImageUrlAQ:'',
-        licenseImageUrlSP:'',
+        legalCard: '',
+        licenseImageUrlYY: '',
+        licenseImageUrlAQ: '',
+        licenseImageUrlSP: ''
       },
       rules: {
         name: [
@@ -216,24 +216,24 @@ export default {
 
   created() {
     getDetailedDealerInfo().then(res => {
-      this.form.dealerName=res.datas.dealerName;
-      this.form.dealerCode=res.datas.dealerCode;
-      this.form.registerAddress=res.datas.registerAddress;
-      this.form.province=res.datas.province;
-      this.form.creditCode=res.datas.creditCode;
-      this.form.leasingManager=res.datas.leasingManager;
-      this.form.detailedAddress=res.datas.legalName;
-      this.form.legalName= res.datas.legalName;
-      this.form.chargeName=res.datas.chargeName;
-      this.form.legalSex=res.datas.legalSex;
-      this.form.legalFrontView=res.datas.legalFrontView;
-      this.form.legalBackView=res.datas.legalBackView;
-      this.form.chargePhone=res.datas.chargePhone;
-      this.form.chargePhoto=res.datas.chargePhoto;
-      this.form.legalCard=res.datas.legalCard;
-      this.form.licenseImageUrlYY=res.datas.licenseImageUrlYY;
-      this.form.legalCardImageUrlAQ=res.datas.legalCardImageUrlAQ;
-      this.form.legalCardImageUrlSP=res.datas.legalCardImageUrlSP;
+      this.form.dealerName = res.datas.dealerName
+      this.form.dealerCode = res.datas.dealerCode
+      this.form.registerAddress = res.datas.registerAddress
+      this.form.province = res.datas.province
+      this.form.creditCode = res.datas.creditCode
+      this.form.leasingManager = res.datas.leasingManager
+      this.form.detailedAddress = res.datas.legalName
+      this.form.legalName = res.datas.legalName
+      this.form.chargeName = res.datas.chargeName
+      this.form.legalSex = res.datas.legalSex
+      this.form.legalFrontView = res.datas.legalFrontView
+      this.form.legalBackView = res.datas.legalBackView
+      this.form.chargePhone = res.datas.chargePhone
+      this.form.chargePhoto = res.datas.chargePhoto
+      this.form.legalCard = res.datas.legalCard
+      this.form.licenseImageUrlYY = res.datas.licenseImageUrlYY
+      this.form.legalCardImageUrlAQ = res.datas.legalCardImageUrlAQ
+      this.form.legalCardImageUrlSP = res.datas.legalCardImageUrlSP
     }).catch(error => {
       this.$message.error(error + '')
     })
