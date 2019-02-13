@@ -13,10 +13,6 @@
           <el-tab-pane label="短信验证码" name="code">
             <codeLogin></codeLogin>
           </el-tab-pane>
-          <!--<el-tab-pane label="用户密码" name="user">-->
-            <!--&lt;!&ndash;<userLogin></userLogin>&ndash;&gt;-->
-          <!--</el-tab-pane>-->
-
         </el-tabs>
       </div>
     </div>
