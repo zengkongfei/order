@@ -31,7 +31,7 @@ const user = {
       return new Promise((resolve, reject) => {
         login(userInfo).then(res => {
           const token = res.datas.token
-          this.avatar="http://bucket-health-test.oss-cn-hangzhou.aliyuncs.com/fbe6ef99718743908d654baedb982614.jpeg?Expires=1581499025&OSSAccessKeyId=LTAIo4pB85rIrn3v&Signature=b5EYVB5mS0iRFCKzD%2FqASXo5TdE%3D"
+          this.avatar="../../../images/logo.jpg"
           setToken(token)
           commit('SET_TOKEN', token)
           commit('SET_AVATAR', this.avatar)

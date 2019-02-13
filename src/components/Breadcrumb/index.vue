@@ -31,8 +31,8 @@ export default {
       let matched = this.$route.matched.filter(item => item.name)
 
       const first = matched[0]
-      if (first && first.name !== 'dashboard') {
-        matched = [{ path: '/dashboard',   name: 'Dashboard' }].concat(matched)
+      if (first && first.name !== 'home') {
+        matched = [{ path: '/',   name: '首页' }].concat(matched)
       }
 
       this.levelList = matched.filter(item => item && item.name && item.breadcrumb !== false)
