@@ -12,7 +12,7 @@
             <el-form ref="form" :model="form" :rules="rules" label-width="160px" :inline="true">
               <div class="right-left-box clearfix">
                 <div class="left-box left">
-                  <div>
+                 <div> 
                     <el-form-item label="经销商编号:"  class="second-input">
                       {{ form.dealerCode }}
                     </el-form-item>
