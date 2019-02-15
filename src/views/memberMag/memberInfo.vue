@@ -7,7 +7,7 @@
             <el-input v-model="plan.memberCode" placeholder="请输入会员编号"/>
           </el-form-item>
           <el-form-item label="联系方式">
-            <el-input v-model="plan.contactPhone" placeholder="请输入会员联系方式"/>
+            <el-input v-model="plan.contactWay" placeholder="请输入会员联系方式"/>
           </el-form-item>
         </el-form>
       </div>
@@ -26,7 +26,7 @@
       </el-table>
       <div class="pagination">
         <el-pagination
-          :total="1000"
+          :total="total"
           background
           layout="prev, pager, next"
           @current-change="handleCurrentChange"/>
@@ -37,8 +37,7 @@
 </template>
 
 <script>
-//import { dealerList, dealerAreas } from '../../js/employee'
-import {memberList, vipInfoList} from '../../js/vipmanagement'
+import { memberList } from '../../js/vipmanagement'
 export default {
   name: 'Basetable',
   data() {
@@ -48,16 +47,18 @@ export default {
       editVisible: false,
       delVisible: false,
       dialogVisible: false,
-      status: 1,      input: '',
+      status: 1,
+      input: '',
       value: [],
       options: [{
         value: [],
       }],
       name: '',
+      total: '',
       plan: {
-        contactPhone: "",
-        dealerId: "018ee962-eab6-4313-9354-0d5eb3370d12",
-        memberCode: "",
+        contactWay: '',
+        dealerId: '',
+        memberCode: ''
       },
       rules: {
         name: [
@@ -88,7 +89,8 @@ export default {
       this.plan.page = this.page
       console.log(this.plan)
       memberList(this.plan).then(res => {
-        this.tableData=res.datas
+        this.tableData = res.datas
+        this.total = res.total
         console.log(res.data)
       }).catch(error => {
         this.$message.error(error + '')
