@@ -51,7 +51,7 @@ export default {
       input: '',
       value: [],
       options: [{
-        value: [],
+        value: []
       }],
       name: '',
       total: '',
@@ -105,7 +105,7 @@ export default {
     },
     // 刷新
     handFlush() {
-
+      this.getData()
     }
   }
 }

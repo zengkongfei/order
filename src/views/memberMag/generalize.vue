@@ -1,80 +1,79 @@
 <template>
   <div class="table">
-      <div id="container"class="container">
-        <div class="address">
-          服务网点：{{dealerName}}<br/>
-          地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：{{dealerAddress}}
-        </div>
-        <div class="code">
-          <img id="code" :src="dataURL" width="160px" >
-        </div>
-        <div class="logo">
-          <img id="logo" src="../../images/logo.jpg" width="30px" >
-        </div>
-        <div class="picFile">
-          <img src="../../images/pic.png">
-        </div>
+    <div id="container" class="container">
+      <div class="address">
+        服务网点：{{ dealerName }} <br>
+        地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：{{ dealerAddress }}
       </div>
-      <div align="center"><el-button class="button "type="primary" @click="createPicture()"  style="text-align:center;width: 554px">保存二维码</el-button></div>
-
+      <div class="code">
+        <img id="code" :src="dataURL" width="160px" >
+      </div>
+      <div class="logo">
+        <img id="logo" src="../../images/logo.jpg" width="30px" >
+      </div>
+      <div class="picFile">
+        <img src="../../images/pic.png">
+      </div>
     </div>
+    <div align="center"><el-button class="button " type="primary" style="text-align:center;width: 554px" @click="createPicture()">保存二维码</el-button></div>
+
+  </div>
 </template>
 
 <script>
-  import * as html2canvas from "html2canvas";
-  import {getDealerInfo, getQrCode} from "../../js/vipmanagement";
-  export default {
-    name: 'table',
-    data() {
-      return {
-        dataURL:'',
-        dealerCode:'',
-        dealerName:'',
-        dealerAddress:'',
-        plan: {
-          content: 'http://192.168.30.190:4004/?dealerCode='+this.dealerCode
-        },
+import * as html2canvas from 'html2canvas'
+import { getDealerInfo, getQrCode } from '../../js/vipmanagement'
+export default {
+  name: 'Table',
+  data() {
+    return {
+      dataURL: '',
+      dealerCode: '',
+      dealerName: '',
+      dealerAddress: '',
+      plan: {
+        content: 'http://192.168.30.190:4004/?dealerCode=' + this.dealerCode
       }
-    },
-    created() {
-      getDealerInfo().then(res => {
-        this.dealerName=res.datas.dealerName;
-        this.dealerAddress=res.datas.detailedAddress;
-      }).catch(error => {
-        this.$message.error(error + '')
-      })
-      getQrCode(this.plan).then(res => {
-        this.dataURL= res.msg;
-      }).catch(error => {
-        this.$message.error(error + '')
-      })
-
-    },
-    methods: {
-      createPicture:function() {
-        html2canvas(document.getElementById('container'),{useCORS:true,logging:true}).then(canvas => {
-          this.imgmap = canvas.toDataURL()
-          console.log(999, this.imgmap)
-          if (window.navigator.msSaveOrOpenBlob) {
-            var bstr = atob(this.imgmap.split(',')[1])
-            var n = bstr.length
-            var u8arr = new Uint8Array(n)
-            while (n--) {
-              u8arr[n] = bstr.charCodeAt(n)
-            }
-            var blob = new Blob([u8arr])
-            window.navigator.msSaveOrOpenBlob(blob, 'popularize' + '.' + 'png')
-          } else {
-            // 这里就按照chrome等新版浏览器来处理
-            const a = document.createElement('a')
-            a.href = this.imgmap
-            a.setAttribute('download', 'popularize')
-            a.click()
+    }
+  },
+  created() {
+    getDealerInfo().then(res => {
+      this.dealerName = res.datas.dealerName
+      this.dealerAddress = res.datas.detailedAddress
+    }).catch(error => {
+      this.$message.error(error + '')
+    })
+    getQrCode(this.plan).then(res => {
+      this.dataURL = res.msg
+    }).catch(error => {
+      this.$message.error(error + '')
+    })
+  },
+  methods: {
+    createPicture: function() {
+      html2canvas(document.getElementById('container'), { useCORS: true, logging: true }).then(canvas => {
+        this.imgmap = canvas.toDataURL()
+        console.log(999, this.imgmap)
+        if (window.navigator.msSaveOrOpenBlob) {
+          var bstr = atob(this.imgmap.split(',')[1])
+          var n = bstr.length
+          var u8arr = new Uint8Array(n)
+          while (n--) {
+            u8arr[n] = bstr.charCodeAt(n)
           }
-        });
-      }
-    },
+          var blob = new Blob([u8arr])
+          window.navigator.msSaveOrOpenBlob(blob, 'popularize' + '.' + 'png')
+        } else {
+          // 这里就按照chrome等新版浏览器来处理
+          const a = document.createElement('a')
+          a.href = this.imgmap
+          a.setAttribute('download', 'popularize')
+          a.click()
+        }
+      })
+    }
   }
+}
 </script>
 
 
