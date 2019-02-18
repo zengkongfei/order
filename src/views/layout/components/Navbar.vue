@@ -1,10 +1,9 @@
 <template>
-  <el-menu class="navbar" mode="horizontal">
+  <!-- <el-menu class="navbar" mode="horizontal">
     <hamburger :toggle-click="toggleSideBar" :is-active="sidebar.opened" class="hamburger-container"/>
     <breadcrumb />
     <el-dropdown class="avatar-container" trigger="click">
       <div class="avatar-wrapper">
-        <!--<img :src="avatar" class="user-avatar">-->
         <img src="../../../images/logo.jpg" class="user-avatar">
         <i class="el-icon-caret-bottom"/>
       </div>
@@ -17,6 +16,47 @@
         <el-dropdown-item divided>
           <span style="display:block;" @click="logout">退出</span>
         </el-dropdown-item>
+      </el-dropdown-menu>
+    </el-dropdown>
+  </el-menu> -->
+        <el-menu class="navbar" mode="horizontal">
+    <!-- <hamburger :toggle-click="toggleSideBar" :is-active="sidebar.opened" class="hamburger-container"/> -->
+    <breadcrumb />
+    <el-dropdown class="avatar-container" trigger="click">
+      <div class="avatar-wrapper">
+        <div class="zh-set">
+          <img src="../../../assets/images/Group@2x.png" class="user-avatar">
+          <span class="set">账户设置</span>
+        </div>
+        <!-- <i class="el-icon-caret-bottom"/> -->
+      </div>
+      <!--<el-dropdown-menu slot="dropdown" class="user-dropdown">-->
+        <!--<router-link class="inlineBlock" to="/">-->
+          <!--<el-dropdown-item>-->
+            <!--Home-->
+          <!--</el-dropdown-item>-->
+        <!--</router-link>-->
+        <!--<el-dropdown-item divided>-->
+          <!--<span style="display:block;" @click="logout">退出</span>-->
+        <!--</el-dropdown-item>-->
+      <!--</el-dropdown-menu>-->
+    <!--</el-dropdown>-->
+  <!--</el-menu>-->
+      <el-dropdown-menu slot="dropdown" class="user-dropdown">
+        <router-link class="inlineBlock" to="/">
+          <el-dropdown-item>
+            <div class="ltimg">
+              <img src="../../../assets/images/top_images/renwu.jpg"/>
+            </div>
+            <div class="rgbot">
+              <h1 class="titext">岳云鹏</h1>
+              <p class="infotex">分部招商经理…</p>
+              <p class="loietx">E201801010000</p>
+            </div>
+          </el-dropdown-item>
+        </router-link>
+          <span class="botlogout" style="display:block;" @click="logout"><img src="../../../assets/images/top_images/Group 3.png">注销</span>
+
       </el-dropdown-menu>
     </el-dropdown>
   </el-menu>
@@ -52,45 +92,143 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-.navbar {
-  height: 50px;
-  line-height: 50px;
-  border-radius: 0px !important;
-  .hamburger-container {
-    line-height: 58px;
-    height: 50px;
-    float: left;
-    padding: 0 10px;
-  }
-  .screenfull {
-    position: absolute;
-    right: 90px;
-    top: 16px;
-    color: red;
-  }
-  .avatar-container {
-    height: 50px;
-    display: inline-block;
-    position: absolute;
-    right: 35px;
-    .avatar-wrapper {
-      cursor: pointer;
-      margin-top: 5px;
-      position: relative;
-      line-height: initial;
-      .user-avatar {
-        width: 40px;
-        height: 40px;
-        border-radius: 10px;
-      }
-      .el-icon-caret-bottom {
-        position: absolute;
-        right: -20px;
-        top: 25px;
-        font-size: 12px;
-      }
-    }
-  }
+// .navbar {
+//   height: 50px;
+//   line-height: 50px;
+//   border-radius: 0px !important;
+//   .hamburger-container {
+//     line-height: 58px;
+//     height: 50px;
+//     float: left;
+//     padding: 0 10px;
+//   }
+//   .screenfull {
+//     position: absolute;
+//     right: 90px;
+//     top: 16px;
+//     color: red;
+//   }
+//   .avatar-container {
+//     height: 50px;
+//     display: inline-block;
+//     position: absolute;
+//     right: 35px;
+//     .avatar-wrapper {
+//       cursor: pointer;
+//       margin-top: 5px;
+//       position: relative;
+//       line-height: initial;
+//       .user-avatar {
+//         width: 40px;
+//         height: 40px;
+//         border-radius: 10px;
+//       }
+//       .el-icon-caret-bottom {
+//         position: absolute;
+//         right: -20px;
+//         top: 25px;
+//         font-size: 12px;
+//       }
+//     }
+//   }
+// }
+  .app-breadcrumb.el-breadcrumb[data-v-b50ef614] {
+    line-height: 80px
 }
+</style><style lang="scss" scoped>
+.navbar {
+    height: 80px;
+    line-height: 50px;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0px 1px 4px 0px rgba(0, 21, 41, 0.12);
+    border-radius: 0px !important;
+
+    .hamburger-container {
+        line-height: 58px;
+        height: 50px;
+        float: left;
+        padding: 0 10px;
+    }
+
+    .screenfull {
+        position: absolute;
+        right: 90px;
+        top: 16px;
+        color: red;
+    }
+
+    .avatar-container {
+        height: 50px;
+        display: inline-block;
+        position: absolute;
+        right: 35px;
+
+        .avatar-wrapper {
+            cursor: pointer;
+            margin-top: 5px;
+            position: relative;
+            line-height: initial;
+
+            .zh-set {
+
+                margin-top: 28px;
+                .user-avatar {
+                    width: 16px;
+                    height: 16px;
+                     vertical-align: middle
+                }
+            }
+
+            .el-icon-caret-bottom {
+                position: absolute;
+                right: -20px;
+                top: 25px;
+                font-size: 12px;
+            }
+        }
+    }
+}
+.ltimg{ width:72px; height:100px; float: left; overflow: hidden; margin-right: 12px;}
+.ltimg img{ width: 100%; height: 100%; overflow: hidden;}
+.rgbot{  float: left; width:99px; height: 106px;}
+  .titext{width:100%;
+    text-overflow:ellipsis;
+    white-space : normal nowrap;
+    font-size:16px;
+    font-weight:400;
+    color:rgba(51,51,51,1);
+    line-height:10px;}
+  .infotex{width:84px;
+    height:17px;
+    font-size:12px;
+    font-weight:400;
+    color:rgba(76,172,255,1);
+    line-height:17px;
+    text-overflow:ellipsis;
+    white-space : normal nowrap;
+  }
+  .loietx{width:95px;
+    height:17px;
+    font-size:12px;
+    font-weight:400;
+    color:rgba(102,102,102,1);
+    line-height:17px;
+     margin-top:38px;
+  }
+.el-dropdown-menu__item{height:auto; border-bottom:solid 1px #D9D9D9; padding: 0;margin:24px; margin-bottom: 0px; padding-bottom: 18px; display: inline-table}
+.el-dropdown-menu__item:hover{ background: #FFF;}
+  .botlogout{ margin:12px 24px;font-size:16px;font-weight:400;color:rgba(51,51,51,1); display: block; text-align: left; cursor: pointer;
+    }
+  .botlogout img{ width: 14px; height: 14px; margin-right: 12px;}
+</style>
+<style>
+  .user-dropdown{ width: 242px; height: 200px; background:rgba(255,255,255,1);
+    box-shadow:0px 1px 4px 0px rgba(0,0,0,0.3);
+    border-radius:4px;
+    border:1px solid rgba(0,130,240,1);}
+  .el-popper[x-placement^=bottom] .popper__arrow{border-bottom-color: #0082F0;}
+
+</style>
+
 </style>
 
