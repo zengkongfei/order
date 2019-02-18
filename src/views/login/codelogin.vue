@@ -82,7 +82,7 @@ export default {
       loginForm: {
         username: "",
         verificationCode: "",
-        accountType: 1
+        accountType: 2
       },
       loginRules: {
         username: [
@@ -95,7 +95,7 @@ export default {
       sendForm: {
         phoneNumber: "",
         contentType: 1,
-        accountType: 1
+        accountType: 2
       }
     };
   },
@@ -157,7 +157,7 @@ export default {
   background: rgba(0, 130, 240, 1);
   text-align: center;
   line-height: 40px;
-  margin-top: 10px;
+  margin-top: 30px;
   margin-left:-7px;
   border-radius: 4px;
   /* position: absolute;
@@ -187,7 +187,7 @@ export default {
 .login-form > .phoneNumber img,
 .login-form > .inpCode img {
   position: absolute;
-  top: 22px;
+  top: 42px;
   left: 40px;
 }
 .el-form-item .el-input__validateIcon {
@@ -195,5 +195,8 @@ export default {
 }
 .el-input--small .el-input__inner{
   padding-left: 30px;
+}
+.el-tabs__nav-wrap::after{
+  bottom:none;
 }
 </style>

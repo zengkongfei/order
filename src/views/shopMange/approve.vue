@@ -100,9 +100,9 @@
                 <i class="icon-square"></i>
                 <span>网点证照</span>
               </div>
-              <div class="licences clearfix">
-                <div class="img-box" v-for="item in licences">
-                  <img :src="item.imageUrl" max-height="200px" max-width="266px">
+              <div class="licences clearfix" >
+                <div v-for="item in licences" class="licences"  style="border-radius:5px;width:266px;height:200px;">
+                  <img :src="item.imageUrl" height="200px" width="266px">
                 </div>
               </div>
               <!--<div class="licences" v-for="item in licences">
@@ -993,11 +993,12 @@
   }
 
   .licences {
-    /* float: left;
-     margin-right: 18px;*/
+      float: left;
+     margin-left: 10px;
+     margin-bottom:10px;
   }
 
-  .img-box {
+  /* .img-box {
     float: left;
     display: inline-block;
     width: 266px;
@@ -1008,7 +1009,7 @@
     vertical-align: middle;
     border: none;
     margin-right: 24px;
-  }
+  } */
 
   .licences .img-box:nth-child(4n+4) {
     margin-right: 0;
