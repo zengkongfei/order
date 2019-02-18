@@ -1,43 +1,53 @@
 <template>
   <div class="login-container pull-height" @keyup.enter.native="handleLogin">
-    <div class="login-info text-white animated fadeInLeft">
-      <div class="logo" style="margin-top:-426px">
-          <img src="../../assets/images/home/logo.png" width="160px" height="160px" alt="logo" style="vertical-align: middle;" />
-      </div>
+    <div class="login-info text-white animated fadeInLeft"></div>
+    <div class="loginTop">
+      <img src="../../assets/images/goodLogo3.png" alt="logo">
     </div>
-    <div class="login-border  animated fadeInRight">
+    <div class="login-border animated fadeInRight">
+      <div class="login-top">
+        <img src="../../assets/images/top_images/logo.png" alt="logo">
+      </div>
       <div class="login-main">
-        <h4 class="login-title">登录
-        </h4>
+        <!-- <span class="login-title">用户登录</span> -->
         <el-tabs v-model="activeName">
-          <el-tab-pane label="短信验证码" name="code">
+          <el-tab-pane label="手机登录" name="code">
             <codeLogin></codeLogin>
+          </el-tab-pane>
+          <el-tab-pane label="账号密码登录" name="user">
+            <userLogin></userLogin>
           </el-tab-pane>
         </el-tabs>
       </div>
     </div>
 
+    <div class="bttom">
+      <span>
+        <span class="tex">Copyright@</span>
+        <span class="tac">2019 美好铺子科技有限公司</span>
+      </span>
+    </div>
   </div>
 </template>
 <script>
-import userLogin from './userlogin'
-import codeLogin from './codelogin'
+import userLogin from "./userlogin";
+import codeLogin from "./codelogin";
 export default {
-  name: 'login',
+  name: "login",
   components: {
     userLogin,
     codeLogin
   },
   data() {
     return {
-      activeName: 'code'
-    }
+      activeName: "code"
+    };
   },
   created() {},
   mounted() {},
   props: [],
   methods: {}
-}
+};
 </script>
 
 <style lang="scss">
@@ -45,9 +55,59 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  background: rgba(0, 0, 0, 0.2);
+  // 去掉透明
+  // background: rgba(0, 0, 0, 0.2);
   position: relative;
   height: 900px;
+}
+.login-container .loginTop {
+  width: 100%;
+  height: 80px;
+  background: rgba(38, 42, 55, 1);
+  line-height: 80px;
+  box-shadow: 0px 1px 4px 0px rgba(0, 21, 41, 0.12);
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+//登录页logo样式
+.login-container .loginTop > img {
+  margin-left: 392px;
+   width: 119px;
+   height: 44px;
+  // width: 188px;
+  // height: 60px;
+  margin-top: 18px;
+}
+.login-container .bttom {
+  width: 100%;
+  height: 40px;
+  background-color: #fff;
+  position: absolute;
+  bottom: -38px;
+  left: 0px;
+  text-align: center;
+  line-height: 40px;
+}
+.login-container .bttom .tac {
+  display: inline-block;
+  width: 152px;
+  height: 20px;
+  font-size: 12px;
+  font-family: PingFangSC-Regular;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.45);
+  line-height: 20px;
+}
+.login-container .bttom .tex {
+  display: inline-block;
+  width: 67px;
+  height: 20px;
+  font-size: 12px;
+  font-family: PingFangSC-Regular;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.45);
+  line-height: 20px;
 }
 .login-container::before {
   z-index: -999;
@@ -70,18 +130,30 @@ export default {
   font-size: 14px;
 }
 .login-border {
+  width: 420px;
+  height: 439px;
   display: flex;
   justify-content: center;
   flex-direction: column;
   padding: 30px 50px 25px 50px;
-  background-color: #fff;
-  border-radius: 6px;
-  box-shadow: 1px 1px 2px #eee;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 4px;
+  position: relative;
+}
+.login-border > .login-top > img {
+  position: absolute;
+  top: 30px;
+  left: 116px;
 }
 .login-main {
-  border-radius: 3px;
-  box-sizing: border-box;
-  background-color: #fff;
+  // border-radius: 3px;
+  // box-sizing: border-box;
+  // background-color: #fff;
+  width: 420px;
+  height: 273px;
+  position: absolute;
+  top: 120px;
+  left: 0px;
 }
 .login-main > h3 {
   margin-bottom: 20px;
@@ -92,13 +164,34 @@ export default {
 .login-title {
   margin: 0 0 20px;
   text-align: center;
-  color: #409eff;
+  color: rgba(102, 102, 102, 1);
+  font-family: PingFang-SC-Medium;
+  font-weight: 500;
   letter-spacing: 3px;
+  position: relative;
+  // color: #409eff;
+  // width: 72px;
+  // height: 25px;
+  // font-size: 18px;
+  // text-align: center;
+  // font-family: PingFang-SC-Medium;
+  // font-weight: 500;
+  // color: rgba(102, 102, 102, 1);
+  // line-height: 25px;
+}
+.login-title {
+  position: absolute;
+  top: -10px;
+  left: 184px;
 }
 .login-submit {
   margin-top: 20px;
-  width: 100%;
-  border-radius: 28px;
+  margin-left: 32px;
+  width: 356px;
+  height: 40px;
+  box-shadow: 0px 5px 8px 0px rgba(0, 130, 240, 0.5);
+  border-radius: 4px;
+  background: rgba(0, 130, 240, 1);
 }
 .login-form {
   margin: 10px 0;
@@ -110,9 +203,10 @@ export default {
   }
   .el-input {
     input {
-      text-indent: 5px;
-      border-color: #dcdcdc;
-      border-radius: 3px;
+      width: 356px;
+      height: 40px;
+      margin-left: 32px;
+      margin-top: 10px;
     }
     .el-input__prefix {
       i {
@@ -141,5 +235,33 @@ export default {
   line-height: 32px;
   text-indent: 5px;
   text-align: center;
+}
+.el-checkbox__inner {
+  margin-left: 32px;
+}
+.el-tabs__item.is-top:nth-child(2) {
+  margin-left:90px;
+}
+.el-tabs__active-bar {
+    left:93px;
+  // width: 178px !important;
+  background: rgba(0, 130, 240, 1);
+}
+.el-tabs__nav-wrap::after {
+  width: 356px;
+  margin-left: 32px;
+  height: 1px;
+  background: rgba(216, 216, 216, 1);
+}
+.el-tabs__item{
+  padding: 0 37px;
+}
+.el-form-item__error {
+  left: 32px;
+}
+// 修改input框
+.login-form>.inpCode>.el-input input{
+   width: 242px;
+   height: 40px;
 }
 </style>
