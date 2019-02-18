@@ -12,8 +12,8 @@
             <el-form ref="form" :model="form" :rules="rules" label-width="160px" :inline="true">
               <div class="right-left-box clearfix">
                 <div class="left-box left">
-                 <div> 
-                    <el-form-item label="经销商编号:"  class="second-input">
+                  <div>
+                    <el-form-item label="经销商编号:" class="second-input">
                       {{ form.dealerCode }}
                     </el-form-item>
                   </div>
@@ -88,37 +88,43 @@
                   </div>
                   <div class="pic-d img-size-second">
                     <el-form-item label="负责人照片：" prop="chargePhoto">
-                        <img v-if="form.chargePhoto" :src="form.chargePhoto" class="avatar">
-                        <i v-else class="el-icon-plus avatar-uploader-icon"
-                           style="width: 205px; height: 250px;border:none"/>
+                      <img v-if="form.chargePhoto" :src="form.chargePhoto" class="avatar">
+                      <i v-else class="el-icon-plus avatar-uploader-icon"
+                         style="width: 205px; height: 250px;border:none"/>
                     </el-form-item>
                   </div>
 
                 </div>
               </div>
-              <div class="listtitle" >
+              <div class="listtitle">
                 <i class="icon-square"></i>
                 <span>网点证照</span>
               </div>
-              <div class="licences" v-for="item in licences">
+              <div class="licences clearfix">
+                <div class="img-box" v-for="item in licences">
+                  <img :src="item.imageUrl" max-height="200px" max-width="266px">
+                </div>
+              </div>
+              <!--<div class="licences" v-for="item in licences">
                 <img v-if="item.imageUrl" :src="item.imageUrl" height="200px" width="266px">
                   <i v-else="item.imageUrl == ''" class="el-icon-plus"
                      style="width: 266px; height: 200px;border:none;line-height: 200px;background: rgba(238, 238, 238, 1);"></i>
-                <!--<p v-if="item.imageDesc" class="pictext" ><i>*</i>{{ item.imageDesc }}</p>-->
-              </div>
+                &lt;!&ndash;<p v-if="item.imageDesc" class="pictext" ><i>*</i>{{ item.imageDesc }}</p>&ndash;&gt;
+              </div>-->
             </el-form>
           </div>
           <span slot="footer" class="dialog-footer"></span>
         </div>
       </div>
 
-      </div>
+    </div>
   </div>
 
 </template>
 
 <script>
-  import { getDetailedDealerInfo } from '../../js/vipmanagement'
+  import {getDetailedDealerInfo} from '../../js/vipmanagement'
+
   export default {
     name: 'Basetable',
     data() {
@@ -155,7 +161,7 @@
         licences: [],
         rules: {
           name: [
-            { required: true, message: '请输入姓名', trigger: 'blur' }
+            {required: true, message: '请输入姓名', trigger: 'blur'}
           ]
 
         },
@@ -974,9 +980,38 @@
     vertical-align: middle;
   }
 
-  .licences{
+  .clearfix:after {
+    content: "";
+    display: block;
+    visibility: hidden;
+    height: 0;
+    clear: both;
+  }
+
+  .clearfix {
+    zoom: 1;
+  }
+
+  .licences {
+    /* float: left;
+     margin-right: 18px;*/
+  }
+
+  .img-box {
     float: left;
-    margin-right: 18px;
+    display: inline-block;
+    width: 266px;
+    height: 200px;
+    background: rgba(238, 238, 238, 1);
+    border-radius: 4px;
+    text-align: center;
+    vertical-align: middle;
+    border: none;
+    margin-right: 24px;
+  }
+
+  .licences .img-box:nth-child(4n+4) {
+    margin-right: 0;
   }
 </style>
 
