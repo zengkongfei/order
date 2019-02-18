@@ -9,15 +9,15 @@
         <img src="../../assets/images/top_images/logo.png" alt="logo">
       </div>
       <div class="login-main">
-        <!-- <span class="login-title">用户登录</span> -->
-        <el-tabs v-model="activeName">
-          <el-tab-pane label="手机登录" name="code">
+        <span class="login-title">用户登录</span>
+        <!-- <el-tabs v-model="activeName">
+          <el-tab-pane label="手机登录" name="code"> -->
             <codeLogin></codeLogin>
-          </el-tab-pane>
-          <el-tab-pane label="账号密码登录" name="user">
+          <!-- </el-tab-pane> -->
+          <!-- <el-tab-pane label="账号密码登录" name="user">
             <userLogin></userLogin>
-          </el-tab-pane>
-        </el-tabs>
+          </el-tab-pane> -->
+        <!-- </el-tabs> -->
       </div>
     </div>
 
@@ -30,12 +30,12 @@
   </div>
 </template>
 <script>
-import userLogin from "./userlogin";
+// import userLogin from "./userlogin";
 import codeLogin from "./codelogin";
 export default {
   name: "login",
   components: {
-    userLogin,
+    // userLogin,
     codeLogin
   },
   data() {
@@ -152,7 +152,7 @@ export default {
   width: 420px;
   height: 273px;
   position: absolute;
-  top: 120px;
+  top: 150px;
   left: 0px;
 }
 .login-main > h3 {
@@ -206,7 +206,7 @@ export default {
       width: 356px;
       height: 40px;
       margin-left: 32px;
-      margin-top: 10px;
+      margin-top: 30px;
     }
     .el-input__prefix {
       i {
@@ -264,4 +264,5 @@ export default {
    width: 242px;
    height: 40px;
 }
+
 </style>
