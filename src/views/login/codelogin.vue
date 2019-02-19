@@ -164,6 +164,7 @@ export default {
   top: 10px;
   left: -102px; */
 }
+
 /* .login-form .inp{
    position: relative;
 } */
