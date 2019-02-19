@@ -101,7 +101,7 @@
                 <span>网点证照</span>
               </div>
               <div class="licences clearfix" >
-                <div v-for="item in licences" class="licences"   style="width:266px;height:200px;">
+                <div v-for="item in licences" class="licences" style="width:266px;height:200px;">
                   <img :src="item.imageUrl" height="200px" width="266px">
                 </div>
               </div>
