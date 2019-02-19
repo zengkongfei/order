@@ -40,7 +40,13 @@ service.interceptors.response.use(response => {
         setToken(token)
       }
     }else if (res.responseCode === 201) {
-      throw new Error(res.msg)
+      Message({
+        message: res.msg,
+        type: 'error',
+        duration: 5 * 1000
+      }).then(() => {
+        location.reload()// 为了重新实例化vue-router对象 避免bug
+      })
     }else if (res.responseCode === 203) {
       MessageBox.confirm('你还未登录，点击确定返回登陆页面', '确定', {
         confirmButtonText: '重新登录',
