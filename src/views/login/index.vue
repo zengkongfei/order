@@ -56,8 +56,6 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  // 去掉透明
-  // background: rgba(0, 0, 0, 0.2);
   position: relative;
   height: 900px;
 }
