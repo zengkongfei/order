@@ -46,7 +46,7 @@
                   <div class="explain-fu pic-d img-size-first">
                     <p class="explain">（正面）</p>
                     <el-form-item label="法人身份证照：" prop="legalFrontView">
-                      <img v-if="form.legalFrontView" :src="form.legalFrontView" class="avatar">
+                      <img v-if="form.legalFrontView" :src="form.legalFrontView" class="avatar" style="border-radius:4px;">
                       <i v-else class="el-icon-plus avatar-uploader-icon"
                          style="border:none;width:406px;height:254px;line-height:254px;border-radius:4px;"/>
                     </el-form-item>
@@ -54,7 +54,7 @@
                   <div class="explain-fu pic-d img-size-first">
                     <p class="explain">（背面）</p>
                     <el-form-item label="法人身份证照：" prop="legalBackView">
-                      <img v-if="form.legalBackView" :src="form.legalBackView" class="avatar">
+                      <img v-if="form.legalBackView" :src="form.legalBackView" class="avatar" style="border-radius:4px;">
                       <i v-else class="el-icon-plus avatar-uploader-icon"
                          style="border:none;width:406px;height:254px;line-height:254px;border-radius:4px;"/>
                     </el-form-item>
@@ -88,7 +88,7 @@
                   </div>
                   <div class="pic-d img-size-second">
                     <el-form-item label="负责人照片：" prop="chargePhoto">
-                      <img v-if="form.chargePhoto" :src="form.chargePhoto" class="avatar">
+                      <img v-if="form.chargePhoto" :src="form.chargePhoto" class="avatar" style="border-radius:4px;">
                       <i v-else class="el-icon-plus avatar-uploader-icon"
                          style="width: 205px; height: 250px;border:none"/>
                     </el-form-item>
@@ -101,7 +101,7 @@
                 <span>网点证照</span>
               </div>
               <div class="licences clearfix" >
-                <div v-for="item in licences" class="licences"  style="border-radius:5px;width:266px;height:200px;">
+                <div v-for="item in licences" class="licences"  style="width:266px;height:200px;">
                   <img :src="item.imageUrl" height="200px" width="266px">
                 </div>
               </div>
@@ -134,7 +134,7 @@
         editVisible: false,
         delVisible: false,
         dialogVisible: true,
-        imageUrl: 'http://bucket-health-test.oss-cn-hangzhou.aliyuncs.com/da1a63ecc79c47e3b2f5f0d19f81e373.jpg?Expires=1581340248&OSSAccessKeyId=LTAIo4pB85rIrn3v&Signature=9J0SNGZ38O1xvE3fdp0PDOQSb%2FE%3D',
+        imageUrl: '',
         value3: true,
         value4: true,
         levelId: '',
@@ -997,7 +997,9 @@
      margin-left: 10px;
      margin-bottom:10px;
   }
-
+   .licences img{
+       border-radius:4px;
+   }
   /* .img-box {
     float: left;
     display: inline-block;
