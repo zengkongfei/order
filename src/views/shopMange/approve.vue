@@ -134,7 +134,7 @@
         editVisible: false,
         delVisible: false,
         dialogVisible: true,
-        imageUrl: 'http://bucket-health-test.oss-cn-hangzhou.aliyuncs.com/da1a63ecc79c47e3b2f5f0d19f81e373.jpg?Expires=1581340248&OSSAccessKeyId=LTAIo4pB85rIrn3v&Signature=9J0SNGZ38O1xvE3fdp0PDOQSb%2FE%3D',
+        imageUrl: '',
         value3: true,
         value4: true,
         levelId: '',
