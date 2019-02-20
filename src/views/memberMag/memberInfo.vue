@@ -105,6 +105,9 @@ export default {
     },
     // 刷新
     handFlush() {
+      this.plan.contactWay = ''
+      this.plan.dealerId = ''
+      this.plan.memberCode = ''
       this.getData()
     }
   }
