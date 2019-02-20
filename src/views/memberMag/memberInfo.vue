@@ -15,7 +15,7 @@
         <el-button type="primary" icon="search" @click="handSeach">查询</el-button>
         <el-button type="primary" icon="search" @click="handFlush">刷新</el-button>
       </div>
-      <el-table :data="tableData" border>
+      <el-table :data="tableData" border empty-text="暂无数据" >
         <el-table-column prop="memberCode" label="会员编号" width="200"/>
         <el-table-column prop="contactWay" label="联系方式" width="200"/>
         <el-table-column prop="dealerCode" label="网点编号" />
