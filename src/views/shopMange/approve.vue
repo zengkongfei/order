@@ -34,7 +34,7 @@
                     </el-form-item>
                   </div>
                   <div>
-                    <el-form-item label="法人姓名：" prop="legalName" required="required">
+                    <el-form-item label="法人姓名：" prop="legalName">
                       {{ form.legalName }}
                     </el-form-item>
                   </div>
@@ -103,6 +103,7 @@
               <div class="licences clearfix" >
                 <div v-for="item in licences" class="licences" style="width:266px;height:200px;">
                   <img :src="item.imageUrl" height="200px" width="266px">
+                  <p style="margin-left: 30px;text-align: center">{{ item.imageDesc }}</p>
                 </div>
               </div>
               <!--<div class="licences" v-for="item in licences">
@@ -220,7 +221,7 @@
         this.form.province = res.datas.province
         this.form.creditCode = res.datas.creditCode
         this.form.leasingManager = res.datas.leasingManager
-        this.form.detailedAddress = res.datas.legalName
+        this.form.detailedAddress = res.datas.detailedAddress
         this.form.legalName = res.datas.legalName
         this.form.chargeName = res.datas.chargeName
         this.form.legalSex = res.datas.legalSex
@@ -997,7 +998,7 @@
   .licences {
       float: left;
      margin-left: 10px;
-     margin-bottom:10px;
+     margin-bottom:40px;
   }
    .licences img{
        border-radius:4px;

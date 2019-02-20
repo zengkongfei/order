@@ -35,6 +35,7 @@
 <script>
 import * as html2canvas from 'html2canvas'
 import { getDealerInfo, getQrCode } from '../../js/vipmanagement'
+import { BASE_API } from '../../../config/prod.env'
 export default {
   name: 'Table',
   data() {
@@ -44,7 +45,7 @@ export default {
       dealerName: '',
       dealerAddress: '',
       plan: {
-        content: 'http://192.168.30.190:4004/?dealerCode=' + this.dealerCode
+        content: ''
       }
     }
   },
@@ -53,6 +54,15 @@ export default {
       .then(res => {
         this.dealerName = res.datas.dealerName
         this.dealerAddress = res.datas.detailedAddress
+        this.dealerCode = res.datas.dealerCode
+        this.plan.content = BASE_API + '?dealerCode=' + this.dealerCode
+        getQrCode(this.plan)
+          .then(res => {
+            this.dataURL = res.msg
+          })
+          .catch(error => {
+            this.$message.error(error + '')
+          })
         document.getElementById('addressContent').style.setProperty('width', '180px', 'important')
         if (this.dealerAddress.length > 36) {
           document.getElementById('site').style.setProperty('font-size', '11px', 'important')
@@ -60,13 +70,6 @@ export default {
           document.getElementById('address').style.setProperty('font-size', '11px', 'important')
           document.getElementById('addressContent').style.setProperty('font-size', '11px', 'important')
         }
-      })
-      .catch(error => {
-        this.$message.error(error + '')
-      })
-    getQrCode(this.plan)
-      .then(res => {
-        this.dataURL = res.msg
       })
       .catch(error => {
         this.$message.error(error + '')
