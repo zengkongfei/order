@@ -230,7 +230,9 @@
         this.form.chargePhoto = res.datas.chargePhoto
         this.form.legalCard = res.datas.legalCard
         this.licences = res.datas.licences
-
+        localStorage.setItem('chargeName', this.form.chargeName)
+        localStorage.setItem('dealerCode', this.form.dealerCode)
+        localStorage.setItem('chargePhoto', this.form.chargePhoto)
       }).catch(error => {
         this.$message.error(error + '')
       })
