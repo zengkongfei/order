@@ -46,12 +46,12 @@
         <router-link class="inlineBlock" to="/">
           <el-dropdown-item>
             <div class="ltimg">
-              <img src="../../../assets/images/top_images/renwu.jpg"/>
+              <img :src="chargePhoto"/>
             </div>
             <div class="rgbot">
-              <h1 class="titext">岳云鹏</h1>
-              <p class="infotex">分部招商经理…</p>
-              <p class="loietx">E201801010000</p>
+              <h1 class="titext">{{chargeName}}</h1>
+              <p class="infotex">负责人</p>
+              <p class="loietx">{{dealerCode}}</p>
             </div>
           </el-dropdown-item>
         </router-link>
@@ -68,6 +68,13 @@ import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
 
 export default {
+  data() {
+    return {
+      dealerCode: localStorage.getItem('dealerCode'),
+      chargeName: localStorage.getItem('chargeName'),
+      chargePhoto: localStorage.getItem('chargePhoto')
+    }
+  },
   components: {
     Breadcrumb,
     Hamburger
