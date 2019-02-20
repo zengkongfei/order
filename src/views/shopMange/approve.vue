@@ -103,6 +103,7 @@
               <div class="licences clearfix" >
                 <div v-for="item in licences" class="licences" style="width:266px;height:200px;">
                   <img :src="item.imageUrl" height="200px" width="266px">
+                  <p style="margin-left: 30px;text-align: center">{{ item.imageDesc }}</p>
                 </div>
               </div>
               <!--<div class="licences" v-for="item in licences">
@@ -997,7 +998,7 @@
   .licences {
       float: left;
      margin-left: 10px;
-     margin-bottom:10px;
+     margin-bottom:40px;
   }
    .licences img{
        border-radius:4px;
