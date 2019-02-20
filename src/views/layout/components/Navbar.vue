@@ -91,6 +91,9 @@ export default {
     },
     logout() {
       this.$store.dispatch('LogOut').then(() => {
+        localStorage.removeItem('dealerCode')
+        localStorage.removeItem('chargeName')
+        localStorage.removeItem('chargePhoto')
         location.reload() // 为了重新实例化vue-router对象 避免bug
       })
     }
