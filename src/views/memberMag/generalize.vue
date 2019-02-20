@@ -3,12 +3,12 @@
     <div id="container" class="container">
       <div class="address">
         <p>
-          <span>服务网点:
-          <span class="ress">{{ dealerName }}</span></span>
+          <span id="site">服务网点:
+          <span id="siteName" class="ress">{{ dealerName }}</span></span>
         </p>
         <p>
-          <span>地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址:
-         <span class="ress">{{ dealerAddress }}</span></span>
+          <span id="address" >地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址:
+          <span id="addressContent" class="ress">{{ dealerAddress }}</span></span>
         </p>
       </div>
       <div class="code">
@@ -33,68 +33,74 @@
 </template>
 
 <script>
-import * as html2canvas from "html2canvas";
-import { getDealerInfo, getQrCode } from "../../js/vipmanagement";
+import * as html2canvas from 'html2canvas'
+import { getDealerInfo, getQrCode } from '../../js/vipmanagement'
 export default {
-  name: "Table",
+  name: 'Table',
   data() {
     return {
-      dataURL: "",
-      dealerCode: "",
-      dealerName: "",
-      dealerAddress: "",
+      dataURL: '',
+      dealerCode: '',
+      dealerName: '',
+      dealerAddress: '',
       plan: {
-        content: "http://192.168.30.190:4004/?dealerCode=" + this.dealerCode
+        content: 'http://192.168.30.190:4004/?dealerCode=' + this.dealerCode
       }
-    };
+    }
   },
   created() {
     getDealerInfo()
       .then(res => {
-        this.dealerName = res.datas.dealerName;
-        this.dealerAddress = res.datas.detailedAddress;
+        this.dealerName = res.datas.dealerName
+        this.dealerAddress = res.datas.detailedAddress
+        document.getElementById('addressContent').style.setProperty('width', '180px', 'important')
+        if (this.dealerAddress.length > 36) {
+          document.getElementById('site').style.setProperty('font-size', '11px', 'important')
+          document.getElementById('siteName').style.setProperty('font-size', '11px', 'important')
+          document.getElementById('address').style.setProperty('font-size', '11px', 'important')
+          document.getElementById('addressContent').style.setProperty('font-size', '11px', 'important')
+        }
       })
       .catch(error => {
-        this.$message.error(error + "");
-      });
+        this.$message.error(error + '')
+      })
     getQrCode(this.plan)
       .then(res => {
-        this.dataURL = res.msg;
+        this.dataURL = res.msg
       })
       .catch(error => {
-        this.$message.error(error + "");
-      });
+        this.$message.error(error + '')
+      })
   },
   methods: {
     createPicture: function() {
-      html2canvas(document.getElementById("container"), {
+      html2canvas(document.getElementById('container'), {
         useCORS: true,
         logging: true
       }).then(canvas => {
-        this.imgmap = canvas.toDataURL();
-        console.log(999, this.imgmap);
+        this.imgmap = canvas.toDataURL()
+        console.log(999, this.imgmap)
         if (window.navigator.msSaveOrOpenBlob) {
-          var bstr = atob(this.imgmap.split(",")[1]);
-          var n = bstr.length;
-          var u8arr = new Uint8Array(n);
+          var bstr = atob(this.imgmap.split(',')[1])
+          var n = bstr.length
+          var u8arr = new Uint8Array(n)
           while (n--) {
-            u8arr[n] = bstr.charCodeAt(n);
+            u8arr[n] = bstr.charCodeAt(n)
           }
-          var blob = new Blob([u8arr]);
-          window.navigator.msSaveOrOpenBlob(blob, "popularize" + "." + "png");
+          var blob = new Blob([u8arr])
+          window.navigator.msSaveOrOpenBlob(blob, 'popularize' + '.' + 'png')
         } else {
           // 这里就按照chrome等新版浏览器来处理
-          const a = document.createElement("a");
-          a.href = this.imgmap;
-          a.setAttribute("download", "popularize");
-          a.click();
+          const a = document.createElement('a')
+          a.href = this.imgmap
+          a.setAttribute('download', 'popularize')
+          a.click()
         }
-      });
+      })
     }
   }
-};
+}
 </script>
-
 
 <style scoped>
 .container {
@@ -126,7 +132,7 @@ export default {
 /*服务网点和地址的样式*/
 .address .ress {
    display: inline-block;
-   width:85%;
+   width:84%;
    /* margin-left: 60px;
    margin-top: -25px; */
    position: absolute;
@@ -137,9 +143,17 @@ export default {
 }
 .address >p{
   margin: 0;
-  height: 50px;
+  /*height: 50px;*/
   position: relative;
+  line-height: 25px;
 }
+/*.address{*/
+  /*font-size: 13px;*/
+  /*margin-top: 280px;margin-left: 280px; width: 220px;*/
+  /*position:absolute;z-index:99;*/
+  /*color: #f5d074;*/
+  /*line-height: 25px;*/
+/*}*/
 .code {
   margin-top: 172px;
   margin-left: 72px;
