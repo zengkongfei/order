@@ -34,7 +34,7 @@
                     </el-form-item>
                   </div>
                   <div>
-                    <el-form-item label="法人姓名：" prop="legalName" required="required">
+                    <el-form-item label="法人姓名：" prop="legalName">
                       {{ form.legalName }}
                     </el-form-item>
                   </div>
@@ -220,7 +220,7 @@
         this.form.province = res.datas.province
         this.form.creditCode = res.datas.creditCode
         this.form.leasingManager = res.datas.leasingManager
-        this.form.detailedAddress = res.datas.legalName
+        this.form.detailedAddress = res.datas.detailedAddress
         this.form.legalName = res.datas.legalName
         this.form.chargeName = res.datas.chargeName
         this.form.legalSex = res.datas.legalSex
