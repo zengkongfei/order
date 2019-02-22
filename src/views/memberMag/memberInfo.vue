@@ -3,12 +3,22 @@
     <div class="container">
       <div class="addSearch">
         <el-form ref="plan" :model="plan" :inline="true" label-width="150">
-          <el-form-item label="会员编号">
-            <el-input v-model="plan.memberCode" placeholder="请输入会员编号"/>
-          </el-form-item>
-          <el-form-item label="联系方式">
-            <el-input v-model="plan.contactWay" placeholder="请输入会员联系方式"/>
-          </el-form-item>
+          <el-row>
+            <el-col :span="12">
+              <el-form-item label="会员编号" style="float: left;">
+                <el-input v-model="plan.memberCode" placeholder="请输入会员编号" class="inptxt"/>
+              </el-form-item>
+            </el-col>
+            <el-col :span="12">
+              <el-form-item label="联系方式" style="float: right;">
+                <el-input v-model="plan.contactWay" placeholder="请输入会员联系方式" class="inptxt"/>
+              </el-form-item>
+            </el-col>
+          </el-row>
+
+
+
+
         </el-form>
       </div>
       <div class="handle-box">
@@ -119,4 +129,9 @@ export default {
   li, ul {list-style-type: none;}
  .handle-box {margin-bottom: 20px;}
 .table {margin: 20px;}  .el-pagination {text-align: right;margin: 20px 0;}
+  .contactWay{
+    margin-left: 68%;
+  }
+  .inptxt{width:684px;}
+  .handle-box{ clear: left;}
 </style>
