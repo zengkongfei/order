@@ -34,7 +34,7 @@
         <el-table-column prop="city" label="注册地（市）" />
         <el-table-column prop="county" label="注册地（县）"/>
       </el-table>
-      <div class="pagination">
+      <div id="pagination" class="pagination">
         <el-pagination
           :total="total"
           background
@@ -64,7 +64,7 @@ export default {
         value: []
       }],
       name: '',
-      total: '',
+
       plan: {
         contactWay: '',
         dealerId: '',
@@ -75,6 +75,7 @@ export default {
           { required: true, message: '请输入姓名', trigger: 'blur' }
         ]
       },
+      total: 0,
       page: {
         pageNum: 1,
         pageSize: 10
@@ -101,7 +102,10 @@ export default {
       memberList(this.plan).then(res => {
         this.tableData = res.datas
         this.total = res.total
-        console.log(res.data)
+        if(res.total == 0) {
+          document.getElementById('pagination').style.setProperty('display', 'none', 'important')
+        }
+        console.log(this.total)
       }).catch(error => {
         this.$message.error(error + '')
       })
