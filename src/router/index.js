@@ -36,7 +36,7 @@ export const constantRouterMap = [
     },
     {
       path: '/memberMag/generalize',
-      name: '网络推广',
+      name: '网点推广',
       component: () => import('@/views/memberMag/generalize')
     }
     ]
