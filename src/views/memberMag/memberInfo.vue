@@ -25,7 +25,7 @@
         <el-button type="primary" icon="search" @click="handSeach">查询</el-button>
         <el-button type="primary" icon="search" @click="handFlush">刷新</el-button>
       </div>
-      <el-table :data="tableData" border empty-text="暂无数据" >
+      <el-table :data="tableData"  empty-text="暂无数据"  :header-cell-style="{background:'rgba(250,250,250,1)'}" >
         <el-table-column prop="memberCode" label="会员编号" width="200"/>
         <el-table-column prop="contactWay" label="联系方式" width="200"/>
         <el-table-column prop="dealerCode" label="网点编号" />
@@ -132,6 +132,7 @@ export default {
   .contactWay{
     margin-left: 68%;
   }
-  .inptxt{width:684px;}
+  .inptxt{width:684px; height: 32px; line-height: 32px;}
   .handle-box{ clear: left;}
+  .container{ padding: 0 24px ;}
 </style>
