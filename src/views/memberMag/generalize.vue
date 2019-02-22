@@ -54,7 +54,7 @@ export default {
         this.dealerName = res.datas.dealerName
         this.dealerAddress = res.datas.detailedAddress
         this.dealerCode = res.datas.dealerCode
-        this.plan.content = process.env.BASE_API + '?dealerCode=' + this.dealerCode
+        this.plan.content = 'http://47.111.99.118:4004/?dealerCode=' + this.dealerCode
         getQrCode(this.plan)
           .then(res => {
             this.dataURL = res.msg
