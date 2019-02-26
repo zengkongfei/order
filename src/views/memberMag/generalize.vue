@@ -172,4 +172,7 @@ export default {
   z-index: 99;
   line-height: 30px;
 }
+.table{
+  margin-top: 12%;
+}
 </style>
