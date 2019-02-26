@@ -35,6 +35,7 @@
 <script>
 import * as html2canvas from 'html2canvas'
 import { getDealerInfo, getQrCode } from '../../js/vipmanagement'
+import * as process from '../../../.eslintrc'
 export default {
   name: 'Table',
   data() {
@@ -54,7 +55,8 @@ export default {
         this.dealerName = res.datas.dealerName
         this.dealerAddress = res.datas.detailedAddress
         this.dealerCode = res.datas.dealerCode
-        this.plan.content = 'http://47.111.99.118:4004/?dealerCode=' + this.dealerCode
+        // this.plan.content = 'http://47.111.99.118:4004/?dealerCode=' + this.dealerCode
+        this.plan.content = 'http://192.168.30.230:4004/?dealerCode=' + this.dealerCode
         getQrCode(this.plan)
           .then(res => {
             this.dataURL = res.msg
