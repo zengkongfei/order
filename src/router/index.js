@@ -15,11 +15,17 @@ export const constantRouterMap = [
     name: '店铺管理',
     hidden: false,
     alwaysShow: true,
-    children: [{
-      path: '/approve',
-      name: '认证信息',
-      component: () => import('@/views/shopMange/approve')
-    }
+    children: [
+      {
+        path: '/shopInfoList',
+        name: '认证信息',
+        component: () => import('@/views/shopMange/shopInfoList')
+      }
+    //   {
+    //   path: '/approve',
+    //   name: '认证信息',
+    //   component: () => import('@/views/shopMange/approve')
+    // }
     ]
   },
   {
