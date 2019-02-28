@@ -35,7 +35,6 @@
 <script>
 import * as html2canvas from 'html2canvas'
 import { getDealerInfo, getQrCode } from '../../js/vipmanagement'
-import * as process from '../../../.eslintrc'
 export default {
   name: 'Table',
   data() {
