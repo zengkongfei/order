@@ -15,17 +15,25 @@
               </el-form-item>
             </el-col>
           </el-row>
-
-
-
-
+          <el-row>
+            <el-col :span="12">
+              <el-form-item label="网点编号" style="float: left;">
+                <el-input v-model="plan.dealerCode" placeholder="请输入网点编号" class="inptxt"/>
+              </el-form-item>
+            </el-col>
+            <el-col :span="12">
+              <el-form-item label="网点名称" style="float: right;">
+                <el-input v-model="plan.dealerName" placeholder="请输入网点名称" class="inptxt"/>
+              </el-form-item>
+            </el-col>
+          </el-row>
         </el-form>
       </div>
       <div class="handle-box">
         <el-button type="primary" icon="search" @click="handSeach">查询</el-button>
         <el-button type="primary" icon="search" @click="handFlush">刷新</el-button>
       </div>
-      <el-table :data="tableData"  empty-text="暂无数据"  :header-cell-style="{background:'rgba(250,250,250,1)'}" >
+      <el-table :data="tableData" :header-cell-style="{background:'rgba(250,250,250,1)'}" empty-text="暂无数据" >
         <el-table-column prop="memberCode" label="会员编号" width="200"/>
         <el-table-column prop="contactWay" label="联系方式" width="200"/>
         <el-table-column prop="dealerCode" label="网点编号" />
@@ -33,12 +41,13 @@
         <el-table-column prop="province" label="注册地（省）" />
         <el-table-column prop="city" label="注册地（市）" />
         <el-table-column prop="county" label="注册地（县）"/>
+        <el-table-column prop="registerTime" label="注册时间"/>
       </el-table>
-      <div id="pagination" class="pagination">
+      <div v-show="total>0" id="pagination" class="pagination">
         <el-pagination
           :total="total"
-          background
-          layout="prev, pager, next"
+          :current-page="currentPage"
+          layout="total, sizes, prev, pager, next, jumper"
           @current-change="handleCurrentChange"/>
       </div>
     </div>
@@ -68,7 +77,9 @@ export default {
       plan: {
         contactWay: '',
         dealerId: '',
-        memberCode: ''
+        memberCode: '',
+        dealerCode: '',
+        dealerName: ''
       },
       rules: {
         name: [
@@ -102,10 +113,6 @@ export default {
       memberList(this.plan).then(res => {
         this.tableData = res.datas
         this.total = res.total
-        if(res.total == 0) {
-          document.getElementById('pagination').style.setProperty('display', 'none', 'important')
-        }
-        console.log(this.total)
       }).catch(error => {
         this.$message.error(error + '')
       })
@@ -122,6 +129,8 @@ export default {
       this.plan.contactWay = ''
       this.plan.dealerId = ''
       this.plan.memberCode = ''
+      this.plan.dealerCode = ''
+      this.plan.dealerName = ''
       this.getData()
     }
   }

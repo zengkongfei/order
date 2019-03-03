@@ -11,7 +11,7 @@ export const constantRouterMap = [
   {
     path: '/',
     component: Layout,
-    redirect: '/approve',
+    redirect: '/shopInfoList',
     name: '店铺管理',
     hidden: false,
     alwaysShow: true,
@@ -39,12 +39,12 @@ export const constantRouterMap = [
       path: '/memberMag/memberInfo',
       name: '会员信息',
       component: () => import('@/views/memberMag/memberInfo')
-    },
-    {
-      path: '/memberMag/generalize',
-      name: '网点推广',
-      component: () => import('@/views/memberMag/generalize')
     }
+    // {
+    //   path: '/memberMag/generalize',
+    //   name: '网点推广',
+    //   component: () => import('@/views/memberMag/generalize')
+    // }
     ]
   },
 
