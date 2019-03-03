@@ -33,32 +33,39 @@
         <el-button type="primary" icon="search" @click="handSeach">查询</el-button>
         <el-button type="primary" icon="search" @click="handFlush">刷新</el-button>
       </div>
-      <el-table :data="tableData" :header-cell-style="{background:'rgba(250,250,250,1)'}" empty-text="暂无数据" >
+      <el-table
+        :data="tableData"
+        :header-cell-style="{background:'rgba(250,250,250,1)'}"
+        empty-text="暂无数据"
+      >
         <el-table-column prop="memberCode" label="会员编号" width="200"/>
         <el-table-column prop="contactWay" label="联系方式" width="200"/>
-        <el-table-column prop="dealerCode" label="网点编号" />
-        <el-table-column prop="dealerName" label="网点名称" />
-        <el-table-column prop="province" label="注册地（省）" />
-        <el-table-column prop="city" label="注册地（市）" />
+        <el-table-column prop="dealerCode" label="网点编号"/>
+        <el-table-column prop="dealerName" label="网点名称"/>
+        <el-table-column prop="province" label="注册地（省）"/>
+        <el-table-column prop="city" label="注册地（市）"/>
         <el-table-column prop="county" label="注册地（县）"/>
         <el-table-column prop="registerTime" label="注册时间"/>
       </el-table>
-      <div v-show="total>0" id="pagination" class="pagination">
+      <!-- <div  id="pagination" class="pagination">
         <el-pagination
           :total="total"
           :current-page="currentPage"
           layout="total, sizes, prev, pager, next, jumper"
           @current-change="handleCurrentChange"/>
-      </div>
+      </div>-->
+      <paging-query :page="page" @change="getData"/>
     </div>
-
   </div>
 </template>
-
 <script>
-import { memberList } from '../../js/vipmanagement'
+import { memberList } from "../../js/vipmanagement";
+import PagingQuery from "../../components/pagingQuery";
 export default {
-  name: 'Basetable',
+  name: "Basetable",
+  components: {
+    PagingQuery
+  },
   data() {
     return {
       tableData: [],
@@ -67,85 +74,106 @@ export default {
       delVisible: false,
       dialogVisible: false,
       status: 1,
-      input: '',
+      input: "",
       value: [],
-      options: [{
-        value: []
-      }],
-      name: '',
+      options: [
+        {
+          value: []
+        }
+      ],
+      name: "",
 
       plan: {
-        contactWay: '',
-        dealerId: '',
-        memberCode: '',
-        dealerCode: '',
-        dealerName: ''
+        contactWay: "",
+        dealerId: "",
+        memberCode: "",
+        dealerCode: "",
+        dealerName: ""
       },
       rules: {
-        name: [
-          { required: true, message: '请输入姓名', trigger: 'blur' }
-        ]
+        name: [{ required: true, message: "请输入姓名", trigger: "blur" }]
       },
-      total: 0,
+      // total: 0,
       page: {
+        total: 0,
         pageNum: 1,
-        pageSize: 10
+        pageSize: 10,
+        orderBy: "created_date desc"
       }
-    }
+    };
   },
   computed: {
     data() {
-      return this.tableData
+      return this.tableData;
     }
   },
   created() {
-    this.getData()
+    this.getData();
   },
   methods: {
     // 分页导航
     handleCurrentChange(val) {
-      this.page.pageNum = val
-      this.getData()
+      this.page.pageNum = val;
+      this.getData();
     },
     getData() {
-      this.plan.page = this.page
-      console.log(this.plan)
-      memberList(this.plan).then(res => {
-        this.tableData = res.datas
-        this.total = res.total
-      }).catch(error => {
-        this.$message.error(error + '')
-      })
+      this.plan.page = this.page;
+      console.log(this.plan);
+      memberList(this.plan)
+        .then(res => {
+          this.tableData = res.datas;
+          this.page.total = res.total;
+        })
+        .catch(error => {
+          this.$message.error(error + "");
+        });
     },
     // 查询
     handSeach() {
-      this.getData()
+      this.getData();
     },
     // select
-    handleChange() {
-    },
+    handleChange() {},
     // 刷新
     handFlush() {
-      this.plan.contactWay = ''
-      this.plan.dealerId = ''
-      this.plan.memberCode = ''
-      this.plan.dealerCode = ''
-      this.plan.dealerName = ''
-      this.getData()
+      this.plan.contactWay = "";
+      this.plan.dealerId = "";
+      this.plan.memberCode = "";
+      this.plan.dealerCode = "";
+      this.plan.dealerName = "";
+      this.getData();
     }
   }
-}
-
+};
 </script>
 
 <style scoped>
-  li, ul {list-style-type: none;}
- .handle-box {margin-bottom: 20px;}
-.table {margin: 20px;}  .el-pagination {text-align: right;margin: 20px 0;}
-  .contactWay{
-    margin-left: 68%;
-  }
-  .inptxt{width:684px; height: 32px; line-height: 32px;}
-  .handle-box{ clear: left;}
-  .container{ padding: 0 24px ;}
+li,
+ul {
+  list-style-type: none;
+}
+.handle-box {
+  margin-bottom: 20px;
+}
+.table {
+  margin: 20px;
+}
+.el-pagination {
+  text-align: right;
+  margin: 20px 0;
+}
+.contactWay {
+  margin-left: 68%;
+}
+.inptxt {
+  width: 684px;
+  height: 32px;
+  line-height: 32px;
+}
+.handle-box {
+  clear: left;
+}
+.container {
+  padding: 0 24px;
+}
 </style>
