@@ -66,7 +66,7 @@
 import { mapGetters } from 'vuex'
 import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
-import {getuserinfo} from '../../../js/userinfo.js'
+import { getuserinfo } from '../../../js/userInfo.js'
 
 export default {
   data() {
