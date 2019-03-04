@@ -1,7 +1,12 @@
 <template>
   <div class="table shopInfoListWrap">
+<<<<<<< HEAD
     <div id="container" class="container">
       <div class="addSearch">
+=======
+    <div class="container" id="container">
+      <div class="addSearch" style="width:100%">
+>>>>>>> 8d8ed84b99458608dda0d9a2676928f4386c15e7
         <el-form ref="plan" :model="condition" :inline="true" label-width="105px">
           <el-row>
             <el-col :span="8">
@@ -65,11 +70,11 @@
           </el-row>
         </el-form>
       </div>
-      <div class="handle-box">
+      <div class="handle-box"  style="width:100%">
         <el-button type="primary" icon="search" @click="handSeach">查询</el-button>
         <el-button type="primary" icon="search" @click="handFlush">刷新</el-button>
       </div>
-      <el-table :data="tableData" :header-cell-style="{background:'rgba(250,250,250,1)'}" empty-text="暂无数据">
+      <el-table :data="tableData" :header-cell-style="{background:'rgba(250,250,250,1)'}" empty-text="暂无数据" :default-sort = "{prop: 'createTime', order: 'descending'}">
         <el-table-column prop="dealerCode" label="网点编号" width="150"/>
         <el-table-column prop="dealerName" label="网点名称" width="200"/>
         <el-table-column prop="creditCode" label="统一社会信用代码" width="200"/>
@@ -107,7 +112,11 @@
           </template>
         </el-table-column>
         <el-table-column prop="leasingManager" label="招商经理" width="150"/>
+<<<<<<< HEAD
         <el-table-column prop="createdDate" label="创建时间" width="100"/>
+=======
+        <el-table-column prop="createTime" label="创建时间" width="150" sortable/>
+>>>>>>> 8d8ed84b99458608dda0d9a2676928f4386c15e7
         <i class="el-dialog__close el-icon el-icon-close"/>
         <el-table-column label="网点二维码" align="left" width="150">
           <template slot-scope="scope">
@@ -197,6 +206,7 @@
 
       </el-dialog>
       <!--网点二维码-->
+<<<<<<< HEAD
       <el-dialog id="qr" :visible.sync="dialogVisibleQRcode" width="554px" height="535px" style="display: none">
         <div class="address">
           <p><span id="site">服务网点:<span id="siteName" class="ress">{{ dealerName }}</span></span>
@@ -215,6 +225,25 @@
         <div class="picFile">
           <img src="../../images/pic.png">
         </div>
+=======
+      <el-dialog id="qr" :visible.sync="dialogVisibleQRcode" width="900px" height="636px">
+          <div class="address">
+            <p><span id="site">服务网点:<span id="siteName" class="ress">{{ dealerName }}</span></span>
+            </p>
+            <p><span id="address">地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址:<span id="addressContent"
+                                                                                           class="ress">{{ dealerAddress }}</span></span>
+            </p>
+          </div>
+          <div class="code">
+            <img id="code" :src="QR" width="250px">
+          </div>
+          <div class="logo">
+            <img id="logo" src="../../images/logo.jpg" width="30px">
+          </div>
+          <div class="picFile">
+            <img src="../../images/pic.png">
+          </div>
+>>>>>>> 8d8ed84b99458608dda0d9a2676928f4386c15e7
       </el-dialog>
       <!--网点二维码--><!-- <el-dialog id="qr" :visible.sync="dialogVisibleQRcode" width="554px" height="535px" style="">
         <div class="address">
@@ -234,19 +263,25 @@
           <img src="../../images/pic.png">
         </div>
       </el-dialog>-->
-      <div id="pagination" class="pagination">
+      <!-- <div id="pagination" class="pagination">
         <el-pagination
           :total="total"
           background
           layout="prev, pager, next"
           @current-change="handleCurrentChange"/>
+<<<<<<< HEAD
       </div>
       <!--<paging-query :page="page" @change="getData"/>-->
+=======
+      </div> -->
+       <paging-query :page="page" @change="getData"/>
+>>>>>>> 8d8ed84b99458608dda0d9a2676928f4386c15e7
     </div>
   </div>
 </template>
 
 <script>
+<<<<<<< HEAD
 import { shopInfoList, getLicencesList, getQrCode, getArea } from '../../js/shopInfo'
 import * as html2canvas from 'html2canvas'
 
@@ -365,6 +400,109 @@ export default {
         a.href = this.downPic
         a.setAttribute('download', 'popularize')
         a.click()
+=======
+  import {shopInfoList, getLicencesList, getQrCode, getArea} from '../../js/shopInfo'
+  import * as html2canvas from 'html2canvas'
+  import PagingQuery from "../../components/pagingQuery";
+
+  export default {
+    name: 'Basetable',
+    components: {
+    PagingQuery
+  },
+    data() {
+      return {
+        downPic: '',
+        countyList:[],
+        cityList: [],
+        provinceList: [],
+        tableData: [],
+        cur_page: 1,
+        editVisible: false,
+        delVisible: false,
+        dialogVisible: false,
+        status: 1,
+        input: '',
+        value: [],
+        options: [{
+          value: []
+        }],
+        QR: '',
+        dealerAddress: '',
+        dealerName: '',
+        dialogVisibleChargePhoto: false,
+        dialogVisibleCard: false,
+        dialogVisibleNetworkPhoto: false,
+        dialogVisibleQRcode: false,
+        byId: '',
+        urlListDesc: '',
+        licenceNumber: '',
+        urlListFirst: '',
+        urlList: [],
+        urlListId: '',
+        signImages: [],
+        imgShow: 0,
+        plan: {
+          dealerId: '',
+          content: ''
+        },
+        card: {
+          legalFrontView: '',
+          legalBackView: '',
+          legalCard: ''
+        },
+        chargePhoto: {
+          chargeUrl: '',
+          chargeName: '',
+          dealerCode: ''
+        },
+        NetworkPhoto: {
+          businessLicenseView: ''
+        },
+        // 查询条件
+        condition: {
+          dealerCode: '', // 网点编号
+          dealerName: '', // 网点名称
+          chargePhone: '', // 网点联系方式
+          chargeName: '', // 负责人姓名
+          legalName: '', // 法人姓名
+          leasingManager: '', // 招商经理  createTime: '2019-03-01 15:14:23',
+          province: '', // 注册地（省）
+          city: '', // 注册地（市）
+          county: '' // 注册地（区）
+        },
+        // 店铺属性字段
+        store: {
+          dealerCode: '', // 网点编号
+          dealerName: '', // 网点名称
+          creditCode: '', // 统一社会信用代码
+          legalName: '', // 法人姓名
+          legalCard: '', // 法人身份证号
+          chargeName: '', // 负责人姓名
+          legalSex: '', // 负责人性别
+          chargePhone: '', // 网点联系方式
+          chargePhoto: '', // 负责人照片"
+          province: '', // 注册地（省）
+          city: '', // 注册地（市）
+          county: '', // 注册地（区）
+          detailedAddress: '', // 详细地址
+          licences: '', // 网点证照
+          leasingManager: '', // 招商经理
+          createTime: '', // 创建时间"
+          qrCode: '' // 二维码
+        },
+
+        rules: {
+          name: [
+            {required: true, message: '请输入姓名', trigger: 'blur'}
+          ]
+        },
+        page: {
+          total: 0,
+          pageNum: 1,
+          pageSize: 10
+        }
+>>>>>>> 8d8ed84b99458608dda0d9a2676928f4386c15e7
       }
     },
     saveQRcode(){
@@ -414,6 +552,7 @@ export default {
       this.page.pageNum = val
       this.getData()
     },
+<<<<<<< HEAD
     // 显示二维码
     showQRcode(index, row) {
       this.dealerCode = row.dealerCode
@@ -440,6 +579,95 @@ export default {
       this.dialogVisibleCard = true
       this.card.legalBackView = row.legalBackView
       this.card.legalFrontView = row.legalFrontView
+=======
+    methods: {
+      downLoad() {
+        if (window.navigator.msSaveOrOpenBlob) {
+          alert(this.downPic)
+          window.navigator.msSaveOrOpenBlob(this.downPic, 'popularize' + '.' + 'png')
+        } else {
+          // 这里就按照chrome等新版浏览器来处理
+          const a = document.createElement('a')
+          a.href = this.downPic
+          a.setAttribute('download', 'popularize')
+          a.click()
+        }
+      },
+      saveQRcode(){
+        html2canvas(document.getElementById('qr'), {
+          useCORS: true,
+          logging: true
+        }).then(canvas => {
+         // canvas.lineTo(200, 200)
+          this.downPic = canvas.toDataURL()
+          this.imgmap = canvas.toDataURL()
+          console.log(999, this.imgmap)
+        })
+      },
+      getCounty(){
+        this.condition.county = ''
+        let params = {
+          areaType:3,
+          parentId: this.condition.city
+        }
+        getArea(params).then(res => {
+          console.log(res, '区')
+          this.countyList = res.datas
+        })
+      },
+      getProvince() {
+        let params = {
+          areaType: 1,
+          parentId: '0000'
+        }
+        getArea(params).then(res => {
+          console.log(res, '省')
+          this.provinceList = res.datas
+        })
+      },
+      getCity() {
+        this.condition.city = ''
+        let params = {
+          areaType: 2,
+          parentId: this.condition.province
+        }
+        getArea(params).then(res => {
+          console.log(res, '市')
+          this.cityList = res.datas
+        })
+      },
+      // 分页导航
+      // handleCurrentChange(val) {
+      //   this.page.pageNum = val
+      //   this.getData()
+      // },
+      // 显示二维码
+      showQRcode(index, row) {
+        this.dealerCode = row.dealerCode
+        this.dialogVisibleQRcode = true
+        this.plan.content = process.env.BASE_DOWN_API + '?dealerCode=' + this.dealerCode
+        this.plan.dealerId = row.dealerId
+        // 获取证照信息列表
+        getQrCode(this.plan).then(res => {
+          this.QR = res.datas.qrCode
+          this.dealerAddress = res.datas.dealerAddress
+          this.dealerName = res.datas.dealerName
+           this.saveQRcode()
+        })
+      },
+      // 切换证照
+      changeImgUrl(index) {
+        this.urlListFirst = this.urlList[index].imageUrl
+        this.urlListDesc = this.urlList[index].imageDesc
+        this.imgShow = index
+        this.signImages = [this.urlList[index].imageUrl]
+      },
+      // 显示法人身份证照
+      showLegalCard(index, row) {
+        this.dialogVisibleCard = true
+        this.card.legalBackView = row.legalBackView
+        this.card.legalFrontView = row.legalFrontView
+>>>>>>> 8d8ed84b99458608dda0d9a2676928f4386c15e7
         this.card.legalCard = row.legalCard
       },
       // 显示负责人照片
@@ -471,7 +699,8 @@ export default {
         shopInfoList(this.condition).then(res => {
           this.tableData = res.datas
           // alert(res.total)
-          this.total = res.total
+          this.page.total = res.total
+          this.page.pageNum = res.pageNum
           // if (res.total === 0) {
           //   document.getElementById('pagination').style.setProperty('display', 'none', 'important')
           // }
@@ -505,25 +734,48 @@ export default {
 
 </script>
 <style>
+  .container{
+    padding: 24px 32px 0 32px;
+    background: #FFF;
+    min-width: 1560px;
+    margin: 0;
+    min-height: 900px;
+  }
+  .table{
+    padding: 24px;
+    padding-bottom: 0;
+    background-color: #F0F2F5;
+    overflow: auto;
+  }
+  .app-main{
+    background-color: #F0F2F5;
+  }
+  .shopInfoListWrap .handle-box{
+    margin-bottom:24px;
+  }
+
   .shopInfoListWrap .el-button{
     padding:0 4px 0 0;
   }
-  .shopInfoListWrap .el-button+.el-button{
+  /* .shopInfoListWrap .el-button+.el-button{
     border-left:1px solid rgba(217,217,217,1);;
     border-radius: 0;
     margin:0;
     padding:0 0 0 8px;
 
-  }
+  } */
   .shopInfoListWrap .myInput {
     width: 100%
   }
-  .shopInfoListWrap .handle-box{
-    min-width: 1560px;
+  .shopInfoListWrap .el-input__icon{
+    line-height: 0;
   }
-  .shopInfoListWrap .el-table{
+/*  .shopInfoListWrap .handle-box{
     min-width: 1560px;
-  }
+  }*/
+  /*.shopInfoListWrap .el-table{
+    min-width: 1560px;
+  }*/
   .shopInfoListWrap .el-dialog__footer{
     display: none;
   }
@@ -672,7 +924,7 @@ export default {
   }
 
   .shopInfoListWrap .addSearch {
-    min-width: 1560px;
+   /* min-width: 1560px;*/
   }
 
   .shopInfoListWrap .el-button--primary {
@@ -694,6 +946,7 @@ export default {
 
   .shopInfoListWrap .el-form--inline .el-form-item {
     margin: 0 0 24px 0;
+    width:100%;
   }
 
   .shopInfoListWrap .el-input__inner {
@@ -702,7 +955,7 @@ export default {
   }
 
   .shopInfoListWrap .el-form--inline .el-form-item__content {
-    width: 400px;
+    width: 77%;
   }
   .shopInfoListWrap .chargeNameDialog .el-dialog__body{
    padding:0;
@@ -718,18 +971,10 @@ export default {
     margin-bottom: 20px;
   }
 
-  .table {
-    margin: 20px;
-    overflow: auto;
-  }
 
   /*// .inptxt{width:300px; height: 32px; line-height: 32px;}*/
   .handle-box {
     clear: left;
-  }
-
-  .container {
-    padding: 0 24px;
   }
 
   #zhaopianbox {

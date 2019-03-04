@@ -11,6 +11,22 @@ export const constantRouterMap = [
   {
     path: '/',
     component: Layout,
+    redirect: 'dashboard',
+    name: '首页',
+    hidden: true,
+    icon: 'zhiyuan',
+    alwaysShow: true,
+    children: [{
+      path: 'dashboard',
+      name: '首页',
+      hidden: true,
+      component: () => import('@/views/dashboard/index')
+    }
+    ]
+  },
+  {
+    path: '/shopInfoList',
+    component: Layout,
     redirect: '/shopInfoList',
     name: '店铺管理',
     hidden: false,
@@ -29,7 +45,7 @@ export const constantRouterMap = [
     ]
   },
   {
-    path: '/',
+    path: '/memberMag',
     component: Layout,
     redirect: '/memberMag',
     name: '会员管理',

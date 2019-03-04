@@ -46,11 +46,11 @@
         <router-link class="inlineBlock" to="/">
           <el-dropdown-item>
             <div class="ltimg">
-              <img :src="chargePhoto"/>
+              <img :src="empPhoto"/>
             </div>
             <div class="rgbot">
-              <h1 class="titext">{{chargeName}}</h1>
-              <p class="infotex">负责人</p>
+              <h1 class="titext">{{empName}}</h1>
+              <p class="infotex">{{roleName}}</p>
               <p class="loietx">{{dealerCode}}</p>
             </div>
           </el-dropdown-item>
@@ -66,18 +66,26 @@
 import { mapGetters } from 'vuex'
 import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
+import {getuserinfo} from '../../../js/userinfo.js'
 
 export default {
   data() {
     return {
-      dealerCode: localStorage.getItem('dealerCode'),
-      chargeName: localStorage.getItem('chargeName'),
-      chargePhoto: localStorage.getItem('chargePhoto')
+      // dealerCode: localStorage.getItem('dealerCode'),
+      // chargeName: localStorage.getItem('chargeName'),
+      // chargePhoto: localStorage.getItem('avatar')
+      empPhoto:'/src/assets/images/top_images/renwu.jpg',
+      empName: '美好铺子',
+      roleName: 'admin',
+      dealerCode: 'D20180101000'
     }
   },
   components: {
     Breadcrumb,
     Hamburger
+  },
+  created(){
+    this.getuser()
   },
   computed: {
     ...mapGetters([
@@ -95,6 +103,11 @@ export default {
         localStorage.removeItem('chargeName')
         localStorage.removeItem('chargePhoto')
         location.reload() // 为了重新实例化vue-router对象 避免bug
+      })
+    },
+    getuser(){
+      getuserinfo().then(res=>{
+        console.log('res',res)
       })
     }
   }
