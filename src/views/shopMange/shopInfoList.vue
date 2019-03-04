@@ -22,7 +22,7 @@
           </el-row>
           <el-row>
             <el-col :span="8">
-              <el-form-item label="负责人姓名:" style="">
+              <el-form-item label="负责人姓名:" style=""> 
                 <el-input v-model="condition.chargeName" placeholder="请输入负责人姓名"/>
               </el-form-item>
             </el-col>
