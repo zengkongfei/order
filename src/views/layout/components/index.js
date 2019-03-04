@@ -1,4 +1,4 @@
 export { default as Navbar } from './Navbar'
 export { default as Sidebar } from './Sidebar'
 export { default as AppMain } from './AppMain'
-export { default as Footer } from './footer'
+export { default as Footer } from './footers'

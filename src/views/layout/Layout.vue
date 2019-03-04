@@ -5,7 +5,7 @@
     <div class="main-container">
       <navbar/>
       <app-main/>
-      <Footer></Footer>
+      <Footers></Footers>
     </div>
   </div>
 </template>
@@ -13,14 +13,14 @@
 <script>
 import { Navbar, Sidebar, AppMain } from './components'
 import ResizeMixin from './mixin/ResizeHandler'
-import Footer from './components/footer'
+import Footers from './components/footers'
 export default {
   name: 'Layout',
   components: {
     Navbar,
     Sidebar,
     AppMain,
-    Footer
+    Footers
   },
   mixins: [ResizeMixin],
   computed: {
