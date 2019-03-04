@@ -200,7 +200,7 @@
 
       </el-dialog>
       <!--网点二维码-->
-      <el-dialog id="qr" :visible.sync="dialogVisibleQRcode" width="554px" height="535px" style="display: none">
+      <el-dialog id="qr" :visible.sync="dialogVisibleQRcode" width="900px" height="636px">
           <div class="address">
             <p><span id="site">服务网点:<span id="siteName" class="ress">{{ dealerName }}</span></span>
             </p>
