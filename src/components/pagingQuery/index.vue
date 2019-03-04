@@ -1,50 +1,51 @@
 <template>
-<div class="page-one clearfix" style="width:100%">
-  <p style="float:left;font-size: 14px;
-    font-family: PingFangSC-Regular;
-    font-weight: 400;
-    color: rgba(102, 102, 102, 1);"><span style="margin-right:5px;">第{{page.pageNum}}页</span><span>共{{total/page.pageSize<0?1:Math.ceil(total/page.pageSize)}}页</span></p>
-    <el-pagination background  @size-change="onChangeSize" @current-change="onChangePage" :page-size="page.pageSize" layout="total,prev, pager, next, jumper" :total=total style="float:right">
-    </el-pagination>
-</div>
+  <div class="page-one clearfix" style="width:100%">
+    <p
+      style="float:left;font-size: 14px;
+              font-family: PingFangSC-Regular;
+              font-weight: 400;
+              color: rgba(102, 102, 102, 1);">
+    <span style="margin-right:5px;">第{{ page.pageNum }}页</span><span>共{{ total / page.pageSize &gt;0 ? 1:Math.ceil(total / page.pageSize) }}页</span></p>
+    <el-pagination background layout="total,prev, pager, next, jumper" @size-change="onChangeSize" :page-size="page.pageSize" :total=total style="float:right" @current-change="onChangePage"/>
+  </div>
 </template>
 
 <script>
 export default {
-    name: 'Pagination',
-    props: ['page'],
-    computed: {
-        total() {
-            return this.page.total
-        },
-        //检测是否获取到无数据
-        initBack() {
-            return this.page.total / this.page.pageSize < this.page.pageNum;
-        },
+  name: 'Pagination',
+  props: ['page'],
+  computed: {
+    total() {
+      return this.page.total
     },
-    watch: {
-        total() {
-            // 存在记录但未获取到数据时, 重新请求
-            if (this.initBack) {
-                this.page.pageNum -= 1;
-                this.$emit('change');
-            }
-        },
-    },
-    methods: {
-        // 每页条数
-        onChangeSize(pageSize) {
-          console.log(pageSize,'pageSize')
-            this.pager.pageSize = pageSize;
-            this.$emit('change');
-        },
-        // 翻页
-        onChangePage(pageNum) {
-            console.log(pageNum,'pageNum')
-            this.page.pageNum = pageNum;
-            this.$emit('change');
-        }
+    // 检测是否获取到无数据
+    initBack() {
+      return this.page.total / this.page.pageSize < this.page.pageNum
     }
+  },
+  watch: {
+    total() {
+      // 存在记录但未获取到数据时, 重新请求
+      if (this.initBack) {
+        this.page.pageNum -= 1
+        this.$emit('change')
+      }
+    }
+  },
+  methods: {
+    // 每页条数
+    onChangeSize(pageSize) {
+      console.log(pageSize, 'pageSize')
+      this.pager.pageSize = pageSize
+      this.$emit('change')
+    },
+    // 翻页
+    onChangePage(pageNum) {
+      console.log(pageNum, 'pageNum')
+      this.page.pageNum = pageNum
+      this.$emit('change')
+    }
+  }
 }
 
 </script>

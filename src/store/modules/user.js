@@ -5,7 +5,7 @@ const user = {
   state: {
     token: getToken(),
     name: '',
-    avatar: localStorage.getItem("avatar"),
+    avatar: localStorage.getItem('avatar'),
     roles: []
   },
 
@@ -31,19 +31,18 @@ const user = {
       return new Promise((resolve, reject) => {
         login(userInfo).then(res => {
           const token = res.datas.token
-          this.avatar="../../../images/logo.jpg"
+          this.avatar = '../../../images/logo.jpg'
           setToken(token)
           commit('SET_TOKEN', token)
           commit('SET_AVATAR', this.avatar)
-          localStorage.setItem("avatar",this.avatar)
+          localStorage.setItem('avatar', this.avatar)
+          console.log(userInfo)
           resolve()
         }).catch(error => {
-             reject(error)
-           })
-      })},
-
-
-
+          reject(error)
+        })
+      })
+    },
 
     // 获取用户信息
     GetInfo({ commit, state }) {
@@ -84,7 +83,6 @@ const user = {
         commit('SET_TOKEN', '')
         removeToken()
         resolve()
-
       })
     }
   }
