@@ -73,7 +73,7 @@ export default {
     return {
       dealerCode: localStorage.getItem('dealerCode'),
       chargeName: localStorage.getItem('chargeName'),
-      chargePhoto: localStorage.getItem('chargePhoto')
+      chargePhoto: localStorage.getItem('avatar')
     }
   },
   components: {

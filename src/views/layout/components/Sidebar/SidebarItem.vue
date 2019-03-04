@@ -99,3 +99,41 @@ export default {
   }
 }
 </script>
+<style scoped>
+  .menu-wrapper{ background: #262A37;}
+
+  #app .sidebar-container .nest-menu .el-submenu > .el-submenu__title, #app .sidebar-container .el-submenu .el-menu-item {
+    min-width: 230px !important;
+     color: #FFF;
+    height: 50px; line-height: 50px;
+    font-size: 16px !important;
+  }
+  .el-menu-item * {
+    vertical-align: middle;
+    color: #FFF;
+    font-size: 16px;
+  }
+  #app .sidebar-container .nest-menu .el-submenu > .el-submenu__title, #app .sidebar-container .el-submenu .el-menu-item:focus{
+    background-color: #0082F0 !important
+  }
+
+  #app .sidebar-container .nest-menu .el-submenu > .el-submenu__title, #app .sidebar-container .el-submenu .el-menu-item:link{
+    background-color: #0082F0 !important;
+  }
+  #app .sidebar-container .nest-menu .el-submenu > .el-submenu__title[data-v-3ece4f7e], #app .sidebar-container .el-submenu .el-menu-item{ text-align: center;}
+  .active{ background-color: #0082F0!important;width: 100%;
+    display: block;
+    height: 50px;
+    line-height: 50px;}
+    .el-submenu__title span{
+      font-size: 16px !important;
+    }
+</style>
+<style>
+  #app .sidebar-container{width: 230px !important;}
+  #app .main-container{margin-left: 230px;}
+  .el-submenu__title{ background:rgba(49,67,88,1);}
+  .el-submenu__title:hover{background-color:#3E5E84!important;}
+  #app .el-menu-item, .el-submenu__title{height: 60px; line-height: 60px;background: #314358!important;}
+
+</style>
