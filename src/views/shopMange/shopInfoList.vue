@@ -218,8 +218,6 @@
             <img src="../../images/pic.png">
           </div>
       </el-dialog>
-
-
       <!--网点二维码-->
      <!-- <el-dialog id="qr" :visible.sync="dialogVisibleQRcode" width="554px" height="535px" style="">
         <div class="address">
@@ -246,6 +244,7 @@
           layout="prev, pager, next"
           @current-change="handleCurrentChange"/>
       </div>
+       <!--<paging-query :page="page" @change="getData"/>-->
     </div>
   </div>
 </template>

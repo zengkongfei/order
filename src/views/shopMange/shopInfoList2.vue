@@ -185,12 +185,12 @@
 import {
   dealerList
 } from '../../js/employee'
-import {
-  getRoles
-} from '@/utils/auth'
-import {
-  isContanis
-} from '../../utils/index.js'
+// import {
+//   getRoles
+// } from '@/utils/auth'
+// import {
+//   isContanis
+// } from '../../utils/index.js'
 export default {
   name: 'Basetable',
   data() {
@@ -269,10 +269,10 @@ export default {
   created() {
     this.getData()
     this.getProvince()
-    const array = JSON.parse(getRoles())
-    this.isadd = isContanis(array, 'add')
-    this.isedit = isContanis(array, 'edit')
-    this.isquery = isContanis(array, 'query')
+    // const array = JSON.parse(getRoles())
+    // this.isadd = isContanis(array, 'add')
+    // this.isedit = isContanis(array, 'edit')
+    // this.isquery = isContanis(array, 'query')
   },
   methods: {
     provingDealerCode() {
