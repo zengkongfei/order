@@ -1,29 +1,29 @@
 <template>
-  <div class="table">
+  <div class="table memberInfoWrap">
     <div class="container">
       <div class="addSearch">
-        <el-form ref="plan" :model="plan" :inline="true" label-width="150">
+        <el-form ref="plan" :model="plan" :inline="true" label-width="85px">
           <el-row>
             <el-col :span="12">
-              <el-form-item label="会员编号" style="float: left;">
-                <el-input v-model="plan.memberCode" placeholder="请输入会员编号" class="inptxt"/>
+              <el-form-item label="会员编号：" style="float: left;">
+                <el-input v-model="plan.memberCode" placeholder="请输入会员编号" class=""/>
               </el-form-item>
             </el-col>
             <el-col :span="12">
-              <el-form-item label="联系方式" style="float: right;">
-                <el-input v-model="plan.contactWay" placeholder="请输入会员联系方式" class="inptxt"/>
+              <el-form-item label="联系方式：" style="float: right;">
+                <el-input v-model="plan.contactWay" placeholder="请输入会员联系方式" class=""/>
               </el-form-item>
             </el-col>
           </el-row>
           <el-row>
             <el-col :span="12">
-              <el-form-item label="网点编号" style="float: left;">
-                <el-input v-model="plan.dealerCode" placeholder="请输入网点编号" class="inptxt"/>
+              <el-form-item label="网点编号：" style="float: left;">
+                <el-input v-model="plan.dealerCode" placeholder="请输入网点编号" class=""/>
               </el-form-item>
             </el-col>
             <el-col :span="12">
-              <el-form-item label="网点名称" style="float: right;">
-                <el-input v-model="plan.dealerName" placeholder="请输入网点名称" class="inptxt"/>
+              <el-form-item label="网点名称：" style="float: right;">
+                <el-input v-model="plan.dealerName" placeholder="请输入网点名称" class=""/>
               </el-form-item>
             </el-col>
           </el-row>
@@ -146,7 +146,45 @@ export default {
   }
 };
 </script>
-
+<style>
+  .table{
+    padding: 24px;
+    padding-bottom: 0;
+    background-color: #F0F2F5;
+    overflow: auto;
+  }
+  .app-main{
+    background-color: #F0F2F5;
+  }
+  .memberInfoWrap .handle-box{
+    margin-bottom:24px;
+  }
+  .memberInfoWrap .handle-box .el-button{
+    height: 32px;
+    width: 60px;
+    line-height: 0px;
+    position: relative;
+    background-color: #0082F0;
+    padding:0;
+  }
+  .memberInfoWrap .addSearch .el-form--inline .el-form-item__content{
+    width:88%;
+  }
+ .memberInfoWrap .addSearch .el-input__inner{
+   line-height: 32px;
+   height:32px;
+  }
+  .memberInfoWrap .addSearch .el-form--inline .el-form-item__content{
+    line-height: 32px;
+  }
+  .memberInfoWrap .addSearch .el-form-item__label{
+    line-height: 32px;
+  }
+  .memberInfoWrap .addSearch .el-form-item{
+    margin:0 0 24px 0;
+    width:100%;
+  }
+</style>
 <style scoped>
 li,
 ul {
@@ -155,8 +193,13 @@ ul {
 .handle-box {
   margin-bottom: 20px;
 }
-.table {
-  margin: 20px;
+.container{
+  padding: 24px 32px 0 32px;
+  background: #FFF;
+  min-width: 1560px;
+  margin: 0;
+  min-height: 900px;
+  overflow: auto;
 }
 .el-pagination {
   text-align: right;
@@ -173,7 +216,5 @@ ul {
 .handle-box {
   clear: left;
 }
-.container {
-  padding: 0 24px;
-}
+
 </style>
