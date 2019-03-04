@@ -102,19 +102,30 @@
   }
 </script>
 <style>
-/* .menu-wrapper  .is-active{
-    background: yellow;
-  }*/
- #menu-wrapper #el-submenu .el-menu .router-link-exact-active .is-active {
+  /* .menu-wrapper  .is-active{
+      background: yellow;
+    }*/
+  #menu-wrapper  li.is-active >.el-submenu__title{
+    background: #3E5E84 !important;
+  }
+   .el-submenu__title{
+
+  }
+  #menu-wrapper #el-submenu .el-menu a.router-link-exact-active .is-active {
     background-color: #0082F0 !important;
   }
+
+  #menu-wrapper #el-submenu .el-menu a .el-menu-item {
+    background-color: #262A37 !important;
+  }
+
   .menu-wrapper .is-active .dot-box {
     display: inline-block;
     width: 8px;
     height: 8px;
     background: white;
     border-radius: 4px;
-    margin-right:7px;
+    margin-right: 7px;
   }
 </style>
 <style scoped>
@@ -137,11 +148,11 @@
   }
 
   #app .sidebar-container .nest-menu .el-submenu > .el-submenu__title, #app .sidebar-container .el-submenu .el-menu-item:focus {
-   /* background-color: #0082F0 !important*/
+    /* background-color: #0082F0 !important*/
   }
 
   #app .sidebar-container .nest-menu .el-submenu > .el-submenu__title, #app .sidebar-container .el-submenu .el-menu-item:link {
-   /* background-color: #0082F0 !important;*/
+    /* background-color: #0082F0 !important;*/
   }
 
   #app .sidebar-container .nest-menu .el-submenu > .el-submenu__title[data-v-3ece4f7e], #app .sidebar-container .el-submenu .el-menu-item {
@@ -149,7 +160,7 @@
   }
 
   .active {
-    background-color: #0082F0 ;
+    background-color: #0082F0;
     width: 100%;
     display: block;
     height: 50px;
@@ -174,13 +185,13 @@
   }
 
   .el-submenu__title:hover {
-    background-color: #3E5E84 ;
+    background-color: #3E5E84;
   }
 
   #app .el-menu-item, .el-submenu__title {
     height: 60px;
     line-height: 60px;
-    background: #314358 ;
+    background: #314358;
   }
 
 </style>
