@@ -1,6 +1,6 @@
 <template>
   <div class="table shopInfoListWrap">
-    <div class="container" id="container">
+    <div id="container" class="container">
       <div class="addSearch">
         <el-form ref="plan" :model="condition" :inline="true" label-width="105px">
           <el-row>
@@ -22,7 +22,7 @@
           </el-row>
           <el-row>
             <el-col :span="8">
-              <el-form-item label="负责人姓名:" style=""> 
+              <el-form-item label="负责人姓名:" style="">
                 <el-input v-model="condition.chargeName" placeholder="请输入负责人姓名"/>
               </el-form-item>
             </el-col>
@@ -40,28 +40,25 @@
           <el-row>
             <el-col :span="8">
               <el-form-item label="注册地(省):" style="">
-               <!-- <el-input v-model="condition.province" placeholder="请选择注册地(省)"/>-->
+                <!-- <el-input v-model="condition.province" placeholder="请选择注册地(省)"/>-->
                 <el-select v-model="condition.province" placeholder="请选择注册地（省）" @change="getCity" class="myInput">
-                  <el-option v-for="item in provinceList" :label="item.label" :value="item.value" :key="item.value">
-                  </el-option>
+                  <el-option v-for="item in provinceList" :label="item.label" :value="item.value" :key="item.value"/>
                 </el-select>
               </el-form-item>
             </el-col>
             <el-col :span="8">
               <el-form-item label="注册地(市):" style="">
-               <!-- <el-input v-model="condition.city" placeholder="请选择注册地(市)"/>-->
-                <el-select v-model="condition.city" placeholder="请选择注册地（市）" @change="getCounty" class="myInput">
-                  <el-option v-for="item in cityList" :label="item.label" :value="item.value" :key="item.value">
-                  </el-option>
+                <!-- <el-input v-model="condition.city" placeholder="请选择注册地(市)"/>-->
+                <el-select v-model="condition.city" placeholder="请选择注册地（市）" class="myInput" @change="getCounty">
+                  <el-option v-for="item in cityList" :label="item.label" :value="item.value" :key="item.value"/>
                 </el-select>
               </el-form-item>
             </el-col>
             <el-col :span="8">
               <el-form-item label="注册地(区):" style="">
-               <!-- <el-input v-model="condition.county" placeholder="请选择注册地(区)"/>-->
+                <!-- <el-input v-model="condition.county" placeholder="请选择注册地(区)"/>-->
                 <el-select v-model="condition.county" placeholder="请选择注册地（市）" class="myInput">
-                  <el-option v-for="item in countyList" :label="item.label" :value="item.value" :key="item.value">
-                  </el-option>
+                  <el-option v-for="item in countyList" :label="item.label" :value="item.value" :key="item.value"/>
                 </el-select>
               </el-form-item>
             </el-col>
@@ -110,7 +107,7 @@
           </template>
         </el-table-column>
         <el-table-column prop="leasingManager" label="招商经理" width="150"/>
-        <el-table-column prop="createTime" label="创建时间" width="100"/>
+        <el-table-column prop="createdDate" label="创建时间" width="100"/>
         <i class="el-dialog__close el-icon el-icon-close"/>
         <el-table-column label="网点二维码" align="left" width="150">
           <template slot-scope="scope">
@@ -188,38 +185,38 @@
           </div>
         </div>
         <div class="left-footer">
-                        <span slot="footer" class="dialog-footer" left>
-           <span>{{urlListDesc}}</span>
-                        <span>{{licenceNumber}}</span>
-                        <span><img src="../../assets/images/dealer/big-icon.png" alt=""></span>
-                        <span><img src="../../assets/images/dealer/small-icon.png" alt=""></span>
-                        <span><img src="../../assets/images/dealer/right-icon.png" alt=""></span>
-                        <span><img src="../../assets/images/dealer/left-icon.png" alt=""></span>
-                        </span>
+          <span slot="footer" class="dialog-footer" left>
+            <span>{{ urlListDesc }}</span>
+            <span>{{ licenceNumber }}</span>
+            <span><img src="../../assets/images/dealer/big-icon.png" alt=""></span>
+            <span><img src="../../assets/images/dealer/small-icon.png" alt=""></span>
+            <span><img src="../../assets/images/dealer/right-icon.png" alt=""></span>
+            <span><img src="../../assets/images/dealer/left-icon.png" alt=""></span>
+          </span>
         </div>
 
       </el-dialog>
       <!--网点二维码-->
       <el-dialog id="qr" :visible.sync="dialogVisibleQRcode" width="554px" height="535px" style="display: none">
-          <div class="address">
-            <p><span id="site">服务网点:<span id="siteName" class="ress">{{ dealerName }}</span></span>
-            </p>
-            <p><span id="address">地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址:<span id="addressContent"
-                                                                                           class="ress">{{ dealerAddress }}</span></span>
-            </p>
-          </div>
-          <div class="code">
-            <img id="code" :src="QR" width="250px">
-          </div>
-          <div class="logo">
-            <img id="logo" src="../../images/logo.jpg" width="30px">
-          </div>
-          <div class="picFile">
-            <img src="../../images/pic.png">
-          </div>
+        <div class="address">
+          <p><span id="site">服务网点:<span id="siteName" class="ress">{{ dealerName }}</span></span>
+          </p>
+          <p><span id="address">地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址:<span
+            id="addressContent"
+            class="ress">{{ dealerAddress }}</span></span>
+          </p>
+        </div>
+        <div class="code">
+          <img id="code" :src="QR" width="250px">
+        </div>
+        <div class="logo">
+          <img id="logo" src="../../images/logo.jpg" width="30px">
+        </div>
+        <div class="picFile">
+          <img src="../../images/pic.png">
+        </div>
       </el-dialog>
-      <!--网点二维码-->
-     <!-- <el-dialog id="qr" :visible.sync="dialogVisibleQRcode" width="554px" height="535px" style="">
+      <!--网点二维码--><!-- <el-dialog id="qr" :visible.sync="dialogVisibleQRcode" width="554px" height="535px" style="">
         <div class="address">
           <p><span id="site">服务网点:<span id="siteName" class="ress">123456</span></span>
           </p>
@@ -244,207 +241,205 @@
           layout="prev, pager, next"
           @current-change="handleCurrentChange"/>
       </div>
-       <!--<paging-query :page="page" @change="getData"/>-->
+      <!--<paging-query :page="page" @change="getData"/>-->
     </div>
   </div>
 </template>
 
 <script>
-  import {shopInfoList, getLicencesList, getQrCode, getArea} from '../../js/shopInfo'
-  import * as html2canvas from 'html2canvas'
+import { shopInfoList, getLicencesList, getQrCode, getArea } from '../../js/shopInfo'
+import * as html2canvas from 'html2canvas'
 
-  export default {
-    name: 'Basetable',
+export default {
+  name: 'Basetable',
+  data() {
+    return {
+      downPic: '',
+      countyList:[],
+      cityList: [],
+      provinceList: [],
+      tableData: [],
+      cur_page: 1,
+      editVisible: false,
+      delVisible: false,
+      dialogVisible: false,
+      status: 1,
+      input: '',
+      value: [],
+      options: [{
+        value: []
+      }],
+      QR: '',
+      dealerAddress: '',
+      dealerName: '',
+      dialogVisibleChargePhoto: false,
+      dialogVisibleCard: false,
+      dialogVisibleNetworkPhoto: false,
+      dialogVisibleQRcode: false,
+      byId: '',
+      urlListDesc: '',
+      licenceNumber: '',
+      urlListFirst: '',
+      urlList: [],
+      urlListId: '',
+      signImages: [],
+      imgShow: 0,
+      plan: {
+        dealerId: '',
+        content: ''
+      },
+      card: {
+        legalFrontView: '',
+        legalBackView: '',
+        legalCard: ''
+      },
+      chargePhoto: {
+        chargeUrl: '',
+        chargeName: '',
+        dealerCode: ''
+      },
+      NetworkPhoto: {
+        businessLicenseView: ''
+      },
+      // 查询条件
+      condition: {
+        dealerCode: '', // 网点编号
+        dealerName: '', // 网点名称
+        chargePhone: '', // 网点联系方式
+        chargeName: '', // 负责人姓名
+        legalName: '', // 法人姓名
+        leasingManager: '', // 招商经理  createTime: '2019-03-01 15:14:23',
+        province: '', // 注册地（省）
+        city: '', // 注册地（市）
+        county: '' // 注册地（区）
+      },
+      // 店铺属性字段
+      store: {
+        dealerCode: '', // 网点编号
+        dealerName: '', // 网点名称
+        creditCode: '', // 统一社会信用代码
+        legalName: '', // 法人姓名
+        legalCard: '', // 法人身份证号
+        chargeName: '', // 负责人姓名
+        legalSex: '', // 负责人性别
+        chargePhone: '', // 网点联系方式
+        chargePhoto: '', // 负责人照片"
+        province: '', // 注册地（省）
+        city: '', // 注册地（市）
+        county: '', // 注册地（区）
+        detailedAddress: '', // 详细地址
+        licences: '', // 网点证照
+        leasingManager: '', // 招商经理
+        createTime: '', // 创建时间"
+        qrCode: '' // 二维码
+      },
+
+      rules: {
+        name: [
+          { required: true, message: '请输入姓名', trigger: 'blur'}
+        ]
+      },
+      total: 0,
+      page: {
+        pageNum: 1,
+        pageSize: 10
+      }
+    }
+  },
+  computed: {
     data() {
-      return {
-        downPic: '',
-        countyList:[],
-        cityList: [],
-        provinceList: [],
-        tableData: [],
-        cur_page: 1,
-        editVisible: false,
-        delVisible: false,
-        dialogVisible: false,
-        status: 1,
-        input: '',
-        value: [],
-        options: [{
-          value: []
-        }],
-        QR: '',
-        dealerAddress: '',
-        dealerName: '',
-        dialogVisibleChargePhoto: false,
-        dialogVisibleCard: false,
-        dialogVisibleNetworkPhoto: false,
-        dialogVisibleQRcode: false,
-        byId: '',
-        urlListDesc: '',
-        licenceNumber: '',
-        urlListFirst: '',
-        urlList: [],
-        urlListId: '',
-        signImages: [],
-        imgShow: 0,
-        plan: {
-          dealerId: '',
-          content: ''
-        },
-        card: {
-          legalFrontView: '',
-          legalBackView: '',
-          legalCard: ''
-        },
-        chargePhoto: {
-          chargeUrl: '',
-          chargeName: '',
-          dealerCode: ''
-        },
-        NetworkPhoto: {
-          businessLicenseView: ''
-        },
-        // 查询条件
-        condition: {
-          dealerCode: '', // 网点编号
-          dealerName: '', // 网点名称
-          chargePhone: '', // 网点联系方式
-          chargeName: '', // 负责人姓名
-          legalName: '', // 法人姓名
-          leasingManager: '', // 招商经理  createTime: '2019-03-01 15:14:23',
-          province: '', // 注册地（省）
-          city: '', // 注册地（市）
-          county: '' // 注册地（区）
-        },
-        // 店铺属性字段
-        store: {
-          dealerCode: '', // 网点编号
-          dealerName: '', // 网点名称
-          creditCode: '', // 统一社会信用代码
-          legalName: '', // 法人姓名
-          legalCard: '', // 法人身份证号
-          chargeName: '', // 负责人姓名
-          legalSex: '', // 负责人性别
-          chargePhone: '', // 网点联系方式
-          chargePhoto: '', // 负责人照片"
-          province: '', // 注册地（省）
-          city: '', // 注册地（市）
-          county: '', // 注册地（区）
-          detailedAddress: '', // 详细地址
-          licences: '', // 网点证照
-          leasingManager: '', // 招商经理
-          createTime: '', // 创建时间"
-          qrCode: '' // 二维码
-        },
-
-        rules: {
-          name: [
-            {required: true, message: '请输入姓名', trigger: 'blur'}
-          ]
-        },
-        total: 0,
-        page: {
-          pageNum: 1,
-          pageSize: 10
-        }
+      return this.tableData
+    }
+  },
+  created() {
+    this.getProvince()
+    this.getData()
+  },
+  methods: {
+    downLoad() {
+      if (window.navigator.msSaveOrOpenBlob) {
+        window.navigator.msSaveOrOpenBlob(this.downPic, 'popularize' + '.' + 'png')
+      } else {
+        // 这里就按照chrome等新版浏览器来处理
+        const a = document.createElement('a')
+        a.href = this.downPic
+        a.setAttribute('download', 'popularize')
+        a.click()
       }
     },
-    computed: {
-      data() {
-        return this.tableData
-      }
+    saveQRcode(){
+      html2canvas(document.getElementById('qr'), {
+        useCORS: true,
+        logging: true
+      }).then(canvas => {
+        // canvas.lineTo(200, 200)
+        this.downPic = canvas.toDataURL()
+        this.imgmap = canvas.toDataURL()
+        console.log(999, this.imgmap)
+      })
     },
-    created() {
-      this.getProvince()
+    getCounty(){
+      this.condition.county = ''
+      let params = {
+        areaType:3,
+        parentId: this.condition.city
+      }
+      getArea(params).then(res => {
+        console.log(res, '区')
+        this.countyList = res.datas
+      })
+    },
+    getProvince() {
+      let params = {
+        areaType: 1,
+        parentId: '0000'
+      }
+      getArea(params).then(res => {
+        console.log(res, '省')
+        this.provinceList = res.datas
+      })
+    },
+    getCity() {
+      this.condition.city = ''
+      const params = {
+        areaType: 2,
+        parentId: this.condition.province
+      }
+      getArea(params).then(res => {
+        this.cityList = res.datas
+      })
+    },
+    // 分页导航
+    handleCurrentChange(val) {
+      this.page.pageNum = val
       this.getData()
     },
-    methods: {
-      downLoad() {
-        if (window.navigator.msSaveOrOpenBlob) {
-          alert(this.downPic)
-          window.navigator.msSaveOrOpenBlob(this.downPic, 'popularize' + '.' + 'png')
-        } else {
-          // 这里就按照chrome等新版浏览器来处理
-          const a = document.createElement('a')
-          a.href = this.downPic
-          a.setAttribute('download', 'popularize')
-          a.click()
-        }
-      },
-      saveQRcode(){
-        html2canvas(document.getElementById('qr'), {
-          useCORS: true,
-          logging: true
-        }).then(canvas => {
-         // canvas.lineTo(200, 200)
-          this.downPic = canvas.toDataURL()
-          this.imgmap = canvas.toDataURL()
-          console.log(999, this.imgmap)
-        })
-      },
-      getCounty(){
-        this.condition.county = ''
-        let params = {
-          areaType:3,
-          parentId: this.condition.city
-        }
-        getArea(params).then(res => {
-          console.log(res, '区')
-          this.countyList = res.datas
-        })
-      },
-      getProvince() {
-        let params = {
-          areaType: 1,
-          parentId: '0000'
-        }
-        getArea(params).then(res => {
-          console.log(res, '省')
-          this.provinceList = res.datas
-        })
-      },
-      getCity() {
-        this.condition.city = ''
-        let params = {
-          areaType: 2,
-          parentId: this.condition.province
-        }
-        getArea(params).then(res => {
-          console.log(res, '市')
-          this.cityList = res.datas
-        })
-      },
-      // 分页导航
-      handleCurrentChange(val) {
-        this.page.pageNum = val
-        this.getData()
-      },
-      // 显示二维码
-      showQRcode(index, row) {
-        this.dealerCode = row.dealerCode
-        this.dialogVisibleQRcode = true
-        this.plan.content = process.env.BASE_DOWN_API + '?dealerCode=' + this.dealerCode
-        this.plan.dealerId = row.dealerId
-        // 获取证照信息列表
-        getQrCode(this.plan).then(res => {
-          this.QR = res.datas.qrCode
-          this.dealerAddress = res.datas.dealerAddress
-          this.dealerName = res.datas.dealerName
-           this.saveQRcode()
-        })
-      },
-      // 切换证照
-      changeImgUrl(index) {
-        this.urlListFirst = this.urlList[index].imageUrl
-        this.urlListDesc = this.urlList[index].imageDesc
-        this.imgShow = index
-        this.signImages = [this.urlList[index].imageUrl]
-      },
-      // 显示法人身份证照
-      showLegalCard(index, row) {
-        this.dialogVisibleCard = true
-        this.card.legalBackView = row.legalBackView
-        this.card.legalFrontView = row.legalFrontView
+    // 显示二维码
+    showQRcode(index, row) {
+      this.dealerCode = row.dealerCode
+      this.dialogVisibleQRcode = true
+      this.plan.content = process.env.BASE_DOWN_API + '?dealerCode=' + this.dealerCode
+      this.plan.dealerId = row.dealerId
+      // 获取证照信息列表
+      getQrCode(this.plan).then(res => {
+        this.QR = res.datas.qrCode
+        this.dealerAddress = res.datas.dealerAddress
+        this.dealerName = res.datas.dealerName
+        this.saveQRcode()
+      })
+    },
+    // 切换证照
+    changeImgUrl(index) {
+      this.urlListFirst = this.urlList[index].imageUrl
+      this.urlListDesc = this.urlList[index].imageDesc
+      this.imgShow = index
+      this.signImages = [this.urlList[index].imageUrl]
+    },
+    // 显示法人身份证照
+    showLegalCard(index, row) {
+      this.dialogVisibleCard = true
+      this.card.legalBackView = row.legalBackView
+      this.card.legalFrontView = row.legalFrontView
         this.card.legalCard = row.legalCard
       },
       // 显示负责人照片
