@@ -125,6 +125,7 @@ export default {
           this.tableData = res.datas;
           this.page.total = res.total;
           this.page.pageNum = res.pageNum
+          console.log('res',res)
         })
         .catch(error => {
           this.$message.error(error + "");

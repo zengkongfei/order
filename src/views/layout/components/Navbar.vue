@@ -46,11 +46,11 @@
         <router-link class="inlineBlock" to="/">
           <el-dropdown-item>
             <div class="ltimg">
-              <img :src="chargePhoto"/>
+              <img :src="empPhoto"/>
             </div>
             <div class="rgbot">
-              <h1 class="titext">{{chargeName}}</h1>
-              <p class="infotex">负责人</p>
+              <h1 class="titext">{{empName}}</h1>
+              <p class="infotex">{{roleName}}</p>
               <p class="loietx">{{dealerCode}}</p>
             </div>
           </el-dropdown-item>
@@ -71,9 +71,13 @@ import {getuserinfo} from '../../../js/userinfo.js'
 export default {
   data() {
     return {
-      dealerCode: localStorage.getItem('dealerCode'),
-      chargeName: localStorage.getItem('chargeName'),
-      chargePhoto: localStorage.getItem('avatar')
+      // dealerCode: localStorage.getItem('dealerCode'),
+      // chargeName: localStorage.getItem('chargeName'),
+      // chargePhoto: localStorage.getItem('avatar')
+      empPhoto:'/src/assets/images/top_images/renwu.jpg',
+      empName: '美好铺子',
+      roleName: 'admin',
+      dealerCode: 'D20180101000'
     }
   },
   components: {
