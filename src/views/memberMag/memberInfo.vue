@@ -46,7 +46,11 @@
         <el-table-column prop="province" label="注册地（省）"/>
         <el-table-column prop="city" label="注册地（市）"/>
         <el-table-column prop="county" label="注册地（县）"/>
+<<<<<<< HEAD
+        <el-table-column prop="createdDate" label="注册时间"/>
+=======
         <el-table-column prop="registerTime" label="注册时间" sortable/>
+>>>>>>> 8d8ed84b99458608dda0d9a2676928f4386c15e7
       </el-table>
       <!-- <div  id="pagination" class="pagination">
         <el-pagination

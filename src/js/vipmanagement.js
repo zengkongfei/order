@@ -12,7 +12,7 @@ export const getQrCode = params => {
   return request.post('health-dealer/dealers/getQRCode', params).then(res => res.data);
 }
 export const getDealerInfo = params => {
-  return request.post('health-dealer/dealers/getDealerInfo', params).then(res => res.data);
+  return request.post('health-dealer/dealers/getDealerAccountInfo', params).then(res => res.data);
 }
 export const getDetailedDealerInfo = params => {
   return request.post('health-dealer/dealers/getDetailedDealerInfo', params).then(res => res.data);
