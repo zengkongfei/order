@@ -9,6 +9,10 @@ export const getLicencesList = params => {
 }
 // 获取二维码
 export const getQrCode = params => {
+  return request.post('health-file/file/download', params).then(res => res.data)
+}
+// 获取二维码
+export const getBase64 = params => {
   return request.post('health-dealer/dealers/getQRCode', params).then(res => res.data)
 }
 // 获取地区

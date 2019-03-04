@@ -1,25 +1,5 @@
 <template>
-  <!-- <el-menu class="navbar" mode="horizontal">
-    <hamburger :toggle-click="toggleSideBar" :is-active="sidebar.opened" class="hamburger-container"/>
-    <breadcrumb />
-    <el-dropdown class="avatar-container" trigger="click">
-      <div class="avatar-wrapper">
-        <img src="../../../images/logo.jpg" class="user-avatar">
-        <i class="el-icon-caret-bottom"/>
-      </div>
-      <el-dropdown-menu slot="dropdown" class="user-dropdown">
-        <router-link class="inlineBlock" to="/">
-          <el-dropdown-item>
-            Home
-          </el-dropdown-item>
-        </router-link>
-        <el-dropdown-item divided>
-          <span style="display:block;" @click="logout">退出</span>
-        </el-dropdown-item>
-      </el-dropdown-menu>
-    </el-dropdown>
-  </el-menu> -->
-        <el-menu class="navbar" mode="horizontal">
+  <el-menu class="navbar" mode="horizontal">
     <!-- <hamburger :toggle-click="toggleSideBar" :is-active="sidebar.opened" class="hamburger-container"/> -->
     <breadcrumb />
     <el-dropdown class="avatar-container" trigger="click">
@@ -30,32 +10,20 @@
         </div>
         <!-- <i class="el-icon-caret-bottom"/> -->
       </div>
-      <!--<el-dropdown-menu slot="dropdown" class="user-dropdown">-->
-        <!--<router-link class="inlineBlock" to="/">-->
-          <!--<el-dropdown-item>-->
-            <!--Home-->
-          <!--</el-dropdown-item>-->
-        <!--</router-link>-->
-        <!--<el-dropdown-item divided>-->
-          <!--<span style="display:block;" @click="logout">退出</span>-->
-        <!--</el-dropdown-item>-->
-      <!--</el-dropdown-menu>-->
-    <!--</el-dropdown>-->
-  <!--</el-menu>-->
       <el-dropdown-menu slot="dropdown" class="user-dropdown">
         <router-link class="inlineBlock" to="/">
           <el-dropdown-item>
             <div class="ltimg">
-              <img :src="empPhoto"/>
+              <img :src="chargePhoto">
             </div>
             <div class="rgbot">
-              <h1 class="titext">{{empName}}</h1>
-              <p class="infotex">{{roleName}}</p>
-              <p class="loietx">{{dealerCode}}</p>
+              <h1 class="titext">{{ chargeName }}</h1>
+              <p class="infotex"> 负责人</p>
+              <p class="loietx">{{ chargePhone }}</p>
             </div>
           </el-dropdown-item>
         </router-link>
-          <span class="botlogout" style="display:block;" @click="logout"><img src="../../../assets/images/top_images/Group 3.png">注销</span>
+        <span class="botlogout" style="display:block;" @click="logout"><img src="../../../assets/images/top_images/Group 3.png">注销</span>
 
       </el-dropdown-menu>
     </el-dropdown>
@@ -66,26 +34,19 @@
 import { mapGetters } from 'vuex'
 import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
-import { getuserinfo } from '../../../js/userInfo.js'
+import { getUserInfo } from '../../../js/userInfo.js'
 
 export default {
-  data() {
-    return {
-      // dealerCode: localStorage.getItem('dealerCode'),
-      // chargeName: localStorage.getItem('chargeName'),
-      // chargePhoto: localStorage.getItem('avatar')
-      empPhoto:'/src/assets/images/top_images/renwu.jpg',
-      empName: '美好铺子',
-      roleName: 'admin',
-      dealerCode: 'D20180101000'
-    }
-  },
   components: {
     Breadcrumb,
     Hamburger
   },
-  created(){
-    this.getuser()
+  data() {
+    return {
+      chargeName: '',
+      chargePhoto: '',
+      chargePhone: ''
+    }
   },
   computed: {
     ...mapGetters([
@@ -93,21 +54,24 @@ export default {
       'avatar'
     ])
   },
+  created() {
+    this.getuser()
+  },
   methods: {
     toggleSideBar() {
       this.$store.dispatch('ToggleSideBar')
     },
     logout() {
       this.$store.dispatch('LogOut').then(() => {
-        localStorage.removeItem('dealerCode')
-        localStorage.removeItem('chargeName')
-        localStorage.removeItem('chargePhoto')
         location.reload() // 为了重新实例化vue-router对象 避免bug
       })
     },
-    getuser(){
-      getuserinfo().then(res=>{
-        console.log('res',res)
+    getuser() {
+      getUserInfo().then(res => {
+        console.log('res', res)
+        this.chargePhoto = res.datas.chargePhoto
+        this.chargeName = res.datas.chargeName
+        this.chargePhone = res.datas.chargePhone
       })
     }
   }
@@ -115,46 +79,6 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-// .navbar {
-//   height: 50px;
-//   line-height: 50px;
-//   border-radius: 0px !important;
-//   .hamburger-container {
-//     line-height: 58px;
-//     height: 50px;
-//     float: left;
-//     padding: 0 10px;
-//   }
-//   .screenfull {
-//     position: absolute;
-//     right: 90px;
-//     top: 16px;
-//     color: red;
-//   }
-//   .avatar-container {
-//     height: 50px;
-//     display: inline-block;
-//     position: absolute;
-//     right: 35px;
-//     .avatar-wrapper {
-//       cursor: pointer;
-//       margin-top: 5px;
-//       position: relative;
-//       line-height: initial;
-//       .user-avatar {
-//         width: 40px;
-//         height: 40px;
-//         border-radius: 10px;
-//       }
-//       .el-icon-caret-bottom {
-//         position: absolute;
-//         right: -20px;
-//         top: 25px;
-//         font-size: 12px;
-//       }
-//     }
-//   }
-// }
   .app-breadcrumb.el-breadcrumb[data-v-b50ef614] {
     line-height: 80px
 }

@@ -46,28 +46,18 @@
         <el-table-column prop="province" label="注册地（省）"/>
         <el-table-column prop="city" label="注册地（市）"/>
         <el-table-column prop="county" label="注册地（县）"/>
-<<<<<<< HEAD
+
         <el-table-column prop="createdDate" label="注册时间"/>
-=======
-        <el-table-column prop="registerTime" label="注册时间" sortable/>
->>>>>>> 8d8ed84b99458608dda0d9a2676928f4386c15e7
       </el-table>
-      <!-- <div  id="pagination" class="pagination">
-        <el-pagination
-          :total="total"
-          :current-page="currentPage"
-          layout="total, sizes, prev, pager, next, jumper"
-          @current-change="handleCurrentChange"/>
-      </div>-->
       <paging-query :page="page" @change="getData"/>
     </div>
   </div>
 </template>
 <script>
-import { memberList } from "../../js/vipmanagement";
-import PagingQuery from "../../components/pagingQuery";
+import { memberList } from '../../js/vipmanagement'
+import PagingQuery from '../../components/pagingQuery'
 export default {
-  name: "Basetable",
+  name: 'Basetable',
   components: {
     PagingQuery
   },
@@ -79,76 +69,76 @@ export default {
       delVisible: false,
       dialogVisible: false,
       status: 1,
-      input: "",
+      input: '',
       value: [],
       options: [
         {
           value: []
         }
       ],
-      name: "",
+      name: '',
 
       plan: {
-        contactWay: "",
-        dealerId: "",
-        memberCode: "",
-        dealerCode: "",
-        dealerName: ""
+        contactWay: '',
+        dealerId: '',
+        memberCode: '',
+        dealerCode: '',
+        dealerName: ''
       },
       rules: {
-        name: [{ required: true, message: "请输入姓名", trigger: "blur" }]
+        name: [{ required: true, message: '请输入姓名', trigger: 'blur' }]
       },
       // total: 0,
       page: {
         total: 0,
         pageNum: 1,
         pageSize: 10,
-        orderBy: "created_date desc"
+        orderBy: 'created_date desc'
       }
     };
   },
   computed: {
     data() {
-      return this.tableData;
+      return this.tableData
     }
   },
   created() {
-    this.getData();
+    this.getData()
   },
   methods: {
     // 分页导航
     handleCurrentChange(val) {
-      this.page.pageNum = val;
-      this.getData();
+      this.page.pageNum = val
+      this.getData()
     },
     getData() {
-      this.plan.page = this.page;
-      console.log(this.plan);
+      this.plan.page = this.page
+      console.log(this.plan)
       memberList(this.plan)
         .then(res => {
-          this.tableData = res.datas;
-          this.page.total = res.total;
+          this.tableData = res.datas
+          this.page.total = res.total
           this.page.pageNum = res.pageNum
           console.log('res',res)
         })
         .catch(error => {
-          this.$message.error(error + "");
-        });
+          this.$message.error(error + '')
+        })
     },
     // 查询
     handSeach() {
-      this.getData();
+      this.getData()
     },
     // select
     handleChange() {},
     // 刷新
     handFlush() {
-      this.plan.contactWay = "";
-      this.plan.dealerId = "";
-      this.plan.memberCode = "";
-      this.plan.dealerCode = "";
-      this.plan.dealerName = "";
-      this.getData();
+      this.plan.contactWay = ''
+      this.plan.dealerId = ''
+      this.plan.memberCode = ''
+      this.plan.dealerCode = ''
+      this.plan.dealerName = ''
+      this.getData()
     }
   }
 };
