@@ -1,5 +1,5 @@
 <template>
-  <el-scrollbar wrap-class="scrollbar-wrapper">
+  <el-scrollbar wrap-class="scrollbar-wrapper" id="scrollbar-wrapper">
     <div class="logo">
       <img src="../../../../assets/images/goodLogo3.png" alt="">
     </div>
@@ -38,6 +38,11 @@
     }
   }
 </script>
+<style>
+  #scrollbar-wrapper .el-scrollbar__view .el-menu{
+    background: #262A37 !important;
+  }
+</style>
 <style scoped>
 .logo {
     height: 80px;
