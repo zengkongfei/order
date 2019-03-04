@@ -15,7 +15,7 @@ export default {
     props: ['page'],
     computed: {
         total() {
-            return this.page.total;
+            return this.page.total
         },
         //检测是否获取到无数据
         initBack() {
