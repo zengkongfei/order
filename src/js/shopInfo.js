@@ -11,3 +11,7 @@ export const getLicencesList = params => {
 export const getQrCode = params => {
   return request.post('health-dealer/dealers/getQRCode', params).then(res => res.data)
 }
+// 获取地区
+export const getArea = params => {
+  return request.post('health-basic/area/areas', params).then(res => res.data)
+}
