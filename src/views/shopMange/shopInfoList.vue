@@ -237,14 +237,14 @@
           <img src="../../images/pic.png">
         </div>
       </el-dialog>-->
-      <div id="pagination" class="pagination">
+      <!-- <div id="pagination" class="pagination">
         <el-pagination
           :total="total"
           background
           layout="prev, pager, next"
           @current-change="handleCurrentChange"/>
-      </div>
-       <!--<paging-query :page="page" @change="getData"/>-->
+      </div> -->
+       <paging-query :page="page" @change="getData"/>
     </div>
   </div>
 </template>
@@ -252,9 +252,13 @@
 <script>
   import {shopInfoList, getLicencesList, getQrCode, getArea} from '../../js/shopInfo'
   import * as html2canvas from 'html2canvas'
+  import PagingQuery from "../../components/pagingQuery";
 
   export default {
     name: 'Basetable',
+    components: {
+    PagingQuery
+  },
     data() {
       return {
         downPic: '',
@@ -342,8 +346,8 @@
             {required: true, message: '请输入姓名', trigger: 'blur'}
           ]
         },
-        total: 0,
         page: {
+          total: 0,
           pageNum: 1,
           pageSize: 10
         }
@@ -415,10 +419,10 @@
         })
       },
       // 分页导航
-      handleCurrentChange(val) {
-        this.page.pageNum = val
-        this.getData()
-      },
+      // handleCurrentChange(val) {
+      //   this.page.pageNum = val
+      //   this.getData()
+      // },
       // 显示二维码
       showQRcode(index, row) {
         this.dealerCode = row.dealerCode
@@ -476,7 +480,7 @@
         shopInfoList(this.condition).then(res => {
           this.tableData = res.datas
           // alert(res.total)
-          this.total = res.total
+          this.page.total = res.total
           // if (res.total === 0) {
           //   document.getElementById('pagination').style.setProperty('display', 'none', 'important')
           // }

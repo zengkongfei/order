@@ -66,6 +66,7 @@
 import { mapGetters } from 'vuex'
 import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
+import {getuserinfo} from '../../../js/userinfo.js'
 
 export default {
   data() {
@@ -78,6 +79,9 @@ export default {
   components: {
     Breadcrumb,
     Hamburger
+  },
+  created(){
+    this.getuser()
   },
   computed: {
     ...mapGetters([
@@ -95,6 +99,11 @@ export default {
         localStorage.removeItem('chargeName')
         localStorage.removeItem('chargePhoto')
         location.reload() // 为了重新实例化vue-router对象 避免bug
+      })
+    },
+    getuser(){
+      getuserinfo().then(res=>{
+        console.log('res',res)
       })
     }
   }

@@ -1,5 +1,8 @@
 <template>
   <el-scrollbar wrap-class="scrollbar-wrapper">
+    <div class="logo">
+      <img src="../../../../assets/images/goodLogo3.png" alt="">
+    </div>
     <el-menu
       :show-timeout="200"
       :default-active="$route.path"
@@ -35,3 +38,21 @@
     }
   }
 </script>
+<style scoped>
+.logo {
+    height: 80px;
+    background-color: #262A37;
+    background-size: cover
+  }
+
+  .logo img {
+    width: 128px;
+    height: 46px;
+    margin-top: 18px;
+    margin-left: 20px;
+  }
+  #app .sidebar-container .svg-icon {
+    margin-right: 32px;
+  }
+</style>
+
