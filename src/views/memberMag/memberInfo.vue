@@ -124,6 +124,7 @@ export default {
         .then(res => {
           this.tableData = res.datas;
           this.page.total = res.total;
+          this.page.pageNum = res.pageNum
         })
         .catch(error => {
           this.$message.error(error + "");
