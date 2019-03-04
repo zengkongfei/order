@@ -22,7 +22,7 @@
           </el-row>
           <el-row>
             <el-col :span="8">
-              <el-form-item label="负责人姓名:" style=""> 
+              <el-form-item label="负责人姓名:" style="">
                 <el-input v-model="condition.chargeName" placeholder="请输入负责人姓名"/>
               </el-form-item>
             </el-col>
@@ -40,7 +40,7 @@
           <el-row>
             <el-col :span="8">
               <el-form-item label="注册地(省):" style="">
-               <!-- <el-input v-model="condition.province" placeholder="请选择注册地(省)"/>-->
+                <!-- <el-input v-model="condition.province" placeholder="请选择注册地(省)"/>-->
                 <el-select v-model="condition.province" placeholder="请选择注册地（省）" @change="getCity" class="myInput">
                   <el-option v-for="item in provinceList" :label="item.label" :value="item.value" :key="item.value">
                   </el-option>
@@ -49,7 +49,7 @@
             </el-col>
             <el-col :span="8">
               <el-form-item label="注册地(市):" style="">
-               <!-- <el-input v-model="condition.city" placeholder="请选择注册地(市)"/>-->
+                <!-- <el-input v-model="condition.city" placeholder="请选择注册地(市)"/>-->
                 <el-select v-model="condition.city" placeholder="请选择注册地（市）" @change="getCounty" class="myInput">
                   <el-option v-for="item in cityList" :label="item.label" :value="item.value" :key="item.value">
                   </el-option>
@@ -58,7 +58,7 @@
             </el-col>
             <el-col :span="8">
               <el-form-item label="注册地(区):" style="">
-               <!-- <el-input v-model="condition.county" placeholder="请选择注册地(区)"/>-->
+                <!-- <el-input v-model="condition.county" placeholder="请选择注册地(区)"/>-->
                 <el-select v-model="condition.county" placeholder="请选择注册地（市）" class="myInput">
                   <el-option v-for="item in countyList" :label="item.label" :value="item.value" :key="item.value">
                   </el-option>
@@ -68,11 +68,12 @@
           </el-row>
         </el-form>
       </div>
-      <div class="handle-box"  style="width:100%">
+      <div class="handle-box" style="width:100%">
         <el-button type="primary" icon="search" @click="handSeach">查询</el-button>
         <el-button type="primary" icon="search" @click="handFlush">刷新</el-button>
       </div>
-      <el-table :data="tableData" :header-cell-style="{background:'rgba(250,250,250,1)'}" empty-text="暂无数据" :default-sort = "{prop: 'createTime', order: 'descending'}">
+      <el-table :data="tableData" :header-cell-style="{background:'rgba(250,250,250,1)'}" empty-text="暂无数据"
+                :default-sort="{prop: 'createTime', order: 'descending'}">
         <el-table-column prop="dealerCode" label="网点编号" width="150"/>
         <el-table-column prop="dealerName" label="网点名称" width="200"/>
         <el-table-column prop="creditCode" label="统一社会信用代码" width="200"/>
@@ -117,9 +118,6 @@
             <el-button type="text" @click="showQRcode(scope.$index, scope.row)">
               查看
             </el-button>
-            <el-button type="text" @click="downLoad(scope.$index, scope.row)">
-              保存
-            </el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -127,48 +125,29 @@
       <el-dialog :visible.sync="dialogVisibleCard" title="法人身份证" width="932px" class="legalCardDialog">
         <template>
           <div class="" style="display: flex;">
-            <div class="" style="flex:1;display:flex;margin-right:24px;background:rgba(238, 238, 238, 1);align-items: center;justify-content: center;"><img :src="card.legalFrontView" alt="" style="max-width:430px;max-height: 270px"></div>
-            <div class="" style="flex:1;display:flex;background:rgba(238, 238, 238, 1);align-items: center;justify-content: center;"><img :src="card.legalBackView" alt="" style="max-width:430px;max-height: 270px"></div>
+            <div class=""
+                 style="flex:1;display:flex;margin-right:24px;background:rgba(238, 238, 238, 1);align-items: center;justify-content: center;">
+              <img :src="card.legalFrontView" alt="" style="max-width:430px;max-height: 270px"></div>
+            <div class=""
+                 style="flex:1;display:flex;background:rgba(238, 238, 238, 1);align-items: center;justify-content: center;">
+              <img :src="card.legalBackView" alt="" style="max-width:430px;max-height: 270px"></div>
           </div>
           <p class="p-text-legalCard">{{ card.legalCard }}</p>
           <span slot="footer" class="dialog-footer"/>
         </template>
       </el-dialog>
       <!--负责人照片-->
-      <el-dialog :visible.sync="dialogVisibleChargePhoto" title="负责人照片" width="248px" height="415px" class="chargeNameDialog">
+      <el-dialog :visible.sync="dialogVisibleChargePhoto" title="负责人照片" width="248px" height="415px"
+                 class="chargeNameDialog">
         <template>
           <div id="zhaopianbox">
             <img :src="chargePhoto.chargeUrl" alt="" style="width: 200px; height: 280px;">
           </div>
-          <p class="p-text-one"><span style="margin-right:24px">{{ chargePhoto.chargeName }}</span><span>{{ chargePhoto.dealerCode }}</span></p>
+          <p class="p-text-one"><span style="margin-right:24px">{{ chargePhoto.chargeName }}</span><span>{{ chargePhoto.dealerCode }}</span>
+          </p>
           <span slot="footer" class="dialog-footer"/>
         </template>
       </el-dialog>
-      <!--网点证照-->
-      <!--<el-dialog :visible.sync="dialogVisibleNetworkPhoto" title="网点证照" width="932px" height="1102px">
-        <div class="clearfix imgWrap">
-          <div class="img-box-left left">
-            <img :src="urlListFirst" alt="">
-          </div>
-          <div class="img-box-right right">
-            <div v-for="(item,index) in urlList" :key="item.imageUrl" class="img-box-right-item"
-                 @click="changeImgUrl(index)">
-              <img :src="item.imageUrl" alt="">
-              <div v-if="imgShow !== index" class="img-cover"/>
-            </div>
-          </div>
-        </div>
-        <div class="left-footer">
-          <span slot="footer" class="dialog-footer" left>
-            <span>{{ urlListDesc }}</span>
-            <span>{{ licenceNumber }}</span>
-            <span><img src="../../assets/images/dealer/big-icon.png" alt=""></span>
-            <span><img src="../../assets/images/dealer/small-icon.png" alt=""></span>
-            <span><img src="../../assets/images/dealer/right-icon.png" alt=""></span>
-            <span><img src="../../assets/images/dealer/left-icon.png" alt=""></span>
-          </span>
-        </div>
-      </el-dialog>-->
       <!--网点证照-->
       <el-dialog title="网点证照" :visible.sync="dialogVisibleNetworkPhoto" width="932px" height="1102px">
         <div class="clearfix imgWrap">
@@ -200,7 +179,8 @@
 
       </el-dialog>
       <!--网点二维码-->
-      <el-dialog id="qr" :visible.sync="dialogVisibleQRcode" width="900px" height="636px">
+      <el-dialog id="qr" :visible.sync="dialogVisibleQRcode" width="900px">
+        <div id="imgQd" style="height:636px;">
           <div class="address">
             <p><span id="site">服务网点:<span id="siteName" class="ress">{{ dealerName }}</span></span>
             </p>
@@ -217,34 +197,18 @@
           <div class="picFile">
             <img src="../../images/pic.png">
           </div>
+        </div>
+        <div align="center" style="margin-top:24px" class="saveBtn">
+          <el-button
+            class="button"
+            type="primary"
+            style="text-align:center;"
+            @click="createPicture()"
+          >保存二维码
+          </el-button>
+        </div>
       </el-dialog>
-      <!--网点二维码-->
-     <!-- <el-dialog id="qr" :visible.sync="dialogVisibleQRcode" width="554px" height="535px" style="">
-        <div class="address">
-          <p><span id="site">服务网点:<span id="siteName" class="ress">123456</span></span>
-          </p>
-          <p><span id="address">地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址:<span id="addressContent"
-                                                                                         class="ress">武汉市</span></span>
-          </p>
-        </div>
-        <div class="code">
-          <img id="code" :src="QR" width="160px">
-        </div>
-        <div class="logo">
-          <img id="logo" src="../../images/logo.jpg" width="30px">
-        </div>
-        <div class="picFile">
-          <img src="../../images/pic.png">
-        </div>
-      </el-dialog>-->
-      <!-- <div id="pagination" class="pagination">
-        <el-pagination
-          :total="total"
-          background
-          layout="prev, pager, next"
-          @current-change="handleCurrentChange"/>
-      </div> -->
-       <paging-query :page="page" @change="getData"/>
+      <paging-query :page="page" @change="getData"/>
     </div>
   </div>
 </template>
@@ -257,12 +221,12 @@
   export default {
     name: 'Basetable',
     components: {
-    PagingQuery
-  },
+      PagingQuery
+    },
     data() {
       return {
         downPic: '',
-        countyList:[],
+        countyList: [],
         cityList: [],
         provinceList: [],
         tableData: [],
@@ -363,33 +327,46 @@
       this.getData()
     },
     methods: {
-      downLoad() {
-        if (window.navigator.msSaveOrOpenBlob) {
-          alert(this.downPic)
-          window.navigator.msSaveOrOpenBlob(this.downPic, 'popularize' + '.' + 'png')
-        } else {
-          // 这里就按照chrome等新版浏览器来处理
-          const a = document.createElement('a')
-          a.href = this.downPic
-          a.setAttribute('download', 'popularize')
-          a.click()
-        }
+      createPicture: function () {
+        html2canvas(document.getElementById('imgQd'), {
+          useCORS: true,
+          logging: true
+        }).then(canvas => {
+          this.imgmap = canvas.toDataURL()
+          console.log(999, this.imgmap)
+          if (window.navigator.msSaveOrOpenBlob) {
+            var bstr = atob(this.imgmap.split(',')[1])
+            var n = bstr.length
+            var u8arr = new Uint8Array(n)
+            while (n--) {
+              u8arr[n] = bstr.charCodeAt(n)
+            }
+            var blob = new Blob([u8arr])
+            window.navigator.msSaveOrOpenBlob(blob, 'popularize' + '.' + 'png')
+          } else {
+            // 这里就按照chrome等新版浏览器来处理
+            const a = document.createElement('a')
+            a.href = this.imgmap
+            a.setAttribute('download', 'popularize')
+            a.click()
+          }
+        })
       },
-      saveQRcode(){
+      saveQRcode() {
         html2canvas(document.getElementById('qr'), {
           useCORS: true,
           logging: true
         }).then(canvas => {
-         // canvas.lineTo(200, 200)
+          // canvas.lineTo(200, 200)
           this.downPic = canvas.toDataURL()
           this.imgmap = canvas.toDataURL()
           console.log(999, this.imgmap)
         })
       },
-      getCounty(){
+      getCounty() {
         this.condition.county = ''
         let params = {
-          areaType:3,
+          areaType: 3,
           parentId: this.condition.city
         }
         getArea(params).then(res => {
@@ -434,7 +411,7 @@
           this.QR = res.datas.qrCode
           this.dealerAddress = res.datas.dealerAddress
           this.dealerName = res.datas.dealerName
-           this.saveQRcode()
+          this.saveQRcode()
         })
       },
       // 切换证照
@@ -515,29 +492,40 @@
 
 </script>
 <style>
-  .container{
+  .shopInfoListWrap .saveBtn .el-button--primary {
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    font-size: 16px;
+  }
+
+  .container {
     padding: 24px 32px 0 32px;
     background: #FFF;
     min-width: 1560px;
     margin: 0;
     min-height: 900px;
   }
-  .table{
+
+  .table {
     padding: 24px;
     padding-bottom: 0;
     background-color: #F0F2F5;
     overflow: auto;
   }
-  .app-main{
+
+  .app-main {
     background-color: #F0F2F5;
   }
-  .shopInfoListWrap .handle-box{
-    margin-bottom:24px;
+
+  .shopInfoListWrap .handle-box {
+    margin-bottom: 24px;
   }
 
-  .shopInfoListWrap .el-button{
-    padding:0 4px 0 0;
+  .shopInfoListWrap .el-button {
+    padding: 0 4px 0 0;
   }
+
   /* .shopInfoListWrap .el-button+.el-button{
     border-left:1px solid rgba(217,217,217,1);;
     border-radius: 0;
@@ -548,32 +536,39 @@
   .shopInfoListWrap .myInput {
     width: 100%
   }
-  .shopInfoListWrap .el-input__icon{
+
+  .shopInfoListWrap .el-input__icon {
     line-height: 0;
   }
-/*  .shopInfoListWrap .handle-box{
-    min-width: 1560px;
-  }*/
+
+  /*  .shopInfoListWrap .handle-box{
+      min-width: 1560px;
+    }*/
   /*.shopInfoListWrap .el-table{
     min-width: 1560px;
   }*/
-  .shopInfoListWrap .el-dialog__footer{
-    display: none;
-  }
-  .shopInfoListWrap .p-text-one{
-    text-align: center;
-    padding-bottom:24px;
-    margin:0;
-    padding-top:20px;
-  }
-  .shopInfoListWrap #qr .el-dialog__header {
+  .shopInfoListWrap .el-dialog__footer {
     display: none;
   }
 
+  .shopInfoListWrap .p-text-one {
+    text-align: center;
+    padding-bottom: 24px;
+    margin: 0;
+    padding-top: 20px;
+  }
+
+  .shopInfoListWrap #qr .el-dialog__header {
+    display: none;
+  }
+  .shopInfoListWrap #qr .el-dialog{
+    background:transparent;
+    box-shadow: none;
+  }
   .shopInfoListWrap #qr .el-dialog__body {
     padding: 0;
     width: 900px;
-    height: 636px;
+    /* height: 636px;*/
     /*background: url("../../images/pic.png") no-repeat center;*/
   }
 
@@ -583,7 +578,8 @@
     padding: 0 24px;
     /*padding:0;*/
   }
-  .shopInfoListWrap .legalCardDialog .el-dialog__body{
+
+  .shopInfoListWrap .legalCardDialog .el-dialog__body {
     padding: 24px 24px 0;
   }
 
@@ -705,7 +701,7 @@
   }
 
   .shopInfoListWrap .addSearch {
-   /* min-width: 1560px;*/
+    /* min-width: 1560px;*/
   }
 
   .shopInfoListWrap .el-button--primary {
@@ -727,7 +723,7 @@
 
   .shopInfoListWrap .el-form--inline .el-form-item {
     margin: 0 0 24px 0;
-    width:100%;
+    width: 100%;
   }
 
   .shopInfoListWrap .el-input__inner {
@@ -738,8 +734,9 @@
   .shopInfoListWrap .el-form--inline .el-form-item__content {
     width: 77%;
   }
-  .shopInfoListWrap .chargeNameDialog .el-dialog__body{
-   padding:0;
+
+  .shopInfoListWrap .chargeNameDialog .el-dialog__body {
+    padding: 0;
   }
 </style>
 
@@ -779,11 +776,13 @@
     clear: left;
     padding-top: 22px;
   }
-  .p-text-legalCard{
+
+  .p-text-legalCard {
     text-align: center;
-    padding:12px 0 24px;
-    margin:0;
+    padding: 12px 0 24px;
+    margin: 0;
   }
+
   .img-box > div {
     flex: 1;
     display: flex;
@@ -812,7 +811,7 @@
   .picFile {
     width: 100%;
     /*height: 385px;*/
-   /* margin-bottom: 20px;*/
+    /* margin-bottom: 20px;*/
     overflow: hidden;
   }
 
