@@ -36,6 +36,7 @@
       <el-table
         :data="tableData"
         :header-cell-style="{background:'rgba(250,250,250,1)'}"
+        :default-sort = "{prop: 'registerTime', order: 'descending'}"
         empty-text="暂无数据"
       >
         <el-table-column prop="memberCode" label="会员编号" width="200"/>
@@ -45,7 +46,7 @@
         <el-table-column prop="province" label="注册地（省）"/>
         <el-table-column prop="city" label="注册地（市）"/>
         <el-table-column prop="county" label="注册地（县）"/>
-        <el-table-column prop="registerTime" label="注册时间"/>
+        <el-table-column prop="registerTime" label="注册时间" sortable/>
       </el-table>
       <!-- <div  id="pagination" class="pagination">
         <el-pagination

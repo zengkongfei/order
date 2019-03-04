@@ -8,7 +8,7 @@
 export default {
     data() {
         return {
-            msg: '认证信息',
+            msg: '首页',
         }
     },
    created(){
@@ -17,7 +17,7 @@ export default {
        this.msg = massage
        
      }else{
-        this.msg = '认证信息'
+        this.msg = '首页'
      }
    },
     watch: {

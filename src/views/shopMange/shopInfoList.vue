@@ -72,7 +72,7 @@
         <el-button type="primary" icon="search" @click="handSeach">查询</el-button>
         <el-button type="primary" icon="search" @click="handFlush">刷新</el-button>
       </div>
-      <el-table :data="tableData" :header-cell-style="{background:'rgba(250,250,250,1)'}" empty-text="暂无数据">
+      <el-table :data="tableData" :header-cell-style="{background:'rgba(250,250,250,1)'}" empty-text="暂无数据" :default-sort = "{prop: 'createTime', order: 'descending'}">
         <el-table-column prop="dealerCode" label="网点编号" width="150"/>
         <el-table-column prop="dealerName" label="网点名称" width="200"/>
         <el-table-column prop="creditCode" label="统一社会信用代码" width="200"/>
@@ -110,7 +110,7 @@
           </template>
         </el-table-column>
         <el-table-column prop="leasingManager" label="招商经理" width="150"/>
-        <el-table-column prop="createTime" label="创建时间" width="100"/>
+        <el-table-column prop="createTime" label="创建时间" width="100" />
         <i class="el-dialog__close el-icon el-icon-close"/>
         <el-table-column label="网点二维码" align="left" width="150">
           <template slot-scope="scope">
@@ -537,15 +537,18 @@
   .shopInfoListWrap .el-button{
     padding:0 4px 0 0;
   }
-  .shopInfoListWrap .el-button+.el-button{
+  /* .shopInfoListWrap .el-button+.el-button{
     border-left:1px solid rgba(217,217,217,1);;
     border-radius: 0;
     margin:0;
     padding:0 0 0 8px;
 
-  }
+  } */
   .shopInfoListWrap .myInput {
     width: 100%
+  }
+  .shopInfoListWrap .el-input__icon{
+    line-height: 0;
   }
 /*  .shopInfoListWrap .handle-box{
     min-width: 1560px;

@@ -49,7 +49,7 @@
     width: 128px;
     height: 46px;
     margin-top: 18px;
-    margin-left: 20px;
+    margin-left: 44px;
   }
   #app .sidebar-container .svg-icon {
     margin-right: 32px;
