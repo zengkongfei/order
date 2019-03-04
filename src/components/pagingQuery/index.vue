@@ -3,7 +3,7 @@
   <p style="float:left;font-size: 14px;
     font-family: PingFangSC-Regular;
     font-weight: 400;
-    color: rgba(102, 102, 102, 1);"><span style="margin-right:5px;">第{{page.pageNum}}页</span><span>共{{total/page.pageSize<0?1:Math.ceil(total/page.pageSize)}}页</span></p>
+    color: rgba(102, 102, 102, 1);"><span style="margin-right:5px;">第{{page.pageNum ? page.pageNum:0}}页</span><span>共{{total/page.pageSize ? Math.ceil(total/page.pageSize) : 0}}页</span></p>
     <el-pagination background  @size-change="onChangeSize" @current-change="onChangePage" :page-size="page.pageSize" layout="total,prev, pager, next, jumper" :total=total style="float:right">
     </el-pagination>
 </div>
