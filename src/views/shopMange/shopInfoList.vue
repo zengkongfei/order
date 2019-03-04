@@ -110,7 +110,7 @@
           </template>
         </el-table-column>
         <el-table-column prop="leasingManager" label="招商经理" width="150"/>
-        <el-table-column prop="createTime" label="创建时间" width="100" />
+        <el-table-column prop="createTime" label="创建时间" width="100" sortable/>
         <i class="el-dialog__close el-icon el-icon-close"/>
         <el-table-column label="网点二维码" align="left" width="150">
           <template slot-scope="scope">
