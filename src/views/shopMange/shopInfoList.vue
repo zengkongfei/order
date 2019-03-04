@@ -110,7 +110,7 @@
           </template>
         </el-table-column>
         <el-table-column prop="leasingManager" label="招商经理" width="150"/>
-        <el-table-column prop="createTime" label="创建时间" width="100" sortable/>
+        <el-table-column prop="createTime" label="创建时间" width="150" sortable/>
         <i class="el-dialog__close el-icon el-icon-close"/>
         <el-table-column label="网点二维码" align="left" width="150">
           <template slot-scope="scope">
@@ -481,6 +481,7 @@
           this.tableData = res.datas
           // alert(res.total)
           this.page.total = res.total
+          this.page.pageNum = res.pageNum
           // if (res.total === 0) {
           //   document.getElementById('pagination').style.setProperty('display', 'none', 'important')
           // }

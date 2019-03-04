@@ -24,7 +24,7 @@
           class="nest-menu" />
         <app-link v-else :to="resolvePath(child.path)" :key="child.name">
           <el-menu-item :index="resolvePath(child.path)">
-            <item v-if="child" :icon="child.icon" :title="child.name" />
+            <span class="dot-box"></span><item v-if="child" :icon="child.icon" :title="child.name" />
           </el-menu-item>
         </app-link>
       </template>
