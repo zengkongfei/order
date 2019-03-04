@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!item.hidden&&item.children" class="menu-wrapper">
+  <div v-if="!item.hidden&&item.children" class="menu-wrapper" id="menu-wrapper">
 
     <template
       v-if="hasOneShowingChild(item.children,item) && (!onlyOneChild.children||onlyOneChild.noShowingChildren)&&!item.alwaysShow">
@@ -10,7 +10,7 @@
       </app-link>
     </template>
 
-    <el-submenu v-else :index="resolvePath(item.path)">
+    <el-submenu v-else :index="resolvePath(item.path)" id="el-submenu">
       <template slot="title">
         <item v-if="item.name" :icon="item.icon" :title="item.name"/>
       </template>
@@ -24,7 +24,7 @@
           :base-path="resolvePath(child.path)"
           class="nest-menu"/>
         <app-link v-else :to="resolvePath(child.path)" :key="child.name">
-          <el-menu-item :index="resolvePath(child.path)">
+          <el-menu-item :index="resolvePath(child.path)" active-text-color="red">
             <span class="dot-box"></span>
             <item v-if="child" :icon="child.icon" :title="child.name"/>
           </el-menu-item>
@@ -102,7 +102,13 @@
   }
 </script>
 <style>
-  .menu-wrapper .dot-box {
+/* .menu-wrapper  .is-active{
+    background: yellow;
+  }*/
+ #menu-wrapper #el-submenu .el-menu .router-link-exact-active .is-active {
+    background-color: #0082F0 !important;
+  }
+  .menu-wrapper .is-active .dot-box {
     display: inline-block;
     width: 8px;
     height: 8px;
@@ -131,11 +137,11 @@
   }
 
   #app .sidebar-container .nest-menu .el-submenu > .el-submenu__title, #app .sidebar-container .el-submenu .el-menu-item:focus {
-    background-color: #0082F0 !important
+   /* background-color: #0082F0 !important*/
   }
 
   #app .sidebar-container .nest-menu .el-submenu > .el-submenu__title, #app .sidebar-container .el-submenu .el-menu-item:link {
-    background-color: #0082F0 !important;
+   /* background-color: #0082F0 !important;*/
   }
 
   #app .sidebar-container .nest-menu .el-submenu > .el-submenu__title[data-v-3ece4f7e], #app .sidebar-container .el-submenu .el-menu-item {
@@ -143,7 +149,7 @@
   }
 
   .active {
-    background-color: #0082F0 !important;
+    background-color: #0082F0 ;
     width: 100%;
     display: block;
     height: 50px;
@@ -168,13 +174,13 @@
   }
 
   .el-submenu__title:hover {
-    background-color: #3E5E84 !important;
+    background-color: #3E5E84 ;
   }
 
   #app .el-menu-item, .el-submenu__title {
     height: 60px;
     line-height: 60px;
-    background: #314358 !important;
+    background: #314358 ;
   }
 
 </style>
