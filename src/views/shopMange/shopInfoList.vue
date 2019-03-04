@@ -1,7 +1,7 @@
 <template>
   <div class="table shopInfoListWrap">
     <div class="container" id="container">
-      <div class="addSearch">
+      <div class="addSearch" style="width:100%">
         <el-form ref="plan" :model="condition" :inline="true" label-width="105px">
           <el-row>
             <el-col :span="8">
@@ -68,7 +68,7 @@
           </el-row>
         </el-form>
       </div>
-      <div class="handle-box">
+      <div class="handle-box"  style="width:100%">
         <el-button type="primary" icon="search" @click="handSeach">查询</el-button>
         <el-button type="primary" icon="search" @click="handFlush">刷新</el-button>
       </div>
@@ -514,6 +514,26 @@
 
 </script>
 <style>
+  .container{
+    padding: 24px 32px 0 32px;
+    background: #FFF;
+    min-width: 1560px;
+    margin: 0;
+    min-height: 900px;
+  }
+  .table{
+    padding: 24px;
+    padding-bottom: 0;
+    background-color: #F0F2F5;
+    overflow: auto;
+  }
+  .app-main{
+    background-color: #F0F2F5;
+  }
+  .shopInfoListWrap .handle-box{
+    margin-bottom:24px;
+  }
+
   .shopInfoListWrap .el-button{
     padding:0 4px 0 0;
   }
@@ -527,12 +547,12 @@
   .shopInfoListWrap .myInput {
     width: 100%
   }
-  .shopInfoListWrap .handle-box{
+/*  .shopInfoListWrap .handle-box{
     min-width: 1560px;
-  }
-  .shopInfoListWrap .el-table{
+  }*/
+  /*.shopInfoListWrap .el-table{
     min-width: 1560px;
-  }
+  }*/
   .shopInfoListWrap .el-dialog__footer{
     display: none;
   }
@@ -681,7 +701,7 @@
   }
 
   .shopInfoListWrap .addSearch {
-    min-width: 1560px;
+   /* min-width: 1560px;*/
   }
 
   .shopInfoListWrap .el-button--primary {
@@ -703,6 +723,7 @@
 
   .shopInfoListWrap .el-form--inline .el-form-item {
     margin: 0 0 24px 0;
+    width:100%;
   }
 
   .shopInfoListWrap .el-input__inner {
@@ -711,7 +732,7 @@
   }
 
   .shopInfoListWrap .el-form--inline .el-form-item__content {
-    width: 400px;
+    width: 77%;
   }
   .shopInfoListWrap .chargeNameDialog .el-dialog__body{
    padding:0;
@@ -727,18 +748,10 @@
     margin-bottom: 20px;
   }
 
-  .table {
-    margin: 20px;
-    overflow: auto;
-  }
 
   /*// .inptxt{width:300px; height: 32px; line-height: 32px;}*/
   .handle-box {
     clear: left;
-  }
-
-  .container {
-    padding: 0 24px;
   }
 
   #zhaopianbox {
