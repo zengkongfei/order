@@ -27,7 +27,7 @@ export default {
     total() {
       // 存在记录但未获取到数据时, 重新请求
       if (this.initBack) {
-        this.page.pageNum -= 1
+        this.page.pageNum = 1
         this.$emit('change')
       }
     }
