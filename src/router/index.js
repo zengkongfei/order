@@ -31,6 +31,7 @@ export const constantRouterMap = [
     name: '店铺管理',
     hidden: false,
     alwaysShow: true,
+    icon: 'shop',
     children: [
       {
         path: '/shopInfoList',
@@ -49,6 +50,7 @@ export const constantRouterMap = [
     component: Layout,
     redirect: '/memberMag',
     name: '会员管理',
+    icon: 'memberMag',
     hidden: false,
     alwaysShow: true,
     children: [{
