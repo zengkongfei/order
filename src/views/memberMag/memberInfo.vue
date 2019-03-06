@@ -46,7 +46,6 @@
         <el-table-column prop="province" label="注册地（省）"/>
         <el-table-column prop="city" label="注册地（市）"/>
         <el-table-column prop="county" label="注册地（县）"/>
-
         <el-table-column prop="createdDate" label="注册时间"/>
       </el-table>
       <paging-query :page="page" @change="getData"/>
@@ -80,6 +79,7 @@ export default {
 
       plan: {
         contactWay: '',
+        chargePhone: '',
         dealerId: '',
         memberCode: '',
         dealerCode: '',
@@ -92,10 +92,9 @@ export default {
       page: {
         total: 0,
         pageNum: 1,
-        pageSize: 10,
-        orderBy: 'created_date desc'
+        pageSize: 10
       }
-    };
+    }
   },
   computed: {
     data() {
@@ -113,6 +112,7 @@ export default {
     },
     getData() {
       this.plan.page = this.page
+      this.plan.chargePhone = '13419671073'
       console.log(this.plan)
       memberList(this.plan)
         .then(res => {
