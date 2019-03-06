@@ -118,9 +118,9 @@
             <el-button type="text" @click="showQRcode(scope.$index, scope.row)">
               查看
             </el-button>
-            <el-button type="text" @click="downQRcode(scope.$index, scope.row)">
-              保存
-            </el-button>
+            <!--<el-button type="text" @click="downQRcode(scope.$index, scope.row)">-->
+              <!--保存-->
+            <!--</el-button>-->
 
           </template>
         </el-table-column>
@@ -464,12 +464,8 @@ export default {
     downQRcode(index, row) {
       this.downloadRule.url = row.qrCode
       this.downloadRule.path = 'D://downloadPic/code.png'
-      downPic(this.downloadRule).then(res => {
-        if (res.msg == 'Success') {
-          this.$message.success('保存成功')
-        } else {
-          this.$message.success('保存失败')
-        }
+      downPic(this.downloadRule, { responseType: 'arraybuffer' }).then(res => {
+        alert(res)
       }).catch(error => {
         this.$message.error(error + '')
       })

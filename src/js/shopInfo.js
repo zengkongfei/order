@@ -16,6 +16,6 @@ export const getArea = params => {
   return request.post('health-basic/area/areas', params).then(res => res.data)
 }
 // 获取地区
-export const downPic = params => {
-  return request.post('health-dealer/dealers/downPic', params).then(res => res.data)
-}
+// export const downPic = params => {
+//   return request.post('health-dealer/dealers/downPic', params).then(res => res.data)
+// }
