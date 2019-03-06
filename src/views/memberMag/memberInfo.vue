@@ -65,7 +65,6 @@ export default {
   },
   data() {
     return {
-      phone: '',
       tableData: [],
       cur_page: 1,
       editVisible: false,
@@ -106,16 +105,9 @@ export default {
     }
   },
   created() {
-    this.getUserInfo()
     this.getData()
   },
   methods: {
-    getuser() {
-            getUserInfo().then(res => {
-                console.log('res', res)
-                this.phone = res.datas.chargePhone
-            })
-        },
     // 分页导航
     handleCurrentChange(val) {
       this.page.pageNum = val
@@ -123,7 +115,7 @@ export default {
     },
     getData() {
       this.plan.page = this.page
-      this.plan.chargePhone = this.phone
+      this.plan.chargePhone = localStorage.getItem('phone')
       console.log(this.plan)
       memberList(this.plan)
         .then(res => {

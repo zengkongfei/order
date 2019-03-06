@@ -77,6 +77,7 @@ export default {
                 this.chargePhoto = res.datas.chargePhoto
                 this.chargeName = res.datas.chargeName
                 this.chargePhone = res.datas.chargePhone
+                localStorage.setItem('phone', this.chargePhone)
             })
         }
     }
