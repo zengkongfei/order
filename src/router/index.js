@@ -12,13 +12,13 @@ export const constantRouterMap = [
     path: '/',
     component: Layout,
     redirect: 'dashboard',
-    name: '首页',
+    // name: '首页',
     hidden: true,
     icon: 'zhiyuan',
     alwaysShow: true,
     children: [{
       path: 'dashboard',
-      name: '首页',
+      // name: '首页',
       hidden: true,
       component: () => import('@/views/dashboard/index')
     }
