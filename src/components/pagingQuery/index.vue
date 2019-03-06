@@ -5,7 +5,6 @@
               font-weight: 400;
               color: rgba(102, 102, 102, 1);">
         <span style="margin-right:5px;">第{{ page.pageNum }}页</span><span>共{{ total / page.pageSize &gt;0 ? 1:Math.ceil(total / page.pageSize) }}页</span></p>
-   
     <el-pagination background layout="prev, pager, next, jumper" @size-change="onChangeSize" :page-size="page.pageSize" :total=total style="float:right" @current-change="onChangePage" />
      <p class="total-box">共{{page.total}}条</p>
 </div>
