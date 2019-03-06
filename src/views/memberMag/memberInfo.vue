@@ -57,7 +57,7 @@ import { memberList } from '../../js/vipmanagement'
 import PagingQuery from '../../components/pagingQuery'
 import {
     getUserInfo
-} from '../../../js/userInfo.js'
+} from '../../js/userInfo.js'
 export default {
   name: 'Basetable',
   components: {
