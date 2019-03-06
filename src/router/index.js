@@ -12,13 +12,13 @@ export const constantRouterMap = [
     path: '/',
     component: Layout,
     redirect: 'dashboard',
-    name: '首页',
+    // name: '首页',
     hidden: true,
     icon: 'zhiyuan',
     alwaysShow: true,
     children: [{
       path: 'dashboard',
-      name: '首页',
+      // name: '首页',
       hidden: true,
       component: () => import('@/views/dashboard/index')
     }
@@ -31,6 +31,7 @@ export const constantRouterMap = [
     name: '店铺管理',
     hidden: false,
     alwaysShow: true,
+    icon: 'shop',
     children: [
       {
         path: '/shopInfoList',
@@ -49,6 +50,7 @@ export const constantRouterMap = [
     component: Layout,
     redirect: '/memberMag',
     name: '会员管理',
+    icon: 'memberMag',
     hidden: false,
     alwaysShow: true,
     children: [{

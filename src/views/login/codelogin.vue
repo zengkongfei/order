@@ -32,7 +32,7 @@
         >
           <!-- <i slot="prefix" class="icon-yanzhengma yanzhengma" style></i> -->
           <template slot="append">
-            <span @click="handleSend" class="msg-text" :class="[{display:msgKey}]">{{msgText}}</span>
+            <span @click="handleSend" class="msg-text" :class="[{disabled:msgKey}]">{{msgText}}</span>
           </template>
         </el-input>
        </div>
@@ -144,6 +144,11 @@ export default {
 </script>
 
 <style>
+.disabled {
+    pointer-events: none;
+    cursor: default;
+    background-color: #D1D5D8 !important;
+}
 .yanzhengma {
   display: block;
   margin-top: 8px;
