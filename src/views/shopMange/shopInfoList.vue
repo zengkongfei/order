@@ -118,9 +118,9 @@
             <el-button type="text" @click="showQRcode(scope.$index, scope.row)">
               查看
             </el-button>
-            <!--<el-button type="text" @click="downQRcode(scope.$index, scope.row)">-->
-              <!--保存-->
-            <!--</el-button>-->
+            <el-button type="text" @click="downQRcode(scope.$index, scope.row)">
+              保存
+            </el-button>
 
           </template>
         </el-table-column>
@@ -203,6 +203,7 @@
   import {shopInfoList, getLicencesList, getQrCode, getArea, downPic } from '../../js/shopInfo'
 import * as html2canvas from 'html2canvas'
 import PagingQuery from '../../components/pagingQuery'
+  import request from '../../api/request'
 
 export default {
   name: 'Basetable',
@@ -464,11 +465,12 @@ export default {
     downQRcode(index, row) {
       this.downloadRule.url = row.qrCode
       this.downloadRule.path = 'D://downloadPic/code.png'
-      downPic(this.downloadRule, { responseType: 'arraybuffer' }).then(res => {
-        alert(res)
-      }).catch(error => {
-        this.$message.error(error + '')
-      })
+      request.post('health-dealer/dealers/downPic',  this.downloadRule).then(res => res.data)
+      // downPic(this.downloadRule, { responseType: 'arraybuffer' }).then(res => {
+      //   alert(res)
+      // }).catch(error => {
+      //   this.$message.error(error + '')
+      // })
     }
   }
 }
