@@ -119,7 +119,7 @@
               查看
             </el-button>
             <!--<el-button type="text" @click="downQRcode(scope.$index, scope.row)">-->
-              <!--保存-->
+            <!--保存-->
             <!--</el-button>-->
 
           </template>
@@ -203,7 +203,6 @@
   import {shopInfoList, getLicencesList, getQrCode, getArea, downPic } from '../../js/shopInfo'
 import * as html2canvas from 'html2canvas'
 import PagingQuery from '../../components/pagingQuery'
-  import request from '../../api/request'
 
 export default {
   name: 'Basetable',
