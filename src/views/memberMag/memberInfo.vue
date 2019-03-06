@@ -106,8 +106,8 @@ export default {
     }
   },
   created() {
+    this.getUserInfo()
     this.getData()
-    this.getuser()
   },
   methods: {
     getuser() {
