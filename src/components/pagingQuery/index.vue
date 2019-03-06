@@ -5,8 +5,8 @@
               font-weight: 400;
               color: rgba(102, 102, 102, 1);">
         <span style="margin-right:5px;">第{{ page.pageNum }}页</span><span>共{{ total / page.pageSize &gt;0 ? 1:Math.ceil(total / page.pageSize) }}页</span></p>
-    <p class="total-box">共{{page.total}}条</p>
     <el-pagination background layout="prev, pager, next, jumper" @size-change="onChangeSize" :page-size="page.pageSize" :total=total style="float:right" @current-change="onChangePage" />
+     <p class="total-box">共{{page.total}}条</p>
 </div>
 </template>
 
@@ -109,14 +109,16 @@ export default {
 .el-pagination.is-background .el-pager li:not(.disabled).active {
     border: none 0;
 }
-
+.el-pagination{
+    float: right;
+}
 .total-box {
+    padding-top: 12px;
+    margin: 0;
     font-size: 14px;
     font-family: PingFangSC-Regular;
     font-weight: 400;
     color: rgba(102, 102, 102, 1);
-    position: absolute;
-    top: 20px;
-    right: 212px;
+    float: right;
 }
 </style>

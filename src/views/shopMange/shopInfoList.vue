@@ -50,8 +50,7 @@
               <el-form-item label="注册地(市):" style="">
                 <!-- <el-input v-model="condition.city" placeholder="请选择注册地(市)"/>-->
                 <el-select v-model="condition.city" placeholder="请选择注册地（市）" class="myInput" @change="getCounty">
-                  <el-option v-for="item in cityList" :label="item.label" :value="item.value" :key="item.value">
-                  </el-option>
+                  <el-option v-for="item in cityList" :label="item.label" :value="item.value" :key="item.value"/>
                 </el-select>
               </el-form-item>
             </el-col>
@@ -59,8 +58,7 @@
               <el-form-item label="注册地(区):" style="">
                 <!-- <el-input v-model="condition.county" placeholder="请选择注册地(区)"/>-->
                 <el-select v-model="condition.county" placeholder="请选择注册地（市）" class="myInput">
-                  <el-option v-for="item in countyList" :label="item.label" :value="item.value" :key="item.value">
-                  </el-option>
+                  <el-option v-for="item in countyList" :label="item.label" :value="item.value" :key="item.value"/>
                 </el-select>
               </el-form-item>
             </el-col>
@@ -120,6 +118,10 @@
             <el-button type="text" @click="showQRcode(scope.$index, scope.row)">
               查看
             </el-button>
+            <!--<el-button type="text" @click="downQRcode(scope.$index, scope.row)">-->
+            <!--保存-->
+            <!--</el-button>-->
+
           </template>
         </el-table-column>
       </el-table>
@@ -188,32 +190,8 @@
       </el-dialog>
       <!--网点二维码-->
       <el-dialog id="qr" :visible.sync="dialogVisibleQRcode" width="900px">
-        <div id="imgQd" style="height:636px;">
-          <div class="address">
-            <p><span id="site">服务网点:<span id="siteName" class="ress">{{ dealerName }}</span></span>
-            </p>
-            <p><span id="address">地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址:<span id="addressContent"
-                                                                                           class="ress">{{ dealerAddress }}</span></span>
-            </p>
-          </div>
-          <div class="code">
-            <img id="code" :src="QR" width="250px">
-          </div>
-          <!--<div class="logo">-->
-          <!--<img id="logo" src="../../images/logo.jpg" width="30px">-->
-          <!--</div>-->
-          <div class="picFile">
-            <img src="../../images/pic.png">
-          </div>
-        </div>
-        <div align="center" style="margin-top:24px" class="saveBtn">
-          <el-button
-            class="button"
-            type="primary"
-            style="text-align:center;"
-            @click="createPicture()"
-          >保存二维码
-          </el-button>
+        <div id="pic" class="picFile">
+          <img :src="QR">
         </div>
       </el-dialog>
       <paging-query :page="page" @change="getData"/>
@@ -222,7 +200,7 @@
 </template>
 
 <script>
-import { shopInfoList, getLicencesList, getQrCode, getArea, getBase64 } from '../../js/shopInfo'
+  import {shopInfoList, getLicencesList, getQrCode, getArea, downPic } from '../../js/shopInfo'
 import * as html2canvas from 'html2canvas'
 import PagingQuery from '../../components/pagingQuery'
 
@@ -233,7 +211,6 @@ export default {
   },
   data() {
     return {
-      downPic: '',
       countyList: [],
       cityList: [],
       provinceList: [],
@@ -312,6 +289,10 @@ export default {
         createTime: '', // 创建时间"
         qrCode: '' // 二维码
       },
+      downloadRule:{
+        path: '',
+        url: ''
+      },
 
       rules: {
         name: [
@@ -340,7 +321,7 @@ export default {
   },
   methods: {
     createPicture: function() {
-      html2canvas(document.getElementById('imgQd'), {
+      html2canvas(document.getElementById('pic'), {
         useCORS: true,
         logging: true
       }).then(canvas => {
@@ -362,17 +343,6 @@ export default {
           a.setAttribute('download', 'popularize')
           a.click()
         }
-      })
-    },
-    saveQRcode() {
-      html2canvas(document.getElementById('qr'), {
-        useCORS: true,
-        logging: true
-      }).then(canvas => {
-        // canvas.lineTo(200, 200)
-        this.downPic = canvas.toDataURL()
-        this.imgmap = canvas.toDataURL()
-        console.log(999, this.imgmap)
       })
     },
     getCounty() {
@@ -418,11 +388,9 @@ export default {
       this.dialogVisibleQRcode = true
       this.plan.content = process.env.BASE_DOWN_API + '?dealerCode=' + this.dealerCode
       this.plan.dealerId = row.dealerId
-      // 获取证照信息列表
+      // 显示二维码
       getQrCode(this.plan).then(res => {
-        this.dealerAddress = res.datas.dealerAddress
-        this.dealerName = res.datas.dealerName
-        this.QR = res.datas.qrCode
+        this.QR = res.msg
       })
     },
     // 切换证照
@@ -466,12 +434,8 @@ export default {
       this.condition.page = this.page
       shopInfoList(this.condition).then(res => {
         this.tableData = res.datas
-        // alert(res.total)
         this.page.total = res.total
         this.page.pageNum = res.pageNum
-        // if (res.total === 0) {
-        //   document.getElementById('pagination').style.setProperty('display', 'none', 'important')
-        // }
       }).catch(error => {
         this.$message.error(error + '')
       })
@@ -497,8 +461,15 @@ export default {
       this.condition.county = ''// 注册地（区）
       this.getData()
     },
-    changeOrder() {
-      alert(1111)
+    downQRcode(index, row) {
+      this.downloadRule.url = row.qrCode
+      this.downloadRule.path = 'D://downloadPic/code.png'
+      // request.post('health-dealer/dealers/downPic',  this.downloadRule).then(res => res.data)
+      // downPic(this.downloadRule, { responseType: 'arraybuffer' }).then(res => {
+      //   alert(res)
+      // }).catch(error => {
+      //   this.$message.error(error + '')
+      // })
     }
   }
 }
@@ -761,8 +732,6 @@ export default {
   .handle-box {
     margin-bottom: 20px;
   }
-
-
   /*// .inptxt{width:300px; height: 32px; line-height: 32px;}*/
   .handle-box {
     clear: left;
