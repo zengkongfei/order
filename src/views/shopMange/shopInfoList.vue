@@ -463,6 +463,8 @@ export default {
         console.log(res)
         if (res && res.msg) {
           this.downloadimg = res.msg
+        } else {
+          this.$message.error(error + '二维码保存失败')
         }
         // 如果浏览器支持msSaveOrOpenBlob方法（使用IE浏览器时,调用该方法去下载图片)
         if (window.navigator.msSaveOrOpenBlob) {
@@ -478,7 +480,7 @@ export default {
          // 这里就按照chrome等新版浏览器来处理
          const a = document.createElement('a')
          a.href = this.downloadimg
-         a.setAttribute('download', 'chart-download')
+         a.setAttribute('download', 'chart-download.jpg')
          a.click()
         }
       }).catch(error => {
