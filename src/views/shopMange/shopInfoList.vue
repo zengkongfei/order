@@ -111,16 +111,16 @@
           </template>
         </el-table-column>
         <el-table-column prop="leasingManager" label="招商经理" width="150"/>
-        <el-table-column prop="createdDate" label="创建时间" width="150" sortable @click="changeOrder"/>
+        <el-table-column prop="createdDate" label="创建时间" width="150" sortable/>
         <i class="el-dialog__close el-icon el-icon-close"/>
         <el-table-column label="网点二维码" align="left" width="150">
           <template slot-scope="scope">
             <el-button type="text" @click="showQRcode(scope.$index, scope.row)">
               查看
             </el-button>
-            <!--<el-button type="text" @click="downQRcode(scope.$index, scope.row)">-->
-            <!--保存-->
-            <!--</el-button>-->
+            <el-button type="text" @click="downQRcode(scope.row)">
+              保存
+            </el-button>
 
           </template>
         </el-table-column>
@@ -191,7 +191,7 @@
       <!--网点二维码-->
       <el-dialog id="qr" :visible.sync="dialogVisibleQRcode" width="900px">
         <div id="pic" class="picFile">
-          <img :src="QR">
+          <img :src="QR"/>
         </div>
       </el-dialog>
       <paging-query :page="page" @change="getData"/>
@@ -200,7 +200,7 @@
 </template>
 
 <script>
-  import {shopInfoList, getLicencesList, getQrCode, getArea, downPic } from '../../js/shopInfo'
+import {shopInfoList, getLicencesList, getQrCode, getArea, downPic } from '../../js/shopInfo'
 import * as html2canvas from 'html2canvas'
 import PagingQuery from '../../components/pagingQuery'
 
@@ -289,11 +289,7 @@ export default {
         createTime: '', // 创建时间"
         qrCode: '' // 二维码
       },
-      downloadRule:{
-        path: '',
-        url: ''
-      },
-
+      downloadimg:'',//保存图片
       rules: {
         name: [
           { required: true, message: '请输入姓名', trigger: 'blur' }
@@ -461,15 +457,33 @@ export default {
       this.condition.county = ''// 注册地（区）
       this.getData()
     },
-    downQRcode(index, row) {
-      this.downloadRule.url = row.qrCode
-      this.downloadRule.path = 'D://downloadPic/code.png'
-      // request.post('health-dealer/dealers/downPic',  this.downloadRule).then(res => res.data)
-      // downPic(this.downloadRule, { responseType: 'arraybuffer' }).then(res => {
-      //   alert(res)
-      // }).catch(error => {
-      //   this.$message.error(error + '')
-      // })
+    // 保存图片
+    downQRcode(row) {
+      getQrCode({dealerId:row.dealerId}).then(res => {
+        console.log(res)
+        if (res && res.msg) {
+          this.downloadimg = res.msg
+        }
+        // 如果浏览器支持msSaveOrOpenBlob方法（使用IE浏览器时,调用该方法去下载图片)
+        if (window.navigator.msSaveOrOpenBlob) {
+         var bstr = atob(this.downloadimg.split(',')[1])
+         var n = bstr.length
+         var u8arr = new Uint8Array(n)
+         while (n--) {
+          u8arr[n] = bstr.charCodeAt(n)
+         }
+         var blob = new Blob([u8arr])
+         window.navigator.msSaveOrOpenBlob(blob, 'chart-download' + '.' + 'png')
+        } else {
+         // 这里就按照chrome等新版浏览器来处理
+         const a = document.createElement('a')
+         a.href = this.downloadimg
+         a.setAttribute('download', 'chart-download')
+         a.click()
+        }
+      }).catch(error => {
+         this.$message.error(error + '')
+      })
     }
   }
 }
