@@ -188,7 +188,7 @@
         </div>
 
       </el-dialog>
-      <!--网点二维码-->
+      <!--网点二维码 -->
       <el-dialog id="qr" :visible.sync="dialogVisibleQRcode" width="900px">
         <div id="pic" class="picFile">
           <img :src="QR"/>
