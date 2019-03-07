@@ -128,7 +128,7 @@
       <!--身份证-->
       <el-dialog :visible.sync="dialogVisibleCard" title="法人身份证" width="932px" class="legalCardDialog">
         <template>
-          <div class="" style="display: flex;">
+          <div class="" style="display: flex;height:270px">
             <div style="flex:1;display:flex;margin-right:24px;background:rgba(238, 238, 238, 1);align-items: center;justify-content: center;">
             <img :src="card.legalFrontView" alt="" style="max-width:430px;max-height: 270px"></div>
             <div style="flex:1;display:flex;background:rgba(238, 238, 238, 1);align-items: center;justify-content: center;">
