@@ -456,6 +456,16 @@ export default {
 
 </script>
 <style>
+  .shopInfoListWrap .el-table th {
+    padding:0;
+    line-height: 53px;
+    box-sizing: border-box;
+  }
+  .shopInfoListWrap .el-table td {
+    padding:15px 0;
+    line-height: 53px;
+    box-sizing: border-box;
+  }
   .shopInfoListWrap .saveBtn .el-button--primary {
     width: 100%;
     height: 50px;
@@ -463,12 +473,12 @@ export default {
     font-size: 16px;
   }
 
-  .container {
+ .shopInfoListWrap .container {
     padding: 24px 32px 0 32px;
     background: #FFF;
     min-width: 1560px;
     margin: 0;
-    min-height: 900px;
+    min-height: 956px;
   }
 
   .table {
