@@ -93,7 +93,8 @@ export default {
       page: {
         total: 0,
         pageNum: 1,
-        pageSize: 10
+        pageSize: 10,
+        orderBy: 'm.created_date desc'
       }
     }
   },

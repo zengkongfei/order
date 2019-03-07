@@ -299,7 +299,7 @@ export default {
         total: 0,
         pageNum: 1,
         pageSize: 10,
-        orderBy: 'last_modified_date desc'
+        orderBy: 'd.created_date desc'
       },
       file: {
         filename: ''

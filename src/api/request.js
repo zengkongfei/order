@@ -22,6 +22,9 @@ service.interceptors.request.use(config => {
     if (config.data.page){
       config.headers['pageNum'] = config.data.page.pageNum
       config.headers['pageSize'] = config.data.page.pageSize
+      if (config.data.page.orderBy) {
+        config.headers['orderBy'] = config.data.page.orderBy
+      }
     }
   }
   return config
