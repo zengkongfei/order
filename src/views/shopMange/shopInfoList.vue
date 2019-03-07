@@ -115,10 +115,10 @@
         <i class="el-dialog__close el-icon el-icon-close"/>
         <el-table-column label="网点二维码" align="left" width="150">
           <template slot-scope="scope">
-            <el-button type="text" @click="showQRcode(scope.$index, scope.row)">
+            <el-button type="text" @click="downQRcode(1,scope.row)">
               查看
             </el-button>
-            <el-button type="text" @click="downQRcode(scope.row)">
+            <el-button type="text" @click="downQRcode(2,scope.row)">
               保存
             </el-button>
 
@@ -128,7 +128,7 @@
       <!--身份证-->
       <el-dialog :visible.sync="dialogVisibleCard" title="法人身份证" width="932px" class="legalCardDialog">
         <template>
-          <div class="" style="display: flex;">
+          <div class="" style="display: flex;height:270px">
             <div style="flex:1;display:flex;margin-right:24px;background:rgba(238, 238, 238, 1);align-items: center;justify-content: center;">
             <img :src="card.legalFrontView" alt="" style="max-width:430px;max-height: 270px"></div>
             <div style="flex:1;display:flex;background:rgba(238, 238, 238, 1);align-items: center;justify-content: center;">
@@ -316,31 +316,6 @@ export default {
     this.getData()
   },
   methods: {
-    createPicture: function() {
-      html2canvas(document.getElementById('pic'), {
-        useCORS: true,
-        logging: true
-      }).then(canvas => {
-        this.imgmap = canvas.toDataURL()
-        console.log(999, this.imgmap)
-        if (window.navigator.msSaveOrOpenBlob) {
-          var bstr = atob(this.imgmap.split(',')[1])
-          var n = bstr.length
-          var u8arr = new Uint8Array(n)
-          while (n--) {
-            u8arr[n] = bstr.charCodeAt(n)
-          }
-          var blob = new Blob([u8arr])
-          window.navigator.msSaveOrOpenBlob(blob, 'popularize' + '.' + 'png')
-        } else {
-          // 这里就按照chrome等新版浏览器来处理
-          const a = document.createElement('a')
-          a.href = this.imgmap
-          a.setAttribute('download', 'popularize')
-          a.click()
-        }
-      })
-    },
     getCounty() {
       this.condition.county = ''
       const params = {
@@ -371,22 +346,6 @@ export default {
       getArea(params).then(res => {
         console.log(res, '市')
         this.cityList = res.datas
-      })
-    },
-    // 分页导航
-    // handleCurrentChange(val) {
-    //   this.page.pageNum = val
-    //   this.getData()
-    // },
-    // 显示二维码
-    showQRcode(index, row) {
-      this.dealerCode = row.dealerCode
-      this.dialogVisibleQRcode = true
-      this.plan.content = process.env.BASE_DOWN_API + '?dealerCode=' + this.dealerCode
-      this.plan.dealerId = row.dealerId
-      // 显示二维码
-      getQrCode(this.plan).then(res => {
-        this.QR = res.msg
       })
     },
     // 切换证照
@@ -458,30 +417,35 @@ export default {
       this.getData()
     },
     // 保存图片
-    downQRcode(row) {
+    downQRcode(index,row) {
       getQrCode({dealerId:row.dealerId}).then(res => {
         console.log(res)
         if (res && res.msg) {
           this.downloadimg = res.msg
+          this.QR = res.msg
+          if (index === 1 && this.QR) {
+            this.dialogVisibleQRcode = true
+          } else if (index === 2 && this.downloadimg) {
+            // 如果浏览器支持msSaveOrOpenBlob方法（使用IE浏览器时,调用该方法去下载图片)
+            if (window.navigator.msSaveOrOpenBlob) {
+             var bstr = atob(this.downloadimg.split(',')[1])
+             var n = bstr.length
+             var u8arr = new Uint8Array(n)
+             while (n--) {
+              u8arr[n] = bstr.charCodeAt(n)
+             }
+             var blob = new Blob([u8arr])
+             window.navigator.msSaveOrOpenBlob(blob, 'chart-download' + '.' + 'png')
+            } else {
+             // 这里就按照chrome等新版浏览器来处理
+             const a = document.createElement('a')
+             a.href = this.downloadimg
+             a.setAttribute('download', 'chart-download.jpg')
+             a.click()
+            }
+          }
         } else {
-          this.$message.error(error + '二维码保存失败')
-        }
-        // 如果浏览器支持msSaveOrOpenBlob方法（使用IE浏览器时,调用该方法去下载图片)
-        if (window.navigator.msSaveOrOpenBlob) {
-         var bstr = atob(this.downloadimg.split(',')[1])
-         var n = bstr.length
-         var u8arr = new Uint8Array(n)
-         while (n--) {
-          u8arr[n] = bstr.charCodeAt(n)
-         }
-         var blob = new Blob([u8arr])
-         window.navigator.msSaveOrOpenBlob(blob, 'chart-download' + '.' + 'png')
-        } else {
-         // 这里就按照chrome等新版浏览器来处理
-         const a = document.createElement('a')
-         a.href = this.downloadimg
-         a.setAttribute('download', 'chart-download.jpg')
-         a.click()
+          this.$message.error('无二维码')
         }
       }).catch(error => {
          this.$message.error(error + '')
