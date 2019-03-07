@@ -55,9 +55,7 @@
 <script>
 import { memberList } from '../../js/vipmanagement'
 import PagingQuery from '../../components/pagingQuery'
-import {
-    getUserInfo
-} from '../../js/userInfo.js'
+import{getuserInfo, setuserInfo, removeuserInfo} from '../../utils/session.js'
 export default {
   name: 'Basetable',
   components: {
@@ -115,7 +113,8 @@ export default {
     },
     getData() {
       this.plan.page = this.page
-      this.plan.chargePhone = localStorage.getItem('phone')
+      // this.plan.chargePhone = localStorage.getItem('phone')
+      this.plan.chargePhone = getuserInfo('phone')
       console.log(this.plan)
       memberList(this.plan)
         .then(res => {
