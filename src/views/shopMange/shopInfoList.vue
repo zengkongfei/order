@@ -72,7 +72,7 @@
       <el-table
         :data="tableData"
         :header-cell-style="{background:'rgba(250,250,250,1)'}"
-        :default-sort="{prop: 'createTime', order: 'descending'}"
+        :default-sort="{prop: 'lastModifiedDate', order: 'descending'}"
         empty-text="暂无数据">
         <el-table-column prop="dealerCode" label="网点编号" width="150"/>
         <el-table-column prop="dealerName" label="网点名称" width="200"/>
@@ -188,7 +188,7 @@
         </div>
 
       </el-dialog>
-      <!--网点二维码-->
+      <!--网点二维码 -->
       <el-dialog id="qr" :visible.sync="dialogVisibleQRcode" width="900px">
         <div id="pic" class="picFile">
           <img :src="QR"/>
