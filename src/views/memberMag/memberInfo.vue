@@ -36,7 +36,7 @@
       <el-table
         :data="tableData"
         :header-cell-style="{background:'rgba(250,250,250,1)'}"
-        :default-sort = "{prop: 'registerTime', order: 'descending'}"
+        :default-sort = "{prop: 'createdDate', order: 'descending'}"
         empty-text="暂无数据"
       >
         <el-table-column prop="memberCode" label="会员编号" width="200"/>
@@ -147,6 +147,16 @@ export default {
 };
 </script>
 <style>
+  .memberInfoWrap .el-table th {
+    padding:0;
+    line-height: 53px;
+    box-sizing: border-box;
+  }
+  .memberInfoWrap .el-table td {
+    padding:15px 0;
+    line-height: 53px;
+    box-sizing: border-box;
+  }
   .table{
     padding: 24px;
     padding-bottom: 0;
@@ -193,7 +203,7 @@ ul {
 .handle-box {
   margin-bottom: 20px;
 }
-.container{
+.memberInfoWrap .container{
   padding: 24px 32px 0 32px;
   background: #FFF;
   min-width: 1560px;
