@@ -39,7 +39,7 @@ import Hamburger from '@/components/Hamburger'
 import {
     getUserInfo
 } from '../../../js/userInfo.js'
-
+import{getuserInfo, setuserInfo, removeuserInfo} from '../../../utils/session.js'
 export default {
     components: {
         Breadcrumb,
@@ -67,7 +67,9 @@ export default {
         },
         logout() {
             this.$store.dispatch('LogOut').then(() => {
-                localStorage.removeItem('msg')
+                // localStorage.removeItem('msg')
+                removeuserInfo('msg')
+                removeuserInfo('phone')
                 location.reload() // 为了重新实例化vue-router对象 避免bug
             })
         },
@@ -77,6 +79,8 @@ export default {
                 this.chargePhoto = res.datas.chargePhoto
                 this.chargeName = res.datas.chargeName
                 this.chargePhone = res.datas.chargePhone
+                setuserInfo('phone',this.chargePhone)
+                // localStorage.setItem('phone', this.chargePhone)
             })
         }
     }
