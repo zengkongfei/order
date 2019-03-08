@@ -5,29 +5,35 @@
 </template>
 
 <script>
+import {
+    getuserInfo,
+    setuserInfo,
+    removeuserInfo
+} from '../../utils/session.js'
 export default {
     data() {
         return {
             msg: '',
         }
     },
-   created(){
-     let massage = localStorage.getItem('msg')
-     if(massage){
-       this.msg = massage
-       
-     }else{
-        this.msg = ''
-     }
-   },
+    created() {
+        //  let massage = localStorage.getItem('msg')
+        let massage = getuserInfo('msg')
+        if (massage) {
+            this.msg = massage
+
+        } else {
+            this.msg = ''
+        }
+    },
     watch: {
         $route(to, from) {
-          localStorage.setItem('msg',to.name)
-              this.msg = to.name
+            //   localStorage.setItem('msg',to.name)
+            setuserInfo('msg', to.name)
+            this.msg = to.name
         }
     },
 }
-
 </script>
 
 <style lang="scss" scoped>
