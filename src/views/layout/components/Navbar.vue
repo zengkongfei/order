@@ -76,10 +76,12 @@ export default {
         getuser() {
             getUserInfo().then(res => {
                 console.log('res', res)
+            
                 this.chargePhoto = res.datas.chargePhoto
                 this.chargeName = res.datas.chargeName
                 this.chargePhone = res.datas.chargePhone
                 setuserInfo('phone',this.chargePhone)
+                setuserInfo('dealer',this.chargeName)
                 // localStorage.setItem('phone', this.chargePhone)
             })
         }
