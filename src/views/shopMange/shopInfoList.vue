@@ -73,7 +73,8 @@
         :data="tableData"
         :header-cell-style="{background:'rgba(250,250,250,1)'}"
         :default-sort="{prop: 'lastModifiedDate', order: 'descending'}"
-        empty-text="暂无数据">
+        empty-text="暂无数据"
+        @sort-change='sortChange'>
         <el-table-column prop="dealerCode" label="网点编号" width="150"/>
         <el-table-column prop="dealerName" label="网点名称" width="200"/>
         <el-table-column prop="creditCode" label="统一社会信用代码" width="200"/>
@@ -111,7 +112,7 @@
           </template>
         </el-table-column>
         <el-table-column prop="leasingManager" label="招商经理" width="150"/>
-        <el-table-column prop="lastModifiedDate" label="创建时间" width="150" sortable/>
+        <el-table-column prop="lastModifiedDate" label="创建时间" width="150" sortable="custom"/>
         <i class="el-dialog__close el-icon el-icon-close"/>
         <el-table-column label="网点二维码" align="left" width="150">
           <template slot-scope="scope">
@@ -299,6 +300,7 @@ export default {
         total: 0,
         pageNum: 1,
         pageSize: 10,
+        pageTotals:0,
         orderBy: 'lastModifiedDate desc'
       },
       file: {
@@ -316,6 +318,18 @@ export default {
     this.getData()
   },
   methods: {
+    sortChange(column, prop, order) {
+            console.log(column, 'column')
+            console.log(column.order, 'column.order')
+            if (column.order == 'ascending') {
+                this.page.orderBy = 'lastModifiedDate'
+                this.getData()
+            }
+            if (column.order == 'descending') {
+                this.page.orderBy = 'lastModifiedDate desc'
+                this.getData()
+            }
+        },
     getCounty() {
       this.condition.county = ''
       const params = {
@@ -388,9 +402,11 @@ export default {
     getData() {
       this.condition.page = this.page
       shopInfoList(this.condition).then(res => {
+        console.log('res',res)
         this.tableData = res.datas
         this.page.total = res.total
         this.page.pageNum = res.pageNum
+        this.page.pageTotals = res.pageTotals
       }).catch(error => {
         this.$message.error(error + '')
       })
