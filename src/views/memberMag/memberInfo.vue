@@ -36,25 +36,25 @@
         <el-table :data="tableData" :header-cell-style="{background:'rgba(250,250,250,1)'}" :default-sort="{prop: 'createdDate', order: 'descending'}" empty-text="暂无数据" @sort-change='sortChange'>
             <el-table-column prop="memberCode" label="会员编号" width="134px" />
             <el-table-column prop="contactWay" label="联系方式" />
-            <!-- <el-table-column prop="parentRecommend" label="推荐人"/> -->
-            <el-table-column label="推荐人">
+          
+            <!-- <el-table-column label="推荐人">
                 <template slot-scope="scope">
                     <span>{{ scope.row.parentRecommend ? scope.row.parentRecommend : '经销商' }}</span>
                 </template>
-            </el-table-column>
-            <!-- <el-table-column prop="totalRecommLevelOne" label="一级推荐用户人数" width="134px"/> -->
-            <el-table-column label="一级推荐用户人数" width="134px">
+            </el-table-column> -->
+           
+            <!-- <el-table-column label="一级推荐用户人数" width="134px">
                 <template slot-scope="scope">
                     <span>{{ scope.row.totalRecommLevelOne ? scope.row.totalRecommLevelOne : 0 }}</span>
                 </template>
-            </el-table-column>
-            <!-- <el-table-column prop="totalRecommLevelTwo" label="二级推荐用户人数" width="134px"/> -->
-            <el-table-column label="二级推荐用户人数" width="134px">
+            </el-table-column> -->
+        
+            <!-- <el-table-column label="二级推荐用户人数" width="134px">
                 <template slot-scope="scope">
                     <span>{{ scope.row.totalRecommLevelTwo ? scope.row.totalRecommLevelTwo : 0 }}</span>
                 </template>
-            </el-table-column>
-            <!-- <el-table-column prop="memberIntegral" label="可用积分"/> -->
+            </el-table-column> -->
+            
             <el-table-column label="可用积分">
                 <template slot-scope="scope">
                     <span>{{ scope.row.memberIntegral ? scope.row.memberIntegral : 0 }}</span>
