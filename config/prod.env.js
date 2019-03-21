@@ -13,7 +13,7 @@ if (tagert === 'test') {
   base = {
     NODE_ENV: '"production"',
     BASE_API: '"https://api.meihaopuzi.cn/"',
-    BASE_DOWN_API: '"http://47.111.99.118:4004/"'
+    BASE_DOWN_API: '"https://download.meihaopuzi.cn/"'
   }
 }else if (tagert === 'joint') {
   base = {
