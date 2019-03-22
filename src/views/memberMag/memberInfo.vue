@@ -55,11 +55,11 @@
                 </template>
             </el-table-column> -->
             
-            <el-table-column label="可用积分">
+            <!-- <el-table-column label="可用积分">
                 <template slot-scope="scope">
                     <span>{{ scope.row.memberIntegral ? scope.row.memberIntegral : 0 }}</span>
                 </template>
-            </el-table-column>
+            </el-table-column> -->
             <el-table-column prop="dealerCode" label="网点编号" />
             <el-table-column prop="dealerName" label="网点名称" />
             <el-table-column prop="province" label="注册地（省）" />
