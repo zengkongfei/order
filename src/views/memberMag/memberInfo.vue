@@ -57,7 +57,7 @@
             
             <el-table-column label="可用积分">
                 <template slot-scope="scope">
-                    <span>{{ scope.row.memberIntegral}}</span>
+                    <span>{{scope.row.memberIntegral}}</span>
                 </template>
             </el-table-column>
             <el-table-column prop="dealerCode" label="网点编号" />
@@ -137,8 +137,6 @@ export default {
     },
     methods: {
         sortChange(column, prop, order) {
-            console.log(column, 'column')
-            console.log(column.order, 'column.order')
             if (column.order == 'ascending') {
                 this.page.orderBy = 'm.created_date'
                 this.getData()
@@ -155,16 +153,13 @@ export default {
         },
         getData() {
             this.plan.page = this.page
-            // this.plan.chargePhone = localStorage.getItem('phone')
             this.plan.chargePhone = getuserInfo('phone')
             console.log(this.plan)
-            memberList(this.plan)
-                .then(res => {
-                    this.tableData = res.datas
-                    this.page.total = res.total
-                    this.page.pageNum = res.pageNum
-                    this.page.pageTotals = res.pageTotals
-                    console.log('res', res)
+            memberList(this.plan).then(res => {
+                this.tableData = res.datas
+                this.page.total = res.total
+                this.page.pageNum = res.pageNum
+                this.page.pageTotals = res.pageTotals
                 })
                 .catch(error => {
                     this.$message.error(error + '')
