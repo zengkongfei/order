@@ -74,7 +74,7 @@
         :header-cell-style="{background:'rgba(250,250,250,1)'}"
         :default-sort="{prop: 'lastModifiedDate', order: 'descending'}"
         empty-text="暂无数据"
-        @sort-change='sortChange'>
+        @sort-change='sortChange' height='600px'>
         <el-table-column prop="dealerCode" label="网点编号" width="150"/>
         <el-table-column prop="dealerName" label="网点名称" width="200"/>
         <el-table-column prop="creditCode" label="统一社会信用代码" width="200"/>
@@ -319,8 +319,6 @@ export default {
   },
   methods: {
     sortChange(column, prop, order) {
-            console.log(column, 'column')
-            console.log(column.order, 'column.order')
             if (column.order == 'ascending') {
                 this.page.orderBy = 'lastModifiedDate'
                 this.getData()
@@ -337,7 +335,6 @@ export default {
         parentId: this.condition.city
       }
       getArea(params).then(res => {
-        console.log(res, '区')
         this.countyList = res.datas
       })
     },
@@ -347,7 +344,6 @@ export default {
         parentId: '0000'
       }
       getArea(params).then(res => {
-        console.log(res, '省')
         this.provinceList = res.datas
       })
     },
@@ -358,7 +354,6 @@ export default {
         parentId: this.condition.province
       }
       getArea(params).then(res => {
-        console.log(res, '市')
         this.cityList = res.datas
       })
     },
@@ -402,7 +397,6 @@ export default {
     getData() {
       this.condition.page = this.page
       shopInfoList(this.condition).then(res => {
-        console.log('res',res)
         this.tableData = res.datas
         this.page.total = res.total
         this.page.pageNum = res.pageNum
@@ -435,7 +429,6 @@ export default {
     // 保存图片
     downQRcode(index,row) {
       getQrCode({dealerId:row.dealerId}).then(res => {
-        console.log(res)
         if (res && res.msg) {
           this.downloadimg = res.msg
           this.QR = res.msg
