@@ -17,3 +17,7 @@ export const getDealerInfo = params => {
 export const getDetailedDealerInfo = params => {
   return request.post('health-dealer/dealers/getDetailedDealerInfo', params).then(res => res.data);
 }
+export const listRecommendByPage = params => {
+  return request.post('health-dealer/members/queryRecommendMember', params).then(res => res.data)
+}
+

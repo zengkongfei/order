@@ -83,7 +83,7 @@ export default {
         logging: true
       }).then(canvas => {
         this.imgmap = canvas.toDataURL()
-        console.log(999, this.imgmap)
+        //console.log(999, this.imgmap)
         if (window.navigator.msSaveOrOpenBlob) {
           var bstr = atob(this.imgmap.split(',')[1])
           var n = bstr.length

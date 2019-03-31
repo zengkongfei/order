@@ -250,14 +250,14 @@
       // 提交
       submitForm() {
         dealerAddd(this.form).then(res => {
-          console.log(res.datas)
+          //console.log(res.datas)
         }).catch(error => {
           this.$message.error(error + '')
         })
         this.$router.push('/branch/aptitude')
       },
       handleRemove(file, fileList) {
-        console.log(file, fileList)
+        //console.log(file, fileList)
       },
       handlePictureCardPreview(file) {
         this.dialogImageUrl = file.url
