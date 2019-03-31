@@ -99,7 +99,7 @@ export default {
     return get(url, data)
   },
   post:function (url, data) {
-    console.log(data)
+    //console.log(data)
     let config = {
       url: url,
       method: 'post',

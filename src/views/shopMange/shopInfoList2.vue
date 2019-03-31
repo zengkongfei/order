@@ -298,7 +298,6 @@ export default {
     //   console.log(`当前页: ${val}`)
     // },
     changeImgUrl(index) {
-      console.log(index, 'index')
       this.urlListFirst = this.urlList[index].imageUrl
       this.urlListDesc = this.urlList[index].imageDesc
       this.imgShow = index
@@ -308,7 +307,7 @@ export default {
       this.dealerCode = row.dealerCode
       this.dialogVisibleQRcode = true
       this.QR = row.qrCode
-      console.log(this.QR, '二维码')
+      //console.log(this.QR, '二维码')
     },
     showNetworkPhoto(index, row) {
       this.dialogVisibleNetworkPhoto = true
@@ -317,7 +316,7 @@ export default {
       this.byId = row.id
       this.licenceNumber = row.dealerCode
       getVoucherImage(this.urlListId).then(res => {
-        console.log(res, '网点-数据')
+        //console.log(res, '网点-数据')
         this.urlList = res.datas
         this.urlListFirst = res.datas[0].imageUrl
         this.urlListDesc = res.datas[0].imageDesc
@@ -326,7 +325,7 @@ export default {
     },
     showChargePhoto(index, row) {
       this.dialogVisibleChargePhoto = true
-      console.log(row)
+      //console.log(row)
       this.urlCharge = row.chargePhoto
       this.nameCharge = row.chargeName
       this.numberCharge = row.dealerCode
@@ -344,7 +343,7 @@ export default {
         parentId: this.plan.province
       }
       getArea(params).then(res => {
-        console.log(res, '市')
+        //console.log(res, '市')
         this.cityList = res.datas
       })
     },
@@ -353,7 +352,7 @@ export default {
       dealerList(this.plan).then(res => {
         this.tableData = res.datas
         this.page.total = res.total
-        console.log(res, 'table数据')
+        //console.log(res, 'table数据')
       }).catch(error => {
         this.$message.error(error + '')
       })
@@ -361,14 +360,14 @@ export default {
     handleEdit(index, row) {
       this.idx = index
       this.id = row.id
-      console.log(row.id)
+      //console.log(row.id)
       this.$router.push({
         path: '/branch/brabnEdit/' + row.id
       })
     },
     // 查询
     handSeach() {
-      console.log(this.plan, 'plan')
+      //console.log(this.plan, 'plan')
       this.getData()
     },
     getProvince() {
@@ -377,7 +376,7 @@ export default {
         parentId: '0000'
       }
       getArea(params).then(res => {
-        console.log(res, '省')
+        //console.log(res, '省')
         this.provinceList = res.datas
       })
     },
