@@ -133,6 +133,12 @@
     .el-table--border{
         border:none;
     }
+    .el-table--border::after, .el-table--group::after{
+        width:0px;
+    }
+    .el-table--border th{
+        border-right:none;
+    }
 
     .el-table th {
         padding: 0;
