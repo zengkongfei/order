@@ -70,7 +70,7 @@
         <el-button type="primary" icon="search" @click="handFlush">刷新</el-button>
       </div>
       <el-table
-        :data="tableData"
+        :data="tableData" border
         :header-cell-style="{background:'rgba(250,250,250,1)'}"
         :default-sort="{prop: 'lastModifiedDate', order: 'descending'}"
         empty-text="暂无数据"

@@ -33,7 +33,7 @@
             <el-button type="primary" icon="search" @click="handSeach">查询</el-button>
             <el-button type="primary" icon="search" @click="handFlush">刷新</el-button>
         </div>
-        <el-table :data="tableData" :header-cell-style="{background:'rgba(250,250,250,1)'}" :default-sort="{prop: 'createdDate', order: 'descending'}" empty-text="暂无数据" @sort-change='sortChange' height='600px'>
+        <el-table :data="tableData" border :header-cell-style="{background:'rgba(250,250,250,1)'}" :default-sort="{prop: 'createdDate', order: 'descending'}" empty-text="暂无数据" @sort-change='sortChange' height='600px'>
             <el-table-column prop="memberCode" label="会员编号"  />
             <el-table-column prop="contactWay" label="联系方式" />         
             <el-table-column label="可用积分">
@@ -105,7 +105,7 @@
                     <el-button type="primary" icon="search" @click="lastSeach" style="float:right">查询</el-button>
                 </div>
             </div>
-            <el-table :data="listRecommend" height="334" v-show="noListPhoto" >
+            <el-table :data="listRecommend" border height="334" v-show="noListPhoto" >
                 <el-table-column prop="memberCode" label="会员编号" width="150">
                 </el-table-column>
                 <el-table-column prop="contactWay" label="联系方式" width="150">
