@@ -63,7 +63,7 @@
           <el-button type="primary" icon="search" @click="handFlush">刷新</el-button>
         </div>
         <div class="tabel-info" style="min-width:1560px">
-          <el-table :data="tableData" :header-cell-style="{background:'rgba(250,250,250,1)'}">
+          <el-table :data="tableData" border :header-cell-style="{background:'rgba(250,250,250,1)'}">
             <el-table-column prop="dealerCode" label="网点编号" width="150" />
             <el-table-column prop="dealerName" label="网点名称" width="200" />
             <el-table-column prop="creditCode" label="统一社会信用代码" width="200" />
