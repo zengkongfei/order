@@ -68,13 +68,13 @@ export const constantRouterMap = [
   {
     path: '/indent',
     component: Layout,
-    redirect: '/indent/indentlist',
+    redirect: '/indent',
     name: '订单中心',
-    hidden: true,
-    // icon: 'banben',
+    hidden: false,
+    alwaysShow: true,
+    icon: 'indent',
     children: [{
       path: '/indent/indentlist',
-      hidden: true,
       name: '订单管理',
       component: () => import('@/views/indent/indentlist')
     },
