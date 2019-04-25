@@ -7,9 +7,9 @@
             <img src="../../images/top_images/logo.png">
             <p>订单详情</p>
             <div class="buttons">
-              <el-button type="primary" v-if="stu===1||stu===2" @click="DeclarationForm(3)">报单</el-button>
-              <el-button type="primary" v-if="stu===1||stu===2" @click="DeclarationForm(7)">关闭</el-button>
-              <el-button type="primary" v-if="stu===6" @click="DeclarationForm(6)">确认收货</el-button>
+              <el-button type="primary" v-if="stu===1||stu===2" @click="DeclarationForm(3,'报单')">报单</el-button>
+              <el-button type="primary" v-if="stu===1||stu===2" @click="DeclarationForm(7,'关闭')">关闭</el-button>
+              <el-button type="primary" v-if="stu===6" @click="DeclarationForm(6,'确认收货')">确认收货</el-button>
               <!-- 订单状态:1-待确认 2-审核不通过 3-已确认 4-已审核 5-已发货 6-已签收 7-已关闭 -->
             </div>
           </div>
@@ -36,7 +36,7 @@
                 <span>{{form.count }}</span>
               </el-form-item>
               <!-- <el-form-item label="订单方式:">
-                <span>1111</span>
+                <span></span>
               </el-form-item> -->
               <el-form-item label="收货人:">
                 <span> {{ form.consignee }}</span>
@@ -44,29 +44,26 @@
               <el-form-item label="收货地址:">
                 <span>{{ form.ddress }}</span>
               </el-form-item>
-              <!-- <el-form-item label="运费:">
-                <span>
-                  ￥
-                  <span>2222</span>
-                </span>
-              </el-form-item> -->
+              <el-form-item label="运费:">
+                ￥<span>{{ form.freight }}</span>
+              </el-form-item>
               <el-form-item label="会员编号:">
                 <span>{{ form.memberCode }}</span>
               </el-form-item>
               <el-form-item label="收货人电话:">
                 <span>{{ form.mobile }}</span>
               </el-form-item>
-              <!-- <el-form-item label="货运方式:">
-                <el-select v-model="form.region" placeholder="请选择活动区域">
-                  <el-option label="区域一" value="shanghai"></el-option>
-                  <el-option label="区域二" value="beijing"></el-option>
-                </el-select>
-              </el-form-item> -->
+               <el-form-item label="货运方式:">
+                <span>{{form.logisticsCompany}}</span>
+              </el-form-item>
               <el-form-item label="订单备注:">
                 <span>{{ form.orderNotes }}</span>
               </el-form-item>
               <el-form-item label="下单网点:" style="margin-right:33.59%;">
                 <span>{{ form.dealerName }}</span>
+              </el-form-item>
+              <el-form-item label="物流单号:" v-show="stu === 6||stu === 7">
+                <span>{{ form.logisticsNumber }}</span>
               </el-form-item>
             </el-form>
           </div>
@@ -115,7 +112,7 @@
   </div>
 </template>
 <script>
- import {getOrderById,updateOrderStatus} from '@/js/indentInfo'
+import {getOrderById,updateOrderStatus} from '@/js/indentInfo'
 
 export default {
   data() {
@@ -132,14 +129,16 @@ export default {
           number: '',//订单编号
           orderNotes: '',//订单备注
           totalAmount: '',//总金额
-         
+          freight:'',
+          logisticsCompany:'',
+          logisticsNumber:''
       },
       items: [],
       itemLogs: [],
       myItem: 'first',
       stu: '',
       status: '',
-      id: 'fe24a2ac-e287-417d-a6ea-6096b1ef9d29', // this.$route.query.id 
+      id: this.$route.query.id,
       itemForm: {
         id:'',
         status: ''
@@ -148,6 +147,7 @@ export default {
   },
 
   created() {
+    console.log("dfadf", this.$route.query)
     this.getOrder()//调用获取订单信息
   },
 
@@ -172,6 +172,9 @@ export default {
             this.form.mobile = res.datas.mobile//收货人手机号
             this.form.number = res.datas.number//订单编号
             this.form.orderNotes = res.datas.orderNotes//订单编号
+            this.form.freight = res.datas.freight,
+            this.form.logisticsCompany = res.datas.logisticsCompany
+            this.form.logisticsNumber = res.datas.logisticsNumber
             this.stu = res.datas.status//订单状态
             this.form.totalAmount = res.datas.totalAmount//订单总金额
             this.form.orderNotes = res.datas.orderNotes//订单备注
@@ -183,23 +186,19 @@ export default {
         })
     },
     // 报单
-    DeclarationForm(item) {
-      if(item === 3) {
-        this.itemForm.status = 3
-      }
-      if(item === 7) {
-        this.itemForm.status = 7
-      }
-      if(item === 6) {
-        this.itemForm.status = 6
-      }
-      updateOrderStatus(this.itemForm)
-        .then(res => {
-          this.$message.success(res.msg)
-          this.$router.push("/indent/indentlist");
-        })
-        .catch(error => {
-          this.$message.error(error + "");
+    DeclarationForm(status,title) {
+      this.$confirm('确认' + title , '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning',
+        }).then(() => {
+        this.itemForm.status = status
+        updateOrderStatus(this.itemForm).then(res => {
+        this.$message.success(res.msg)
+        this.$router.push("/indent/indentlist");
+      }).catch(error => {
+        this.$message.error(error + "")
+      })
       })
     }
   },
@@ -232,7 +231,7 @@ export default {
   }
 }
 </script>
-    <style scoped>
+<style scoped>
 .content {
   background-color: #fff;
   margin-top: 24px;

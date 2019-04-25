@@ -77,20 +77,10 @@ export const constantRouterMap = [
     path: '/indent/indentlist',
     name: '订单管理',
     component: () => import('@/views/indent/indentlist')
-    },
-    {
-    path: '/indent/addindent',
-    name: '订单新增',
-    hidden: true,
-    component: () => import('@/views/indent/addindent')
-    },
-    {
-    path: '/indent/editindent',
-    name: '订单修改',
-    component: () => import('@/views/indent/editindent')
     },{
     path: '/indent/indentInfo',
     name: '订单详情',
+    hidden: true,
     component: () => import('@/views/indent/indentInfo')
     }]
     },
