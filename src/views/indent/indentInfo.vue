@@ -7,13 +7,12 @@
             <img src="../../images/top_images/logo.png">
             <p>订单详情</p>
             <div class="buttons">
-              <el-button type="primary" v-if="form.status===1||form.status===2" @click="DeclarationForm('form')">报单</el-button>
-              <el-button type="primary" v-if="form.status===1||form.status===2">关闭</el-button>
-              <el-button type="primary" v-if="form.status===5">确认收货</el-button>
+              <el-button type="primary" v-if="form.status===1||form.status===2" @click="DeclarationForm(3)">报单</el-button>
+              <el-button type="primary" v-if="form.status===1||form.status===2" @click="DeclarationForm(7)">关闭</el-button>
+              <el-button type="primary" v-if="form.status===6" @click="DeclarationForm(6)">确认收货</el-button>
             </div>
           </div>
         </div>
-         <!-- 1-待确认 2-审核不通过 3-已确认 4-已审核 5-已发货 6-已签收 7-已关闭 -->
         <div class="content">
           <div class="content-table">
             <el-form ref="form">
@@ -27,7 +26,7 @@
                 </span>
               </el-form-item>
               <el-form-item label="订单状态:">
-                <span>{{form.status }}</span>
+                <span>{{status }}</span>
               </el-form-item>
               <el-form-item label="下单时间:" label-width="80">
                 <span>{{form.createdDate }}</span>
@@ -115,7 +114,7 @@
   </div>
 </template>
 <script>
- import {getOrderById} from '@/js/indentInfo'
+ import {getOrderById,updateOrderStatus} from '@/js/indentInfo'
 
 export default {
   data() {
@@ -131,61 +130,105 @@ export default {
           mobile: '',
           number: '',
           orderNotes: '',
-          status: '',
           totalAmount: '',
           orderNotes: '',
       },
       items: [],
       itemLogs: [],
       myItem: 'first',
+      stu: '',
+      status: '',
       id: 'fe24a2ac-e287-417d-a6ea-6096b1ef9d29', // this.$route.query.id 
+      itemForm: {
+        id:'',
+        status: ''
+      }
     }
   },
 
   created() {
     this.getOrder()//调用获取订单信息
-     
   },
 
   methods:{
-  //点击标签页
-  handleClick(tab, event) {
-    console.log(tab, event);
-  },
-  getOrder() {
-    //获取订单信息
- //   alert("444")
-      getOrderById(this.id).then(res => {
-        console.log("订单信息",res.datas)
-        if (res && res.datas) {
-          this.form.consignee = res.datas.consignee
-          this.form.count = res.datas.count
-          this.form.createdDate = res.datas.createdDate
-          this.form.dealerName = res.datas.dealerName
-          this.form.ddress = res.datas.ddress
-          this.form.id = res.datas.id
-          this.form.memberCode = res.datas.memberCode
-          this.form.mobile = res.datas.mobile
-          this.form.number = res.datas.number
-          this.form.orderNotes = res.datas.orderNotes
-          this.form.status = res.datas.status
-          this.form.totalAmount = res.datas.totalAmount
-          this.form.orderNotes = res.datas.orderNotes
-          this.items = res.datas.items
-           this.itemLogs = res.datas.itemLogs
-        }
-      }).catch(error => {
-        this.$message.error(error + '')
-      })
-  },
-      // 报单
-    DeclarationForm(form) {
-      alert("111111")
-     
+    //点击标签页
+    handleClick(tab, event) {
+      console.log(tab, event);
     },
-
-
-}
+    getOrder() {
+      //获取订单信息
+        getOrderById(this.id).then(res => {
+          console.log("订单信息",res.datas)
+          if (res && res.datas) {
+            this.form.consignee = res.datas.consignee
+            this.form.count = res.datas.count
+            this.form.createdDate = res.datas.createdDate
+            this.form.dealerName = res.datas.dealerName
+            this.form.ddress = res.datas.ddress
+            this.form.id = res.datas.id
+            this.itemForm.id = res.datas.id
+            this.form.memberCode = res.datas.memberCode
+            this.form.mobile = res.datas.mobile
+            this.form.number = res.datas.number
+            this.form.orderNotes = res.datas.orderNotes
+            this.stu = res.datas.status
+            this.form.totalAmount = res.datas.totalAmount
+            this.form.orderNotes = res.datas.orderNotes
+            this.items = res.datas.items
+            this.itemLogs = res.datas.itemLogs
+          }
+        }).catch(error => {
+          this.$message.error(error + '')
+        })
+    },
+    // 报单
+    DeclarationForm(item) {
+      if(item === 3) {
+        this.itemForm.status = 3
+      }
+      if(item === 7) {
+        this.itemForm.status = 7
+      }
+      if(item === 6) {
+        this.itemForm.status = 6
+      }
+      updateOrderStatus(this.itemForm)
+        .then(res => {
+          this.$message.success(res.msg)
+          this.$router.push("/indent/indentlist");
+        })
+        .catch(error => {
+          this.$message.error(error + "");
+      })
+    }
+  },
+  watch:{
+    stu(val) {
+      switch (val) {
+        case 1:
+          this.status = '待确认'
+          break;
+        case 2:
+          this.status = '审核不通过'
+          break;
+        case 3:
+          this.status = '已确认'
+          break;
+        case 4:
+          this.status = '已审核'
+          break;
+        case 5:
+          this.status = '已发货'
+          break;
+        case 6:
+          this.status = '已签收'
+          break;
+        case 7:
+          this.status = '已关闭'
+          break;
+      }
+    }
+  }
 }
 </script>
     <style scoped>

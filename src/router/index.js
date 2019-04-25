@@ -68,48 +68,32 @@ export const constantRouterMap = [
   {
     path: '/indent',
     component: Layout,
-    redirect: '/indent',
+    redirect: '/indent/indentlist',
     name: '订单中心',
     hidden: false,
     alwaysShow: true,
-    icon: 'indent',
+    icon: 'shop',
     children: [{
-      path: '/indent/indentlist',
-      name: '订单管理',
-      component: () => import('@/views/indent/indentlist')
+    path: '/indent/indentlist',
+    name: '订单管理',
+    component: () => import('@/views/indent/indentlist')
     },
     {
-      path: '/indent/addindent',
-      name: '订单新增',
-      hidden: true,
-      component: () => import('@/views/indent/addindent')
+    path: '/indent/addindent',
+    name: '订单新增',
+    hidden: true,
+    component: () => import('@/views/indent/addindent')
     },
     {
-      path: '/indent/editindent',
-      name: '订单修改',
-      hidden: true,
-      component: () => import('@/views/indent/editindent')
+    path: '/indent/editindent',
+    name: '订单修改',
+    component: () => import('@/views/indent/editindent')
+    },{
+    path: '/indent/indentInfo',
+    name: '订单详情',
+    component: () => import('@/views/indent/indentInfo')
+    }]
     },
-    // {
-    //   path: '/salesreturn/salesreturnlist',
-    //   hidden: true,
-    //   name: '退货单管理',
-    //   component: () => import('@/views/salesreturn/salesreturnlist')
-    // },
-    // {
-    //   path: '/salesreturn/addsalesreturn',
-    //   hidden: true,
-    //   name: '新增退货单',
-    //   component: () => import('@/views/salesreturn/addsalesreturn')
-    // },
-    // {
-    //   path: '/salesreturn/editsalesreturn',
-    //   hidden: true,
-    //   name: '退货单管理',
-    //   component: () => import('@/views/salesreturn/editsalesreturn')
-    // }
-  ]
-  },
 
   { path: '*', redirect: '/404', hidden: true }
 ]
