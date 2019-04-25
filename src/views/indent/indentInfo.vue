@@ -245,7 +245,6 @@ export default {
 .el-form {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
 }
 .el-form-item {
   width: 33%;
