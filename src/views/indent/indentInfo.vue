@@ -35,38 +35,38 @@
               <el-form-item label="订单商品项数:">
                 <span>{{form.count }}</span>
               </el-form-item>
-              <!-- <el-form-item label="订单方式:">
-                <span>1111</span>
-              </el-form-item> -->
+              <el-form-item label="订单方式:">
+                <span></span>
+              </el-form-item>
               <el-form-item label="收货人:">
                 <span> {{ form.consignee }}</span>
               </el-form-item>
               <el-form-item label="收货地址:">
                 <span>{{ form.ddress }}</span>
               </el-form-item>
-              <!-- <el-form-item label="运费:">
+              <el-form-item label="运费:">
                 <span>
                   ￥
-                  <span>2222</span>
+                  <span>{{ form.freight }}</span>
                 </span>
-              </el-form-item> -->
+              </el-form-item>
               <el-form-item label="会员编号:">
                 <span>{{ form.memberCode }}</span>
               </el-form-item>
               <el-form-item label="收货人电话:">
                 <span>{{ form.mobile }}</span>
               </el-form-item>
-              <!-- <el-form-item label="货运方式:">
-                <el-select v-model="form.region" placeholder="请选择活动区域">
-                  <el-option label="区域一" value="shanghai"></el-option>
-                  <el-option label="区域二" value="beijing"></el-option>
-                </el-select>
-              </el-form-item> -->
+              <el-form-item label="货运方式:">
+                <span>{{form.logisticsCompany}}</span>
+              </el-form-item>
               <el-form-item label="订单备注:">
                 <span>{{ form.orderNotes }}</span>
               </el-form-item>
-              <el-form-item label="下单网点:" style="margin-right:33.59%;">
+              <el-form-item label="下单网点:" >
                 <span>{{ form.dealerName }}</span>
+              </el-form-item>
+              <el-form-item label="物流单号:" >
+                <span>{{ form.logisticsNumber }}</span>
               </el-form-item>
             </el-form>
           </div>
@@ -134,6 +134,9 @@ export default {
           status: '',
           totalAmount: '',
           orderNotes: '',
+          freight:'',
+          logisticsCompany:'',
+          logisticsNumber:''
       },
       items: [],
       itemLogs: [],
@@ -172,7 +175,10 @@ export default {
           this.form.totalAmount = res.datas.totalAmount
           this.form.orderNotes = res.datas.orderNotes
           this.items = res.datas.items
-           this.itemLogs = res.datas.itemLogs
+          this.itemLogs = res.datas.itemLogs
+          this.form.freight=res.datas.freight,
+          this.form.logisticsCompany=res.datas.logisticsCompany,
+          this.form.logisticsNumber=res.datas.logisticsNumber
         }
       }).catch(error => {
         this.$message.error(error + '')

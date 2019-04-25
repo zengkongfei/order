@@ -420,7 +420,8 @@ export default {
 
   .form-search .el-button--primary {
     height: 32px;
-    width: 60px;
+    margin-left:20px;
+    margin-right:20px;
     line-height: 0;
     position: relative;
     background-color: #0082F0;

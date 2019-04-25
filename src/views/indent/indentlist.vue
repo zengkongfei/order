@@ -1,5 +1,5 @@
 <template>
-<div class="table memberInfoWrap">
+<div class="table indentlistcss">
     <div class="container">
         <div class="addSearch">
             <el-form ref="plan" :model="plan" :inline="true" label-width="100px">
@@ -41,7 +41,7 @@
         <div class="handle-box">
             <el-button type="primary" icon="search" @click="handSeach">查询</el-button>
             <el-button type="primary" icon="search" @click="handFlush">刷新</el-button>
-            <el-button type="primary" icon="search" @click="warrantymore" v-show="plan.status == 1">批量报单</el-button>
+            <el-button type="primary" icon="search" class="w100" @click="warrantymore" v-show="plan.status == 1">批量报单</el-button>
         </div>
         <div class="articleTab">
             <el-tabs  @tab-click="handleClick" type="card" v-model="plan.status" >
@@ -50,31 +50,48 @@
         </div>
         <el-table  :data="tableData" border :header-cell-style="{background:'rgba(250,250,250,1)'}" 
         :default-sort="{prop: 'createdDate', order: 'descending'}" empty-text="暂无数据" @sort-change='sortChange' height='600px' 
-         @selection-change="handleSelectChangeLeft" >
-            <el-table-column   type="selection" width="55" />           
-            <el-table-column prop="number" label="订单编号"  />
-            <el-table-column prop="consignee" label="收货人" />   
-            <el-table-column prop="address" label="收货地址" />       
-            <el-table-column prop="mobile" label="收货人电话" />
+         @selection-change="handleSelectChangeLeft"  class="tabel-info">
+            <el-table-column type="selection" width="55" />           
+            <el-table-column prop="number" label="订单编号"  width="150"/>
+            <el-table-column prop="consignee" label="收货人" width="150"/>   
+            <el-table-column prop="address" label="收货地址" width="200"/>       
+            <el-table-column prop="mobile" label="收货人电话" width="150"/>
 
             <!-- <el-table-column prop="dealerName" label="货运方式" /> -->
 
-            <el-table-column prop="totalAmount" label="订单总金额" />
-            <el-table-column prop="status" label="订单状态" />          
+            <el-table-column prop="totalAmount" label="订单总金额" width="150"/>  
+            <el-table-column label="订单状态" width="150" >
+                <template slot-scope="scope">
+                    <i class="i-spot"
+                   :class="{ 'red': scope.row.status === 1 ||scope.row.status === 2,'blue': scope.row.status === 3 ||scope.row.status === 4,'green': scope.row.status === 5 ||scope.row.status === 6}"></i>
+                   <span v-if="scope.row.status == 1">待确认</span>
+                   <span v-else-if="scope.row.status == 2">审核不通过</span>
+                   <span v-else-if="scope.row.status == 3">已确认</span>
+                   <span v-else-if="scope.row.status == 4">已审核</span>
+                   <span v-else-if="scope.row.status == 5">已发货</span>
+                   <span v-else-if="scope.row.status == 6">已签收</span>
+                   <span v-else-if="scope.row.status == 7">已关闭</span>
+                </template>
+            </el-table-column>       
             <el-table-column prop="createdDate" label="下单时间" width="150px" sortable="custom" />
-            <el-table-column prop="count" label="订单商品项数" />
-            <el-table-column prop="orderNotes" label="订单备注" />
-            <el-table-column prop="memberCode" label="会员编号" />
+            <el-table-column prop="count" label="订单商品项数" width="150" align="center"/>
+            <el-table-column prop="orderNotes" label="订单备注" width="150"/>
+            <el-table-column label="会员编号" width="150" >
+                <template slot-scope="scope">
+                    <el-button type="text" @click="checkInformation(scope.row)" >{{scope.row.memberCode}}
+                    </el-button>
+                </template>
+            </el-table-column>
             <el-table-column prop="dealerName" label="下单网点" />
             <el-table-column label="控制" width="250px" align="center">
                 <template slot-scope="scope">
                     <el-button type="text" @click="handleDetail()" >详情
                     </el-button>
-                    <el-button v-show="scope.row.status == 1 || scope.row.status == 2" type="text" @click="warranty(scope.row.id,3,'报单')" >报单
+                    <el-button v-show="scope.row.status == 1 || scope.row.status == 2" type="text" @click="warranty(scope.row,3,'报单')" >报单
                     </el-button>
-                    <el-button v-show="scope.row.status == 1 || scope.row.status == 2" type="text" @click="warranty(scope.row.id,7,'关闭')" >关闭
+                    <el-button v-show="scope.row.status == 1 || scope.row.status == 2" type="text" @click="warranty(scope.row,7,'关闭')" >关闭
                     </el-button>
-                    <el-button v-show="scope.row.status == 5" type="text" @click="warranty(scope.row.id,6,'确认收货')" >确认收货
+                    <el-button v-show="scope.row.status == 5" type="text" @click="warranty(scope.row,6,'确认收货')" >确认收货
                     </el-button>
                 </template>
             </el-table-column>
@@ -164,8 +181,8 @@ export default {
         handleSelectChangeLeft(rows){
             this.multipleSelection = rows
         },
-        handleDetail(a){
-            console.log(a)
+        handleDetail(){
+            this.$router.push('/indent/indentInfo')
         },
         //查看会员信息
         checkInformation(row) {
@@ -177,7 +194,8 @@ export default {
         warrantymore(){
             let params = []
             if(this.multipleSelection == []){
-
+                this.$message("请选择批量报单的订单")
+                return false
             }else{
                 for(let i in this.multipleSelection){
                     params.push({
@@ -198,14 +216,14 @@ export default {
         handleClick() {
             this.getData() 
         },
-        warranty(id,status,title){
+        warranty(row,status,title){
             this.$confirm('确认' + title , '提示', {
                 confirmButtonText: '确定',
                 cancelButtonText: '取消',
                 type: 'warning',
             }).then(() => {
                 let params = {
-                    id: id,
+                    id: row.id,
                     status: status
                 }
                 updateOrderStatus(params).then(res => {
@@ -243,7 +261,7 @@ export default {
         getData() {
             this.plan.page = this.page
             let params = this.plan
-            params.status = Number(this.plan.status) 
+            // params.status = Number(this.plan.status) 
             getOrderPage(params).then(res => {
                 this.tableData = res.datas
             })
@@ -258,11 +276,11 @@ export default {
         },
         // 刷新
         handFlush() {
-            this.plan.contactWay = ''
-            this.plan.dealerId = ''
-            this.plan.memberCode = ''
-            this.plan.dealerCode = ''
-            this.plan.dealerName = ''
+            this.plan.consignee= ""
+            this.plan.createdDateAfter=""
+            this.plan.createdDateBefore=""
+            this.plan.mobile= ""
+            this.plan.number= ""
             this.getData()
         },
     }
@@ -270,8 +288,29 @@ export default {
 </script>
 
 <style>
-.memberInfoWrap .addSearch .el-form--inline .el-form-item__content {
+.indentlistcss .addSearch .el-form--inline .el-form-item__content {
     width: 65%;
+}
+.indentlistcss .tabel-info .green {
+    background: rgba(82, 196, 26, 1);
+}
+
+.indentlistcss .tabel-info .red {
+    background: rgba(242, 99, 12, 1);
+}
+
+.indentlistcss .tabel-info .blue {
+    background: rgba(0, 130, 240, 1);
+}
+
+.indentlistcss .i-spot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 3px;
+    vertical-align: 3px;
+    margin-right: 5px;
+    background: #D1D5D8;
 }
 .articleTab{
     margin-bottom:10px;
@@ -303,10 +342,14 @@ export default {
 }
 </style>
 <style scoped>
-.memberInfoWrap .container {
+.information-box li {
+    margin-bottom:20px;
+}
+.indentlistcss .container {
     padding: 24px 32px 0 32px;
     background: #FFF;
-    min-width: 1560px;
+    /* min-width: 1560px; */
+    min-width: 1300px;
     margin: 0;
     min-height: 900px;
     overflow: auto;
