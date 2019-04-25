@@ -7,9 +7,9 @@
             <img src="../../images/top_images/logo.png">
             <p>订单详情</p>
             <div class="buttons">
-              <el-button type="primary" v-if="form.status===1||form.status===2" @click="DeclarationForm(3)">报单</el-button>
-              <el-button type="primary" v-if="form.status===1||form.status===2" @click="DeclarationForm(7)">关闭</el-button>
-              <el-button type="primary" v-if="form.status===6" @click="DeclarationForm(6)">确认收货</el-button>
+              <el-button type="primary" v-if="stu===1||stu===2" @click="DeclarationForm(3)">报单</el-button>
+              <el-button type="primary" v-if="stu===1||stu===2" @click="DeclarationForm(7)">关闭</el-button>
+              <el-button type="primary" v-if="stu===6" @click="DeclarationForm(6)">确认收货</el-button>
             </div>
           </div>
         </div>
