@@ -85,7 +85,7 @@
             <el-table-column prop="dealerName" label="下单网点" />
             <el-table-column label="控制" width="250px" align="center">
                 <template slot-scope="scope">
-                    <el-button type="text" @click="handleDetail()" >详情
+                    <el-button type="text" @click="handleDetail(scope.row)" >详情
                     </el-button>
                     <el-button v-show="scope.row.status == 1 || scope.row.status == 2" type="text" @click="warranty(scope.row,3,'报单')" >报单
                     </el-button>
@@ -181,8 +181,10 @@ export default {
         handleSelectChangeLeft(rows){
             this.multipleSelection = rows
         },
-        handleDetail(){
-            this.$router.push('/indent/indentInfo')
+        handleDetail(row){
+            this.$router.push({
+                path: '/indent/indentInfo/' + row.id
+            })
         },
         //查看会员信息
         checkInformation(row) {

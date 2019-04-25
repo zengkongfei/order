@@ -9,7 +9,7 @@
             <div class="buttons">
               <el-button type="primary" v-if="stu===1||stu===2" @click="DeclarationForm(3,'报单')">报单</el-button>
               <el-button type="primary" v-if="stu===1||stu===2" @click="DeclarationForm(7,'关闭')">关闭</el-button>
-              <el-button type="primary" v-if="stu===6" @click="DeclarationForm(6,'确认收货')">确认收货</el-button>
+              <el-button type="primary" v-if="stu===5" @click="DeclarationForm(6,'确认收货')">确认收货</el-button>
               <!-- 订单状态:1-待确认 2-审核不通过 3-已确认 4-已审核 5-已发货 6-已签收 7-已关闭 -->
             </div>
           </div>
@@ -35,14 +35,14 @@
               <el-form-item label="订单商品项数:">
                 <span>{{form.count }}</span>
               </el-form-item>
-              <!-- <el-form-item label="订单方式:">
+               <!-- <el-form-item label="订单方式:">
                 <span></span>
-              </el-form-item> -->
+              </el-form-item>  -->
               <el-form-item label="收货人:">
                 <span> {{ form.consignee }}</span>
               </el-form-item>
               <el-form-item label="收货地址:">
-                <span>{{ form.ddress }}</span>
+                <span>{{ form.address }}</span>
               </el-form-item>
               <el-form-item label="运费:">
                 ￥<span>{{ form.freight }}</span>
@@ -53,18 +53,18 @@
               <el-form-item label="收货人电话:">
                 <span>{{ form.mobile }}</span>
               </el-form-item>
-               <el-form-item label="货运方式:">
+               <el-form-item label="货运方式:" v-show="stu === 5||stu === 6">
                 <span>{{form.logisticsCompany}}</span>
               </el-form-item>
               <el-form-item label="订单备注:">
                 <span>{{ form.orderNotes }}</span>
               </el-form-item>
-              <el-form-item label="下单网点:" style="margin-right:33.59%;">
+              <el-form-item label="下单网点:" >
                 <span>{{ form.dealerName }}</span>
               </el-form-item>
-              <el-form-item label="物流单号:" v-show="stu === 6||stu === 7">
+            <el-form-item label="物流单号:" v-show="stu === 5||stu === 6">
                 <span>{{ form.logisticsNumber }}</span>
-              </el-form-item>
+              </el-form-item> 
             </el-form>
           </div>
           <div class="catGoods">
@@ -87,7 +87,7 @@
                 </el-table-column>
                 <el-table-column prop="number" label="商品数量" width="150">
                 </el-table-column>
-                <el-table-column prop="amount" label="金额" width="150">
+                <el-table-column prop="realAmount" label="金额" width="150">
                 </el-table-column>
               </el-table>
               </el-tab-pane>
@@ -122,23 +122,23 @@ export default {
           count: '',//商品项数
           createdDate: '',//订单日期
           dealerName: '',//下单网点
-          ddress: '',//收货地址
+          address: '',//收货地址
           id: '',//订单id
           memberCode: '',//会员编号
           mobile: '',//收货人电话
           number: '',//订单编号
           orderNotes: '',//订单备注
           totalAmount: '',//总金额
-          freight:'',
-          logisticsCompany:'',
-          logisticsNumber:''
+          freight:'',//运费
+          logisticsCompany:'',//货运方式
+          logisticsNumber:'',//货运单号
       },
       items: [],
       itemLogs: [],
       myItem: 'first',
       stu: '',
       status: '',
-      id: this.$route.query.id,
+      id: this.$route.params.id,
       itemForm: {
         id:'',
         status: ''
@@ -147,7 +147,6 @@ export default {
   },
 
   created() {
-    console.log("dfadf", this.$route.query)
     this.getOrder()//调用获取订单信息
   },
 
@@ -165,16 +164,16 @@ export default {
             this.form.count = res.datas.count//商品项数
             this.form.createdDate = res.datas.createdDate//下单时间
             this.form.dealerName = res.datas.dealerName//下单网点
-            this.form.ddress = res.datas.ddress//收货地址
+            this.form.address = res.datas.address//收货地址
             this.form.id = res.datas.id//订单id
             this.itemForm.id = res.datas.id
             this.form.memberCode = res.datas.memberCode//会员编号
             this.form.mobile = res.datas.mobile//收货人手机号
             this.form.number = res.datas.number//订单编号
             this.form.orderNotes = res.datas.orderNotes//订单编号
-            this.form.freight = res.datas.freight,
-            this.form.logisticsCompany = res.datas.logisticsCompany
-            this.form.logisticsNumber = res.datas.logisticsNumber
+            this.form.freight = res.datas.freight,//运费
+            this.form.logisticsCompany = res.datas.logisticsCompany//货运方式
+            this.form.logisticsNumber = res.datas.logisticsNumber//货运单号
             this.stu = res.datas.status//订单状态
             this.form.totalAmount = res.datas.totalAmount//订单总金额
             this.form.orderNotes = res.datas.orderNotes//订单备注

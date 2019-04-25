@@ -74,14 +74,14 @@ export const constantRouterMap = [
     alwaysShow: true,
     icon: 'shop',
     children: [{
-    path: '/indent/indentlist',
-    name: '订单管理',
-    component: () => import('@/views/indent/indentlist')
+      path: '/indent/indentlist',
+      name: '订单管理',
+      component: () => import('@/views/indent/indentlist')
     },{
-    path: '/indent/indentInfo',
-    name: '订单详情',
-    hidden: true,
-    component: () => import('@/views/indent/indentInfo')
+      path: '/indent/indentInfo/:id',
+      name: '订单详情',
+      hidden: true,
+      component: () => import('@/views/indent/indentInfo/')
     }]
     },
 
