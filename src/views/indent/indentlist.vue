@@ -207,6 +207,10 @@ export default {
 
             updateOrderListStatus(params).then(res => {
                 this.$message.success(res.msg)
+                this.page.total= 0,
+                this.page.pageNum= 1,
+                this.page.pageSize= 10,
+                this.page.pageTotals= 0,
                 this.getData()
             })
             .catch(error => {
@@ -214,6 +218,10 @@ export default {
             })      
         },
         handleClick() {
+            this.page.total= 0,
+            this.page.pageNum= 1,
+            this.page.pageSize= 10,
+            this.page.pageTotals= 0,
             this.getData() 
         },
         warranty(row,status,title){
@@ -264,6 +272,9 @@ export default {
             // params.status = Number(this.plan.status) 
             getOrderPage(params).then(res => {
                 this.tableData = res.datas
+                this.page.total = res.total
+                this.page.pageTotals = res.pageTotals
+
             })
             .catch(error => {
                 this.$message.error(error + '')
@@ -272,7 +283,11 @@ export default {
        
         // 查询
         handSeach() {
-            this.getData()
+            this.page.total= 0,
+            this.page.pageNum= 1,
+            this.page.pageSize= 10,
+            this.page.pageTotals= 0,
+            this.getData()            
         },
         // 刷新
         handFlush() {
@@ -281,6 +296,10 @@ export default {
             this.plan.createdDateBefore=""
             this.plan.mobile= ""
             this.plan.number= ""
+            this.page.total= 0,
+            this.page.pageNum= 1,
+            this.page.pageSize= 10,
+            this.page.pageTotals= 0,
             this.getData()
         },
     }
