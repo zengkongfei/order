@@ -10,6 +10,7 @@
               <el-button type="primary" v-if="stu===1||stu===2" @click="DeclarationForm(3)">报单</el-button>
               <el-button type="primary" v-if="stu===1||stu===2" @click="DeclarationForm(7)">关闭</el-button>
               <el-button type="primary" v-if="stu===6" @click="DeclarationForm(6)">确认收货</el-button>
+              <!-- 订单状态:1-待确认 2-审核不通过 3-已确认 4-已审核 5-已发货 6-已签收 7-已关闭 -->
             </div>
           </div>
         </div>
@@ -120,18 +121,18 @@ export default {
   data() {
     return {
       form: {
-          consignee: '',
-          count: '',
-          createdDate: '',
-          dealerName: '',
-          ddress: '',
-          id: '',
-          memberCode: '',
-          mobile: '',
-          number: '',
-          orderNotes: '',
-          totalAmount: '',
-          orderNotes: '',
+          consignee: '',//收货人
+          count: '',//商品项数
+          createdDate: '',//订单日期
+          dealerName: '',//下单网点
+          ddress: '',//收货地址
+          id: '',//订单id
+          memberCode: '',//会员编号
+          mobile: '',//收货人电话
+          number: '',//订单编号
+          orderNotes: '',//订单备注
+          totalAmount: '',//总金额
+         
       },
       items: [],
       itemLogs: [],
@@ -160,22 +161,22 @@ export default {
         getOrderById(this.id).then(res => {
           console.log("订单信息",res.datas)
           if (res && res.datas) {
-            this.form.consignee = res.datas.consignee
-            this.form.count = res.datas.count
-            this.form.createdDate = res.datas.createdDate
-            this.form.dealerName = res.datas.dealerName
-            this.form.ddress = res.datas.ddress
-            this.form.id = res.datas.id
+            this.form.consignee = res.datas.consignee//收货人
+            this.form.count = res.datas.count//商品项数
+            this.form.createdDate = res.datas.createdDate//下单时间
+            this.form.dealerName = res.datas.dealerName//下单网点
+            this.form.ddress = res.datas.ddress//收货地址
+            this.form.id = res.datas.id//订单id
             this.itemForm.id = res.datas.id
-            this.form.memberCode = res.datas.memberCode
-            this.form.mobile = res.datas.mobile
-            this.form.number = res.datas.number
-            this.form.orderNotes = res.datas.orderNotes
-            this.stu = res.datas.status
-            this.form.totalAmount = res.datas.totalAmount
-            this.form.orderNotes = res.datas.orderNotes
-            this.items = res.datas.items
-            this.itemLogs = res.datas.itemLogs
+            this.form.memberCode = res.datas.memberCode//会员编号
+            this.form.mobile = res.datas.mobile//收货人手机号
+            this.form.number = res.datas.number//订单编号
+            this.form.orderNotes = res.datas.orderNotes//订单编号
+            this.stu = res.datas.status//订单状态
+            this.form.totalAmount = res.datas.totalAmount//订单总金额
+            this.form.orderNotes = res.datas.orderNotes//订单备注
+            this.items = res.datas.items  //商品详情
+            this.itemLogs = res.datas.itemLogs //订单日志
           }
         }).catch(error => {
           this.$message.error(error + '')
