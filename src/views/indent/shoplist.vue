@@ -25,7 +25,7 @@
                           :value="item">
                         </el-option>
                       </el-select>
-                      <el-select v-model="plan.catNameThree" placeholder="请选择" :disabled="IscatNameThree">
+                      <el-select v-model="catNameThree" placeholder="请选择" :disabled="IscatNameThree">
                         <el-option
                           v-for="(item, index) in getCatNameThreeList"
                           :key="index"

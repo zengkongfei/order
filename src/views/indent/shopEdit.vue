@@ -68,7 +68,7 @@ export default {
          rules:{
       totalInventory:[
                    { required: true, validator: checkTotalInventory, trigger: 'blur' },
-                   { type: 'number', message: '只能输入数字', trigger: 'blur' },
+                  { type:'number', message: '只能输入数字', trigger: 'change' },
                 ],
         },
       form:{
