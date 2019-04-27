@@ -196,7 +196,7 @@ export default {
         this.$message.success(res.msg)
         this.$router.push("/indent/indentlist");
       }).catch(error => {
-        this.$message.error(error + "")
+        this.$message.error(error+"")
       })
       })
     }

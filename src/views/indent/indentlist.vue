@@ -51,7 +51,7 @@
         <el-table  :data="tableData" border :header-cell-style="{background:'rgba(250,250,250,1)'}" 
         :default-sort="{prop: 'createdDate', order: 'descending'}" empty-text="暂无数据" @sort-change='sortChange' height='600px' 
          @selection-change="handleSelectChangeLeft"  class="tabel-info">
-            <el-table-column type="selection" width="55" />           
+            <!-- <el-table-column type="selection" width="55" />            -->
             <el-table-column prop="number" label="订单编号"  width="150"/>
             <el-table-column prop="consignee" label="收货人" width="150"/>   
             <el-table-column prop="address" label="收货地址" width="200"/>       

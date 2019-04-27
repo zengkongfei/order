@@ -82,6 +82,24 @@ export const constantRouterMap = [
       name: '订单详情',
       hidden: true,
       component: () => import('@/views/indent/indentInfo/')
+    },
+    {
+      path: '/indent/shoplist',
+      name: '商品库存',
+     // hidden: true,
+      component: () => import('@/views/indent/shoplist/')
+    },
+    // {
+    //   path: 'indent/getInventoryById/:id',
+    //   name: '商品详情',
+    //    hidden: true,
+    //   component: () => import('@/views/indent/shopEdit/')
+    // },
+    {
+      path: '/indent/getInventoryById/:id',
+      name: '库存修改',
+     hidden: true,
+      component: () => import('@/views/indent/shopEdit/')
     }]
     },
 

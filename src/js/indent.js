@@ -19,4 +19,21 @@ export const getOrderById = params => {
     return request.get('health-dealer/mapper/order/getOrderById/' + params).then(res => res.data)
 }
      
+// 商品库存(练习)
+export const getInventoryPage = params => {
+    return request.post('health-mall/inventory/getInventoryPage', params).then(res => res.data)
+  }
 
+   // 根据id查商品库存信息(练习)
+export const getInventoryById = params => {
+    return request.get('health-mall/inventory/getInventoryById/'+ params).then(res => res.data)
+  }
+  // 商品库存修改(练习)
+export const updateInventory = params => {
+    return request.post('health-mall/inventory/updateInventory', params).then(res => res.data)
+  }
+
+  //  获取类目管理类目(练习)
+export const categorys = params => {
+    return request.post('health-mall/itemCategory/categorys', params).then(res => res.data)
+  }
