@@ -33,7 +33,7 @@ export const updateInventory = params => {
     return request.post('health-mall/inventory/updateInventory', params).then(res => res.data)
   }
 
-  //  获取类目管理类目(练习)
-export const categorys = params => {
-    return request.post('health-mall/itemCategory/categorys', params).then(res => res.data)
-  }
+//   //  获取类目管理类目(练习)
+// export const categorys = params => {
+//     return request.post('health-mall/itemCategory/categorys', params).then(res => res.data)
+//   }

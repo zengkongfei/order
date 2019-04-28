@@ -4,7 +4,7 @@
       <div class="addSearch" style="width:100%">
         <el-form ref="form" :model="condition" :inline="true" label-width="105px">
           <el-row type="flex" class="row-bg">
-              <el-form-item label="商品类别：" style="width:100%;margin-bottom:16px;">
+              <!-- <el-form-item label="商品类别：" style="width:100%;margin-bottom:16px;">
                 
                        <el-col :span="12" style="text-align: left" class="goods-class">
                       <el-select v-model="catNameOne" placeholder="请选择" @change="getCatNameTwoList()">
@@ -34,7 +34,7 @@
                         </el-option>
                       </el-select> 
                    
-                  </el-form-item>
+                  </el-form-item> -->
     
               <!-- <el-col :span="12">
               <el-form-item label="一级类目:" style="">
@@ -192,52 +192,52 @@ export default {
    },
    created(){
          this.getData()
-         this.getCatNameOneList//调用获取一级类目方法
-          this.getCatNameTwoList//调用获取二级类目方法
-          this.getCatNameThreeList//调用获取三级类目方法
+        //  this.getCatNameOneList//调用获取一级类目方法
+        //   this.getCatNameTwoList//调用获取二级类目方法
+        //   this.getCatNameThreeList//调用获取三级类目方法
             },
 
    methods:{
      //获取一级类目
-     getCatNameOneList(){
-       categorys({parentId:'1111',itemCategoryType:1}).then(res=>{
-          this.catNameOneList = res.datas
-          console.logs('类目',this.catNameOneList)
-       }).catch(error=>{
-         this.$message.error(error+'')
-       })
+    //  getCatNameOneList(){
+    //    categorys({parentId:'1111',itemCategoryType:1}).then(res=>{
+    //       this.catNameOneList = res.datas
+    //       console.logs('类目',this.catNameOneList)
+    //    }).catch(error=>{
+    //      this.$message.error(error+'')
+    //    })
 
-     },
-     //获取二级类目
-     getCatNameTwoList(){
-       this.IscatNameTwo = flase,
-       this.IscatNameThree = true,
-       this.catNameTwo ='',
-       this.catNameThree =''
-       this.getCatNameTwoList = [],
-       this.getCatNameThreeList = [],
-       this.condition.catNameOne = this.catNameOne.name
-       categorys({parentId:this.catNameOne.id,itemCategoryType:2 }).then(res=>{
-         this.getCatNameTwoList =res.datas
-       }).catch(error=>{
-         this.$message.error(error+'')
+    //  },
+    //  //获取二级类目
+    //  getCatNameTwoList(){
+    //    this.IscatNameTwo = flase,
+    //    this.IscatNameThree = true,
+    //    this.catNameTwo ='',
+    //    this.catNameThree =''
+    //    this.getCatNameTwoList = [],
+    //    this.getCatNameThreeList = [],
+    //    this.condition.catNameOne = this.catNameOne.name
+    //    categorys({parentId:this.catNameOne.id,itemCategoryType:2 }).then(res=>{
+    //      this.getCatNameTwoList =res.datas
+    //    }).catch(error=>{
+    //      this.$message.error(error+'')
 
-       })
+    //    })
 
-     },
-     //获取三级类目
-     getCatNameThreeList(){
-       this.IscatNameThree = flase,
-       this.getCatNameThreeList = [],
-       this.condition.catNameThree =''
-      categorys({parentId:this.catNameTwo.id,itemCategoryType:3 }).then(res=>{
-         this.getCatNameThreeList =res.datas
-       }).catch(error=>{
-         this.$message.error(error+'')
+    //  },
+    //  //获取三级类目
+    //  getCatNameThreeList(){
+    //    this.IscatNameThree = flase,
+    //    this.getCatNameThreeList = [],
+    //    this.condition.catNameThree =''
+    //   categorys({parentId:this.catNameTwo.id,itemCategoryType:3 }).then(res=>{
+    //      this.getCatNameThreeList =res.datas
+    //    }).catch(error=>{
+    //      this.$message.error(error+'')
 
-       })
+    //    })
 
-     },
+    //  },
        //获取列表信息
       getData(){
           
