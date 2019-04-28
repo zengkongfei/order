@@ -60,8 +60,8 @@
             </el-table-column>
             <el-table-column label="控制" >
                 <template slot-scope="scope">
-                    <el-button type="text"    @click="getMemberInfo(scope.row)">查看会员</el-button>
-                    <el-button type="text"   @click="activation(scope.row)">激活</el-button>
+                    <el-button type="text"  v-if="scope.row.isActivation === 1"  @click="getMemberInfo(scope.row)">查看会员</el-button>
+                    <el-button type="text" v-if="scope.row.isActivation === 0"  @click="activation(scope.row)">激活</el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -263,9 +263,14 @@ export default {
         },
         //激活
         activation(row){
-                 console.log("zkf",row)
+                 console.log("zp",row)
                   this.$router.push({
-                path: '/memberMag/getMemberActivation/' + row.memberId
+                path: '/memberMag/activation',
+                query: {
+                    contactWay: row.contactWay,
+                    memberCode: row.memberCode,
+                    memberId: row.memberId
+                }
             })
         },
 

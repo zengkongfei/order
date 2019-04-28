@@ -64,12 +64,13 @@ export const constantRouterMap = [
       hidden :true,
       component: () => import('@/views/memberMag/getMemberInfo')
     }, 
-    // {
-    //   path: '/memberMag/getMemberActivation/:memberId',
-    //   name: '激活',
-    //   hidden :true,
-    //   component: () => import('@/views/memberMag/activation')
-    // }
+    {
+      path: '/memberMag/activation',
+      name: '激活',
+      hidden :true,
+      component: () => import('@/views/memberMag/activation')
+    },
+    
   ]
   },
   {
