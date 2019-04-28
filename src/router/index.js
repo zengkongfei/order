@@ -58,12 +58,19 @@ export const constantRouterMap = [
       name: '会员信息',
       component: () => import('@/views/memberMag/memberInfo')
     },
+    {
+      path: '/memberMag/getMemberActivation/:memberId',
+      name: '查看会员',
+      hidden :true,
+      component: () => import('@/views/memberMag/getMemberInfo')
+    }, 
     // {
-    //   path: '/memberMag/generalize',
-    //   name: '网点推广',
-    //   component: () => import('@/views/memberMag/generalize')
+    //   path: '/memberMag/getMemberActivation/:memberId',
+    //   name: '激活',
+    //   hidden :true,
+    //   component: () => import('@/views/memberMag/activation')
     // }
-    ]
+  ]
   },
   {
     path: '/indent',

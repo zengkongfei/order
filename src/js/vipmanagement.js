@@ -20,4 +20,7 @@ export const getDetailedDealerInfo = params => {
 export const listRecommendByPage = params => {
   return request.post('health-dealer/members/queryRecommendMember', params).then(res => res.data)
 }
-
+// 查看会员信息
+export const getMemberActivation = params => {
+  return request.get('health-dealer/members/getMemberActivation/'+ params).then(res => res.data)
+}

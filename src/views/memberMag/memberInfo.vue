@@ -53,6 +53,17 @@
                     </el-button>
                 </template>
             </el-table-column>
+            <el-table-column label="会员是否激活" width="150" align="left">
+              <template slot-scope="scope">
+                <span>{{ scope.row.isActivation === 0 ? '否' : '是' }}</span>
+              </template>
+            </el-table-column>
+            <el-table-column label="控制" >
+                <template slot-scope="scope">
+                    <el-button type="text"    @click="getMemberInfo(scope.row)">查看会员</el-button>
+                    <el-button type="text"   @click="activation(scope.row)">激活</el-button>
+                </template>
+            </el-table-column>
         </el-table>
         <paging-query :page="page" @change="getData" />
 
@@ -243,6 +254,21 @@ export default {
             this.page.pageNum = val
             this.getData()
         },
+        //查看会员跳转
+        getMemberInfo(row){
+                 console.log("zkf",row)
+                  this.$router.push({
+                path: '/memberMag/getMemberActivation/' + row.memberId
+            })
+        },
+        //激活
+        activation(row){
+                 console.log("zkf",row)
+                  this.$router.push({
+                path: '/memberMag/getMemberActivation/' + row.memberId
+            })
+        },
+
         memberCode() {
             this.plan.memberCode = this.plan.memberCode.replace(/[^0-9a-zA-Z]+$/, '')
         },
