@@ -22,8 +22,7 @@
              <span>{{form.memberCard}}</span>
           </el-form-item>
           <el-form-item label="会员身份证照:(正面)">
-              <!-- <img  :src="form.memberFrontView" width="406px" height="254px" alt="" /> -->
-               <img  src="../../assets/images/top_images/logo.png"  width="406px" height="254px" alt="" /> 
+              <img  :src="form.memberFrontView" width="406px" height="254px" alt="" />
           </el-form-item>
         </div>
          <div class="activation-one left">
@@ -37,8 +36,7 @@
              <span>{{form.memberBirthday}}</span>
           </el-form-item>
           <el-form-item label="会员身份证照:(反面)">
-            <img  src="../../assets/images/top_images/logo.png"  width="406px" height="254px" alt="" /> 
-            <!-- <img  :src="form.memberBackView"  width="406px" height="254px" alt="" /> -->
+            <img  :src="form.memberBackView"  width="406px" height="254px" alt="" />
           </el-form-item>
         </div>
       </el-form>

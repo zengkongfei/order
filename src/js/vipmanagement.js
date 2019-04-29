@@ -24,3 +24,11 @@ export const listRecommendByPage = params => {
 export const getMemberActivation = params => {
   return request.get('health-dealer/members/getMemberActivation/'+ params).then(res => res.data)
 }
+//激活会员
+export const addActivation = params => {
+  return request.put('health-dealer/members/memberActivation', params).then(res => res.data)
+  }
+  //上传照片
+  export const picPath= params => {
+  return request.upload('health-file/file/upload', params).then(res => res.data)
+  }
